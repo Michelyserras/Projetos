@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProductService } from "../service/ProductService";
+import { ClienteService } from "../service/ClienteService";
 import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put} from "tsoa";
 import { ProductRequestDto } from "../model/dto/ProductRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
@@ -7,7 +7,7 @@ import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 @Route("product")
 @Tags("Product")
 export class ProductController{ 
-    productService = new ProductService();
+    productService = new ClienteService();
     
     @Post()
     async cadastrarProduto(
