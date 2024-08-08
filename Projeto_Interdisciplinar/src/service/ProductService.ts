@@ -1,6 +1,6 @@
 import { ProductEntity } from "../model/entity/Cliente";
 import { ProductRepository } from "../repository/ProductRepository";
-
+//teste
 export class ProductService{
 
     productRepository: ProductRepository = new ProductRepository();
