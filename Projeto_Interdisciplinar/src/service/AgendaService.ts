@@ -1,7 +1,7 @@
 import { AgendaEntity } from "../model/entity/Agenda";
 import { AgendaRepository } from "../repository/AgendaRepository";
 
-export class agendaService{
+export class AgendaService{
 
     private agendaRepository = AgendaRepository.getInstance();
 

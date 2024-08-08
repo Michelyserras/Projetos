@@ -1,23 +1,23 @@
 import { Request, Response } from "express";
-import { ClienteService } from "../service/ClienteService";
 import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delete, Query} from "tsoa";
-import { ClienteRequestDto } from "../model/dto/ClienteRequestDto copy";
+import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
+import { AgendaService } from "../service/AgendaService";
 // aaaaaaaaaaa
-@Route("cliente")
-@Tags("Cliente")
+@Route("agenda")
+@Tags("Agenda")
 export class ProductController{ 
-    clienteService = new ClienteService();
+    agendaService = new AgendaService();
     
     @Post()
-    async cadastrarCliente(
-        @Body() dto:ClienteRequestDto,
+    async cadastrarAgenda(
+        @Body() dto:AgendaRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
             try {
-                const novocliente =  await this.clienteService.cadastrarCliente(dto);
-               return sucess(201, new BasicResponseDto("Cliente cadastrado com sucesso!", novocliente));
+                const novoagenda =  await this.agendaService.cadastrarAgenda(dto);
+               return sucess(201, new BasicResponseDto("Agenda cadastrado com sucesso!", novoagenda));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
             }
@@ -25,14 +25,14 @@ export class ProductController{
         
     
     @Put()
-    async atualizarCliente(
-        @Body() dto:ClienteRequestDto,
+    async atualizarAgenda(
+        @Body() dto:AgendaRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
             try {
-                const clienteAtlz = await this.clienteService.atualizarCliente(dto);
-                return sucess(200, new BasicResponseDto("Os dados do Cliente foram atualizado com sucesso!", clienteAtlz));
+                const agendaAtlz = await this.agendaService.atualizarAgenda(dto.id);
+                return sucess(200, new BasicResponseDto("Os dados do Agenda foram atualizado com sucesso!", agendaAtlz));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
             }
@@ -40,14 +40,14 @@ export class ProductController{
         
     
     @Delete()
-    async deleteCliente(
-        @Body() dto:ClienteRequestDto,
+    async deleteAgenda(
+        @Body() dto:AgendaRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const cliente = await this.clienteService.deletarCliente(dto);
-            return sucess(200, new BasicResponseDto("Cliente excluido com suceso!", cliente));
+            const agenda = await this.agendaService.deletarAgenda(dto);
+            return sucess(200, new BasicResponseDto("Agenda excluido com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
@@ -56,13 +56,13 @@ export class ProductController{
     
     @Get()
     async filtrarProduto(
-        @Query() dto:ClienteRequestDto,
+        @Query() dto:AgendaRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const cliente = await this.clienteService.filtrarCliente(dto.cpf);
-            return sucess(200, new BasicResponseDto("Cliente encontrado com suceso!", cliente));
+            const agenda = await this.agendaService.filtrarAgenda(dto.id);
+            return sucess(200, new BasicResponseDto("Agenda encontrado com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
@@ -70,13 +70,13 @@ export class ProductController{
         
     
     @Get()
-    async ListarTodosClientes(
+    async ListarTodosAgendas(
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const cliente = await this.clienteService.listarTodosClientes();
-            return sucess(200, new BasicResponseDto("ClienteS encontrados com suceso!", cliente));
+            const agenda = await this.agendaService.listarTodasAgendas();
+            return sucess(200, new BasicResponseDto("AgendaS encontrados com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
