@@ -27,7 +27,7 @@ export class PetRepository{
             peso DECIMAL(10, 3) NOT NULL,
             especie VARCHAR(255) NOT NULL,
             historicoPet VARCHAR(255) NOT NULL
-            )`
+        )`;
 
         try {
             const resultado = await executarComandoSQL(query, []);
@@ -57,7 +57,7 @@ export class PetRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.peso, pet.especie, pet.historicoPet, pet.id]);
-            console.log('pet atualizado com sucesso: ', resultado);
+            console.log('Pet atualizado com sucesso: ', resultado);
             return new Promise<PetEntity>((resolve)=>{
                 resolve(pet);
             })
@@ -87,7 +87,7 @@ export class PetRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('pet localizado com sucesso, id: ', resultado);
+            console.log('Pet localizado com sucesso, id: ', resultado);
             return new Promise<PetEntity>((resolve)=>{
                 resolve(resultado);
             })

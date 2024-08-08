@@ -1,7 +1,6 @@
 import { executarComandoSQL } from "../database/mysql";
 import { ClienteEntity } from "../model/entity/Cliente";
 
-
 export class ClienteRepository{
 
     private static instance: ClienteRepository;
