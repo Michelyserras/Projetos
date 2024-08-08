@@ -4,11 +4,20 @@ import { ClienteEntity } from "../model/entity/Cliente";
 
 export class ClienteRepository{
 
-    constructor(){
+    private static instance: ClienteRepository;
+
+    private constructor(){
         this.createTable();
     }
 
-    private async createTable() { //CRIA A TABELA CLIENTE NO BANCO DE DADOS
+    public static getInstance(): ClienteRepository {
+        if(!this.instance) {
+            this.instance = new ClienteRepository();
+        }
+        return this.instance;
+    }
+
+    private async createTable() { //CRIA A TABELA CLIENTE NO BANCO DE DADOSi
         const query = `
         CREATE TABLE IF NOT EXISTS sistema.Cliente (
             cpf VARCHAR(14) PRIMARY KEY,
@@ -98,6 +107,4 @@ export class ClienteRepository{
             throw err;
         }
     }
-
-    
 }
