@@ -31,7 +31,7 @@ export class ProductController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
             try {
-                const PetAtlz = await this.petService.atualizarPet(dto.id);
+                const PetAtlz = await this.petService.atualizarPet(dto);
                 return sucess(200, new BasicResponseDto("Os dados do Pet foram atualizado com sucesso!", PetAtlz));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
@@ -61,7 +61,7 @@ export class ProductController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Pet = await this.petService.filtrarPet(dto.id);
+            const Pet = await this.petService.filtrarPet(dto);
             return sucess(200, new BasicResponseDto("Pet encontrado com suceso!", Pet));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

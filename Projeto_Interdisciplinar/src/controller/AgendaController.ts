@@ -31,7 +31,7 @@ export class ProductController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
             try {
-                const agendaAtlz = await this.agendaService.atualizarAgenda(dto.id);
+                const agendaAtlz = await this.agendaService.atualizarAgenda(dto);
                 return sucess(200, new BasicResponseDto("Os dados do Agenda foram atualizado com sucesso!", agendaAtlz));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
@@ -61,7 +61,7 @@ export class ProductController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const agenda = await this.agendaService.filtrarAgenda(dto.id);
+            const agenda = await this.agendaService.filtrarAgenda(dto);
             return sucess(200, new BasicResponseDto("Agenda encontrado com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

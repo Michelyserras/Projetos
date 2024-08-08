@@ -1,5 +1,4 @@
 export class PetRequestDto{
-    id: number;
     cpfCliente: string;
     nome: string;
     idade: number;
@@ -7,8 +6,7 @@ export class PetRequestDto{
     especie: string;
     historicoPet: string;
 
-    constructor(id?:number, cpfCliente?:string, nome?:string, idade?:number, peso?:number, especie?:string, historicoPet?:string){
-        this.id = id || 0;
+    constructor( cpfCliente?:string, nome?:string, idade?:number, peso?:number, especie?:string, historicoPet?:string){
         this.cpfCliente = cpfCliente || '';
         this.nome = nome || '';
         this.idade = idade || 0;
