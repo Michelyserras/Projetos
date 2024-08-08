@@ -1,9 +1,9 @@
 import { ClienteEntity } from "../model/entity/Cliente";
-import { ProductRepository } from "../repository/ProductRepository";
+import { ClienteRepository } from "../repository/ClienteRepository";
 //teste
 export class ProductService{
 
-    productRepository: ProductRepository = new ProductRepository();
+    productRepository: ClienteRepository = new ClienteRepository();
 
     async cadastrarProduto(produtoData: any): Promise<ClienteEntity> {
         const { name, price, expirationDate } = produtoData;

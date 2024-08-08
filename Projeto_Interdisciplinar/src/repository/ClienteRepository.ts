@@ -2,7 +2,7 @@ import { executarComandoSQL } from "../database/mysql";
 import { ClienteEntity } from "../model/entity/Cliente";
 
 
-export class ProductRepository{
+export class ClienteRepository{
 
     constructor(){
         this.createTable();
