@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import { ClienteService } from "../service/ClienteService";
-import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, delete} from "tsoa";
-import { ProductRequestDto } from "../model/dto/ProductRequestDto";
+import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delete, Query} from "tsoa";
+import { ClienteRequestDto } from "../model/dto/ClienteRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 // aaaaaaaaaaa
-@Route("product")
-@Tags("Product")
+@Route("cliente")
+@Tags("Cliente")
 export class ProductController{ 
     clienteService = new ClienteService();
     
     @Post()
     async cadastrarCliente(
-        @Body() dto:ProductRequestDto,
+        @Body() dto:ClienteRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -26,7 +26,7 @@ export class ProductController{
     
     @Put()
     async atualizarCliente(
-        @Body() dto:ProductRequestDto,
+        @Body() dto:ClienteRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
@@ -41,7 +41,7 @@ export class ProductController{
     
     @Delete()
     async deleteCliente(
-        @Body() dto:ProductRequestDto,
+        @Body() dto:ClienteRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
@@ -54,34 +54,31 @@ export class ProductController{
     };
         
     
-
-    async filtrarProduto (req: Request, res: Response){
-            try {
-                const produto = await this.productService.filtrarProduto(req.query.id);
-                res.status(200).json(
-                    {
-                        mensagem:"Produto encontrado com sucesso!",
-                        produto:produto
-                    }
-                );
-            } catch (error: any) {
-                res.status(400).json({ message: error.message});
-            }
-        };
+    @Get()
+    async filtrarProduto(
+        @Query() dto:ClienteRequestDto,
+        @Res() fail:TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ):Promise<void>{
+        try {
+            const cliente = await this.clienteService.filtrarCliente(dto.cpf);
+            return sucess(200, new BasicResponseDto("Cliente encontrado com suceso!", cliente));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined));
+        }
+    };
         
     
-
-    async listarTodosProduto (req: Request, res: Response){
-            try {
-                const produtos = await this.productService.listarTodosProdutos();
-                res.status(200).json(
-                    {
-                        mensagem:"Produtos listados com sucesso!",
-                        produtos:produtos
-                    }
-                    );
-            } catch (error: any) {
-                res.status(400).json({ message: error.message});
-            }
-        };
+    @Get()
+    async ListarTodosClientes(
+        @Res() fail:TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ):Promise<void>{
+        try {
+            const cliente = await this.clienteService.listarTodosClientes();
+            return sucess(200, new BasicResponseDto("ClienteS encontrados com suceso!", cliente));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined));
+        }
+    };
 }
