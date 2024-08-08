@@ -1,4 +1,4 @@
-export class ProductEntity{
+export class ClienteEntity{
     cpf: string;
     nome: string;
     endereco: string;

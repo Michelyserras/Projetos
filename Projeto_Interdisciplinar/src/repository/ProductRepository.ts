@@ -1,5 +1,5 @@
 import { executarComandoSQL } from "../database/mysql";
-import { ProductEntity } from "../model/entity/Cliente";
+import { ClienteEntity } from "../model/entity/Cliente";
 
 
 export class ProductRepository{
@@ -25,14 +25,14 @@ export class ProductRepository{
         }
     }
 
-    async insertProduct(product:ProductEntity) :Promise<ProductEntity>{
+    async insertProduct(product:ClienteEntity) :Promise<ClienteEntity>{
         const query = "INSERT INTO estoque.Product (name, price, expirationDate) VALUES (?, ?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [product.name, product.price, product.expirationDate]);
             console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
             product.id = resultado.insertId;
-            return new Promise<ProductEntity>((resolve)=>{
+            return new Promise<ClienteEntity>((resolve)=>{
                 resolve(product);
             })
         } catch (err) {
@@ -41,13 +41,13 @@ export class ProductRepository{
         }
     }
 
-    async updateProduct(product:ProductEntity) :Promise<ProductEntity>{
+    async updateProduct(product:ClienteEntity) :Promise<ClienteEntity>{
         const query = "UPDATE estoque.product set name = ?, price = ?, expirationDate = ? where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [product.name, product.price, product.expirationDate, product.id]);
             console.log('Produto atualizado com sucesso, ID: ', resultado);
-            return new Promise<ProductEntity>((resolve)=>{
+            return new Promise<ClienteEntity>((resolve)=>{
                 resolve(product);
             })
         } catch (err:any) {
@@ -56,13 +56,13 @@ export class ProductRepository{
         }
     }
 
-    async deleteProduct(product:ProductEntity) :Promise<ProductEntity>{
+    async deleteProduct(product:ClienteEntity) :Promise<ClienteEntity>{
         const query = "DELETE FROM estoque.product where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [product.id]);
             console.log('Produto deletado com sucesso: ', product);
-            return new Promise<ProductEntity>((resolve)=>{
+            return new Promise<ClienteEntity>((resolve)=>{
                 resolve(product);
             })
         } catch (err:any) {
@@ -71,13 +71,13 @@ export class ProductRepository{
         }
     }
 
-    async filterProduct(id: number) :Promise<ProductEntity>{
+    async filterProduct(id: number) :Promise<ClienteEntity>{
         const query = "SELECT * FROM estoque.product where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
             console.log('Produto localizado com sucesso, ID: ', resultado);
-            return new Promise<ProductEntity>((resolve)=>{
+            return new Promise<ClienteEntity>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
@@ -86,12 +86,12 @@ export class ProductRepository{
         }
     }
 
-    async filterAllProduct() :Promise<ProductEntity[]>{
+    async filterAllProduct() :Promise<ClienteEntity[]>{
         const query = "SELECT * FROM estoque.product" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<ProductEntity[]>((resolve)=>{
+            return new Promise<ClienteEntity[]>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
