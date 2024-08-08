@@ -1,28 +1,22 @@
-import { stringParaData, verificaFormatoData } from "../../util/DataUtil";
-
 export class ProductEntity{
-    id: number;
-    name: string;
-    price: number;
-    expirationDate: Date;
+    cpf: string;
+    nome: string;
+    endereco: string;
+    telefone: string;
+//Vamos colocar histórico de serviços? Ou ficará apenas salvo na agenda e será necessário buscar por cpf do cliente?
 
-
-    constructor(id?:number, name?:string, price?:number, expirationDate?: string){
-        this.validatesInformation(name, price, expirationDate);
-        this.id = id || 0;
-        this.name = name || '';
-        this.price = price || 0;
-        this.expirationDate = stringParaData(expirationDate || '');
+    constructor(cpf?:string, nome?:string, endereco?:string, telefone?: string){
+        this.validatesInformation(cpf, nome, endereco, telefone);
+        this.cpf = cpf || '';
+        this.nome = nome || '';
+        this.endereco = endereco || '';
+        this.telefone = telefone || '';
     }
 
-    private validatesInformation(name:any, price:any, expirationDate:any){
+    private validatesInformation(cpf:any, nome:any, endereco:any, telefone:any){
         let error ='';
-        if (typeof name !== 'string' || typeof price !== 'number' || typeof expirationDate !== 'string') {
+        if (typeof cpf !== 'string' || typeof nome !== 'string' || typeof endereco !== 'string' || typeof telefone !== 'string') {
             error += ("Informações incompletas ou incorretas. ");
-        }
-
-        if(!verificaFormatoData(expirationDate)){
-            error += ("A data deve possuir o formato: dd/MM/yyyy");
         }
 
         if(error != ''){
