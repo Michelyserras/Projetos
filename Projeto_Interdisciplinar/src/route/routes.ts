@@ -3,7 +3,7 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { TsoaRoute, fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ProductController } from '../controller/ClienteController';
+import { ProductController as ClienteController } from '../controller/ClienteController';
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
 
 
@@ -11,7 +11,7 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "ProductRequestDto": {
+    "clienteRequestDto": {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
@@ -47,13 +47,13 @@ export function RegisterRoutes(app: Router) {
 
 
     
-        app.post('/product',
-            ...(fetchMiddlewares<RequestHandler>(ProductController)),
-            ...(fetchMiddlewares<RequestHandler>(ProductController.prototype.cadastrarProduto)),
+        app.post('/cliente',
+            ...(fetchMiddlewares<RequestHandler>(ClienteController)),
+            ...(fetchMiddlewares<RequestHandler>(ClienteController.prototype.cadastrarProduto)),
 
-            async function ProductController_cadastrarProduto(request: ExRequest, response: ExResponse, next: any) {
+            async function clienteController_cadastrarProduto(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ProductRequestDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"clienteRequestDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };
@@ -64,7 +64,7 @@ export function RegisterRoutes(app: Router) {
             try {
                 validatedArgs = templateService.getValidatedArgs({ args, request, response });
 
-                const controller = new ProductController();
+                const controller = new ClienteController();
 
               await templateService.apiHandler({
                 methodName: 'cadastrarProduto',
