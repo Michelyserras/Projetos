@@ -8,86 +8,85 @@ export class ClienteRepository{
         this.createTable();
     }
 
-    private async createTable() {
+    private async createTable() { //CRIA A TABELA CLIENTE NO BANCO DE DADOS
         const query = `
-        CREATE TABLE IF NOT EXISTS estoque.Product (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            price DECIMAL(10,2) NOT NULL,
-            expirationDate DATE NOT NULL
+        CREATE TABLE IF NOT EXISTS sistema.Cliente (
+            cpf VARCHAR(14) PRIMARY KEY,
+            nome VARCHAR(255) NOT NULL,
+            endereco VARCHAR(255) NOT NULL,
+            telefone VARCHAR(12) NOT NULL
         )`;
 
         try {
-                const resultado =  await executarComandoSQL(query, []);
-                console.log('Query executada com sucesso:', resultado);
+            const resultado =  await executarComandoSQL(query, []);
+            console.log('Query executada com sucesso:', resultado);
         } catch (err) {
             console.error('Error');
         }
     }
 
-    async insertProduct(product:ClienteEntity) :Promise<ClienteEntity>{
-        const query = "INSERT INTO estoque.Product (name, price, expirationDate) VALUES (?, ?, ?)" ;
+    async insertCliente(cliente:ClienteEntity) :Promise<ClienteEntity>{ //CADASTRAR UM CLIENTE
+        const query = "INSERT INTO sistema.Cliente (cpf, nome, endereco, telefone) VALUES (?, ?, ?, ?)" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [product.name, product.price, product.expirationDate]);
-            console.log('Produto inserido com sucesso, ID: ', resultado.insertId);
-            product.id = resultado.insertId;
+            const resultado = await executarComandoSQL(query, [cliente.cpf, cliente.nome, cliente.endereco, cliente.telefone]);
+            console.log('Cliente cadastrado com sucesso, cpf: ', resultado.cpf);
             return new Promise<ClienteEntity>((resolve)=>{
-                resolve(product);
+                resolve(cliente);
             })
         } catch (err) {
-            console.error('Erro ao inserir o produto:', err);
+            console.error('Erro ao cadastrar o cliente:', err);
             throw err;
         }
     }
 
-    async updateProduct(product:ClienteEntity) :Promise<ClienteEntity>{
-        const query = "UPDATE estoque.product set name = ?, price = ?, expirationDate = ? where id = ?;" ;
+    async updateCliente(cliente:ClienteEntity) :Promise<ClienteEntity>{ //ATUALIZAR OS DADOS(NOME, ENDEREÇO E TELEFONE) DE UM CLIENTE PELO SEU CPF
+        const query = "UPDATE sistema.Cliente set nome = ?, endereco = ?, telefone = ? where cpf = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [product.name, product.price, product.expirationDate, product.id]);
-            console.log('Produto atualizado com sucesso, ID: ', resultado);
+            const resultado = await executarComandoSQL(query, [cliente.nome, cliente.endereco, cliente.telefone, cliente.cpf]);
+            console.log('Cliente atualizado com sucesso: ', resultado);
             return new Promise<ClienteEntity>((resolve)=>{
-                resolve(product);
+                resolve(cliente);
             })
         } catch (err:any) {
-            console.error(`Erro ao atualizar o produto de ID ${product.id} gerando o erro: ${err}`);
+            console.error(`Erro ao atualizar o cliente de cpf ${cliente.cpf} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async deleteProduct(product:ClienteEntity) :Promise<ClienteEntity>{
-        const query = "DELETE FROM estoque.product where id = ?;" ;
+    async deleteCliente(cliente:ClienteEntity) :Promise<ClienteEntity>{ //DELETAR UM CLIENTE DO SISTEMA
+        const query = "DELETE FROM sistema.Cliente where cpf = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [product.id]);
-            console.log('Produto deletado com sucesso: ', product);
+            const resultado = await executarComandoSQL(query, [cliente.cpf]);
+            console.log('Cliente deletado com sucesso: ', resultado);
             return new Promise<ClienteEntity>((resolve)=>{
-                resolve(product);
+                resolve(cliente);
             })
         } catch (err:any) {
-            console.error(`Falha ao deletar o produto de ID ${product.id} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar o cliente de cpf ${cliente.cpf} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterProduct(id: number) :Promise<ClienteEntity>{
-        const query = "SELECT * FROM estoque.product where id = ?" ;
+    async filterCliente(cpf: string) :Promise<ClienteEntity>{ //PROCURAR POR CLIENTE
+        const query = "SELECT * FROM sistema.Cliente where cpf = ?" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [id]);
-            console.log('Produto localizado com sucesso, ID: ', resultado);
+            const resultado = await executarComandoSQL(query, [cpf]);
+            console.log('Cliente localizado com sucesso, cpf: ', resultado);
             return new Promise<ClienteEntity>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao procurar o produto de ID ${id} gerando o erro: ${err}`);
+            console.error(`Falha ao procurar o cliente de cpf ${cpf} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllProduct() :Promise<ClienteEntity[]>{
-        const query = "SELECT * FROM estoque.product" ;
+    async filterAllCliente() :Promise<ClienteEntity[]>{ //LISTAR TODOS OS CLIENTES EXISTENTES
+        const query = "SELECT * FROM sistema.Cliente" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
@@ -95,7 +94,7 @@ export class ClienteRepository{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao listar os produtos gerando o erro: ${err}`);
+            console.error(`Falha ao listar os clientes gerando o erro: ${err}`);
             throw err;
         }
     }
