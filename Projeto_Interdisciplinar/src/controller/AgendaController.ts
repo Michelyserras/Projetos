@@ -82,4 +82,17 @@ export class AgendaController{
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
     };
+
+    @Get('geraFaturamento')
+    async geraFaturamento(
+        @Res() fail:TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ):Promise<void>{
+        try {
+            const faturamento = await this.agendaService.geraFaturamento();
+            return sucess(200, new BasicResponseDto("Faturamento total da agenda com sucesso!", faturamento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined));
+        }
+    }
 }
