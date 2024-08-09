@@ -8,14 +8,14 @@ export class ServicoEntity{
         this.validatesInformation(tipoServico, valor, descricao);
         this.id = id || 0;
         this.tipoServico = tipoServico || '';
-        this.valor = valor || 0;
+        this.valor = valor || 0; 
         this.descricao = descricao || '';
     }
 
     private validatesInformation(tipoServico:any, valor:any, descricao:any){
         let error = '';
-
-        if(typeof tipoServico !== 'string' || typeof valor !== 'number' || typeof descricao !== 'string'){
+        //VALIDAR O VALOR, GARATINDO QUE SEJA UM VALOR POSITIVO(MAIOR QUE 0)
+        if(typeof tipoServico !== 'string' || typeof valor !== 'number' || valor > 0 || typeof descricao !== 'string'){
             error += ("Informações incompletas ou incorretas.");
         }
 
