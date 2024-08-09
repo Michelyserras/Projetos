@@ -23,10 +23,10 @@ export class AgendaRepository{
             id INT AUTO_INCREMENT PRIMARY KEY,
             data DATE NOT NULL,
             hora TIME NOT NULL, 
-            idServico INT  NOT NULL,
+            tipoServico VARCHAR(255) NOT NULL,
+            valorServico DECIMAL(10,5) NOT NULL,
             cpfCliente VARCHAR(14) NOT NULL,
             idPet INT NOT NULL,
-            FOREIGN KEY (idServico) REFERENCES sistema.Servico(id),
             FOREIGN KEY (cpfCliente) REFERENCES sistema.Cliente(cpf),
             FOREIGN KEY (idPet) REFERENCES sistema.Pet(id)  
         )`;
@@ -43,7 +43,7 @@ export class AgendaRepository{
         const query = "INSERT INTO sistema.Agenda (data, hora, idServico, cpfCliente, idPet) VALUES (?, ?, ?, ?, ?)" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.idServico, agenda.cpfCliente, agenda.idPet]);
+            const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.tipoServico, agenda.valorServico, agenda.cpfCliente, agenda.idPet]);
             console.log('Agenda cadastrada com sucesso, id: ', resultado.insertId);
             agenda.id = resultado.insertId;
 
@@ -57,10 +57,10 @@ export class AgendaRepository{
     }
 
     async updateAgenda(agenda:AgendaEntity) :Promise<AgendaEntity>{ //ATUALIZAR OS DADOS(NOME, ENDEREÇO E TELEFONE) DE UM agenda PELO SEU CPF
-        const query = "UPDATE sistema.Agenda set data = ?, hora = ? where id = ?;" ;
+        const query = "UPDATE sistema.Agenda SET data = ?, hora = ?, tipoServico = ?, valorServico = ? WHERE id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.id]);
+            const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.tipoServico, agenda.valorServico, agenda.id]);
             console.log('Agenda atualizada com sucesso: ', resultado);
             return new Promise<AgendaEntity>((resolve)=>{
                 resolve(agenda);
