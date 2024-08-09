@@ -64,9 +64,11 @@ export class PetService{
         return pet;
     }
 
-    async listarTodosPets(): Promise<PetEntity[]> {
+    async listarTodosPets(): Promise<PetEntity[]> { //FUNÇÃO JÁ LISTA TODOS OS PETS EXISTENTES
         const pet =  await this.petRepository.filterAllPet();
         console.log("Service - Filtrar Todos", pet);
         return pet;
     }
+
+    //CRIAR FUNÇÃO PARA LISTAR PET POR CPF CLIENTE
 }

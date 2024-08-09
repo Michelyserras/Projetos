@@ -28,6 +28,7 @@ export class AgendaService{
             return novaAgenda;
         }
     }
+    //FAZER A FUNÇÃO DE CADASTRAR APRESENTAR OS DADOS DO PET QUE SERÁ ATENDIDO, DADOS DO CLIENTE DONO DO PET E DADOS DO SERVIÇO ESCOLHIDO
 
     async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao atualizar agenda deve ser possível trocar o tipo de serviço escolhido durante o cadastro
         const { id, data, hora, tipoServico, cpfCliente, idPet } = agendaData;
