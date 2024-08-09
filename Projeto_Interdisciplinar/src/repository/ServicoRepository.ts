@@ -38,10 +38,11 @@ export class ServicoRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [servico.tipoServico, servico.valor, servico.descricao]);
-            console.log('Servico cadastrado com sucesso, id: ', resultado.id);
-            return new Promise<ServicoEntity>((resolve)=>{
-                resolve(servico);
-            })
+            console.log('Servico cadastrado com sucesso, id: ', resultado.insertId);
+            servico.id = resultado.insertId;
+
+           return servico;
+
         } catch (err) {
             console.error('Erro ao cadastrar o servico:', err);
             throw err;
@@ -54,9 +55,7 @@ export class ServicoRepository{
         try {
             const resultado = await executarComandoSQL(query, [servico.tipoServico, servico.valor, servico.descricao, servico.id]);
             console.log('Servico atualizado com sucesso: ', resultado);
-            return new Promise<ServicoEntity>((resolve)=>{
-                resolve(servico);
-            })
+            return resultado
         } catch (err:any) {
             console.error(`Erro ao atualizar o servico de id ${servico.id} gerando o erro: ${err}`);
             throw err;
@@ -69,9 +68,8 @@ export class ServicoRepository{
         try {
             const resultado = await executarComandoSQL(query, [servico.id]);
             console.log('Servico deletado com sucesso: ', resultado);
-            return new Promise<ServicoEntity>((resolve)=>{
-                resolve(servico);
-            })
+            return servico;
+            
         } catch (err:any) {
             console.error(`Falha ao deletar o servico de id ${servico.id} gerando o erro: ${err}`);
             throw err;
@@ -83,10 +81,8 @@ export class ServicoRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Servico localizado com sucesso, id: ', resultado);
-            return new Promise<ServicoEntity>((resolve)=>{
-                resolve(resultado);
-            })
+            console.log(`Servico localizado com sucesso, id: ${id} `, resultado);
+            return resultado;
         } catch (err:any) {
             console.error(`Falha ao procurar o servico de id ${id} gerando o erro: ${err}`);
             throw err;
@@ -98,9 +94,7 @@ export class ServicoRepository{
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<ServicoEntity[]>((resolve)=>{
-                resolve(resultado);
-            })
+            return resultado;
         } catch (err:any) {
             console.error(`Falha ao listar os servicos gerando o erro: ${err}`);
             throw err;
