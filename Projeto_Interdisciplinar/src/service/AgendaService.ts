@@ -1,9 +1,12 @@
 import { AgendaEntity } from "../model/entity/Agenda";
+import { ServicoEntity } from "../model/entity/Servico";
 import { AgendaRepository } from "../repository/AgendaRepository";
+import { ServicoRepository } from "../repository/ServicoRepository";
 
 export class AgendaService{
 
     private agendaRepository = AgendaRepository.getInstance();
+    private servicoRepository = ServicoRepository.getInstance();
 
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
         const { data, hora, tipoServico, cpfCliente, idPet } = agendaData;
@@ -45,5 +48,11 @@ export class AgendaService{
         const agenda =  await this.agendaRepository.filterAllAgenda();
         console.log("Service - Filtrar Todos", agenda);
         return agenda;
+    }
+
+    async verificarTipoServico(tipoServico: string): Promise<ServicoEntity>{
+        const servico = await this.servicoRepository.verificaTipoServico();
+        console.log("Service - Verifica serviço", servico);
+        return servico;
     }
 }
