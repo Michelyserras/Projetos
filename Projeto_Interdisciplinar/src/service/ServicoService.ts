@@ -7,7 +7,12 @@ export class ServicoService{
 
     async cadastrarServico(servicoData: any): Promise<ServicoEntity> { //No cadastro teremos tipos de serviços prontos como banho e tosa, consultas veterinárias e aplicações de vacinas
         const { tipoServico, valor, descricao } = servicoData;
-        
+        const servicoEncontrado = await this.servicoRepository.verificaTipoServico(tipoServico);
+
+        if(servicoEncontrado){
+            throw new Error('Tipo de serviço já cadastrado.');
+        }
+
         const servico = new ServicoEntity(undefined, tipoServico, valor, descricao);
 
         const novoServico =  await this.servicoRepository.insertServico(servico);
@@ -17,6 +22,11 @@ export class ServicoService{
 
     async atualizarServico(servicoData: any): Promise<ServicoEntity> {
         const { id, tipoServico, valor, descricao } = servicoData;
+        const servicoEncontrado = await this.filtrarServico(id);
+
+        if(!servicoEncontrado){
+            throw new Error('Tipo de serviço não encontrado.');
+        }
 
         const servico = new ServicoEntity(id, tipoServico, valor, descricao);
 
@@ -27,6 +37,11 @@ export class ServicoService{
 
     async deletarServico(servicoData: any): Promise<ServicoEntity> {
         const { id, tipoServico, valor, descricao } = servicoData;
+        const servicoEncontrado = await this.filtrarServico(id);
+
+        if(!servicoEncontrado){
+            throw new Error('Tipo de serviço não encontrado.');
+        }
 
         const servico = new ServicoEntity(id, tipoServico, valor, descricao);
 
