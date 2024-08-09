@@ -14,7 +14,7 @@ export class AgendaService{
 
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
         const { data, hora, idServico, cpfCliente, idPet } = agendaData;
-        const agendaEncontrada = await this.filtrarAgenda(agendaData);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
+        const agendaEncontrada = await this.verificaAgenda(data, hora);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
@@ -64,7 +64,7 @@ export class AgendaService{
     async deletarAgenda(agendaData: any): Promise<AgendaEntity> { 
         const { id, data, hora, idServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.filtrarAgenda(agendaData);
-        
+
         if(!agendaEncontrada){
             throw new Error('Agendamento não encontrado.');
         }
@@ -88,6 +88,15 @@ export class AgendaService{
         return agenda;
     }
 
+    async verificaAgenda(data: Date, hora: number): Promise<AgendaEntity> {
+        const agenda = await this.agendaRepository.verificaAgenda(data, hora);
+        console.log("Service - Verifica agenda", agenda);
+        return agenda;
+    }
+
+    async geraFaturamento(){
+        
+    }
     //GERAR FATURAMENTO SERIA SOMAR O VALOR DE TODOS OS SERVIÇOS
     //CRIAR FUNÇÃO GERAR FATURA TOTAL DA AGENDA
     //CRIAR FUNÇÃO GERAR FATURA POR CPF CLIENTE

@@ -115,5 +115,17 @@ export class AgendaRepository{
         }
     }
 
+    async geraFaturamento() :Promise<Number>{
+        const query = "SELECT SUM(valor) from sistema.Agenda;"
 
+        try {
+            const resultado = await executarComandoSQL(query, []);
+            return new Promise<Number>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao gerar o faturamento total da agenda: ${err}`);
+            throw err;
+        }
+    }
 }
