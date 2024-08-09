@@ -46,4 +46,10 @@ export class ServicoService{
         console.log("Service - Filtrar Todos", servico);
         return servico;
     }
+
+    async verificarTipoServico(tipoServico: string): Promise<ServicoEntity>{
+        const servico = await this.servicoRepository.verificaTipoServico();
+        console.log("Service - Verifica serviço", servico);
+        return servico;
+    }
 }
