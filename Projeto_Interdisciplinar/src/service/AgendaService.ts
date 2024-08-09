@@ -1,14 +1,11 @@
 import { AgendaEntity } from "../model/entity/Agenda";
-import { ServicoEntity } from "../model/entity/Servico";
 import { AgendaRepository } from "../repository/AgendaRepository";
-import { ServicoRepository } from "../repository/ServicoRepository";
 import { PetRepository } from "../repository/PetRepository";
 import { ClienteRepository } from "../repository/ClienteRepository";
 
 export class AgendaService{
 
     private agendaRepository = AgendaRepository.getInstance();
-    private servicoRepository = ServicoRepository.getInstance();
     private petRepository = PetRepository.getInstance();
     private clienteRepository = ClienteRepository.getInstance();
 
