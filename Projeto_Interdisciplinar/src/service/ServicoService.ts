@@ -25,7 +25,7 @@ export class ServicoService{
         return servico;
     }
 
-    async deletarservico(servicoData: any): Promise<ServicoEntity> {
+    async deletarServico(servicoData: any): Promise<ServicoEntity> {
         const { id, tipoServico, valor, descricao } = servicoData;
 
         const servico = new ServicoEntity(id, tipoServico, valor, descricao);
@@ -35,13 +35,13 @@ export class ServicoService{
         return servico;
     }
 
-    async filtrarservico(servicoData: any): Promise<ServicoEntity> {
+    async filtrarServico(servicoData: any): Promise<ServicoEntity> {
         const servico =  await this.servicoRepository.filterServico(servicoData.id);
         console.log("Service - Filtrar", servico);
         return servico;
     }
 
-    async listarTodosservicos(): Promise<ServicoEntity[]> {
+    async listarTodosServicos(): Promise<ServicoEntity[]> {
         const servico =  await this.servicoRepository.filterAllServico();
         console.log("Service - Filtrar Todos", servico);
         return servico;
