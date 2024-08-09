@@ -19,7 +19,7 @@ export class ServicoRepository{
     private async createTable() {
         const query = `
         CREATE TABLE IF NOT EXISTS sistema.Servico (
-            id INT AUTO_INCREMENT PRIRMARY KEY,
+            id INT AUTO_INCREMENT PRIMARY KEY,
             tipoServico VARCHAR(255) NOT NULL,
             valor DECIMAL(10, 3) NOT NULL,
             descricao VARCHAR(255) NOT NULL
@@ -103,6 +103,19 @@ export class ServicoRepository{
             })
         } catch (err:any) {
             console.error(`Falha ao listar os servicos gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+
+    async verificaTipoServico(tipoServico: string):Promise<ServicoEntity>{
+        const query = "SELECT * FROM sistema.servico WHERE tipoServico LIKE ?;";
+
+        try{
+            const resultado = await executarComandoSQL(query, [tipoServico]);
+            console.log('Esse tipo de serviço já foi cadastrado', resultado);
+            return resultado;
+        } catch (err:any){
+            console.error(`O tipo de servico: ${tipoServico} não existe na lista de servicos`);
             throw err;
         }
     }
