@@ -55,13 +55,13 @@ export class AgendaController{
         
     
     @Get()
-    async filtrarProduto(
-        @Query() dto:AgendaRequestDto,
+    async filtrarAgenda(
+        @Query() param:number,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const agenda = await this.agendaService.filtrarAgenda(dto);
+            const agenda = await this.agendaService.filtrarAgenda(param);
             return sucess(200, new BasicResponseDto("Agenda encontrado com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

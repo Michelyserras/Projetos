@@ -6,7 +6,7 @@ import { PetService } from "../service/PetService";
 // aaaaaaaaaaa
 @Route("Pet")
 @Tags("Pet")
-export class ProductController{ 
+export class PetController{ 
     petService = new PetService();
     
     @Post()
@@ -56,12 +56,12 @@ export class ProductController{
     
     @Get()
     async filtrarProduto(
-        @Query() dto:PetRequestDto,
+        @Query() param:number,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Pet = await this.petService.filtrarPet(dto);
+            const Pet = await this.petService.filtrarPet(param);
             return sucess(200, new BasicResponseDto("Pet encontrado com suceso!", Pet));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
