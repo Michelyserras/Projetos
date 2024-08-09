@@ -55,7 +55,7 @@ export class ServicoController{
         
     
     @Get()
-    async filtrarProduto(
+    async filtrarServico(
         @Query() param: number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>

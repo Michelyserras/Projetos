@@ -55,7 +55,7 @@ export class PetController{
         
     
     @Get()
-    async filtrarProduto(
+    async filtrarPet(
         @Query() param:number,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
