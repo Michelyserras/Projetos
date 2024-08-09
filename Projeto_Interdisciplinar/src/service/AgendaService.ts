@@ -10,6 +10,11 @@ export class AgendaService{
 
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
         const { data, hora, tipoServico, cpfCliente, idPet } = agendaData;
+        const verificaServico = await this.verificarTipoServico(tipoServico);
+
+        if(!verificaServico){
+            throw new Error('Tipo de serviço inexistente.');
+        }
         
         const agenda = new AgendaEntity(undefined, data, hora, tipoServico, cpfCliente, idPet);
 
