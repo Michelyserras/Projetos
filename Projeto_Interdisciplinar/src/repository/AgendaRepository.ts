@@ -23,9 +23,12 @@ export class AgendaRepository{
             id INT AUTO_INCREMENT PRIMARY KEY,
             data DATE NOT NULL,
             hora TIME NOT NULL, 
-            idServico INT NOT NULL,
+            idServico INT  NOT NULL,
             cpfCliente VARCHAR(14) NOT NULL,
-            idPet INT NOT NULL
+            idPet INT NOT NULL,
+            FOREIGN KEY (idServico) REFERENCES sistema.Servico(id),
+            FOREIGN KEY (cpfCliente) REFERENCES sistema.Cliente(cpf),
+            FOREIGN KEY (idPet) REFERENCES sistema.Pet(id)  
         )`;
 
         try {
@@ -41,7 +44,9 @@ export class AgendaRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.idServico, agenda.cpfCliente, agenda.idPet]);
-            console.log('Agenda cadastrada com sucesso, id: ', resultado.id);
+            console.log('Agenda cadastrada com sucesso, id: ', resultado.insertId);
+            agenda.id = resultado.insertId;
+
             return new Promise<AgendaEntity>((resolve)=>{
                 resolve(agenda);
             })
@@ -109,4 +114,6 @@ export class AgendaRepository{
             throw err;
         }
     }
+
+
 }

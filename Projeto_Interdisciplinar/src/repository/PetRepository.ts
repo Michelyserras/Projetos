@@ -26,7 +26,8 @@ export class PetRepository{
             idade INT NOT NULL,
             peso DECIMAL(10, 3) NOT NULL,
             especie VARCHAR(255) NOT NULL,
-            historicoPet VARCHAR(255) NOT NULL
+            historicoPet VARCHAR(255) NOT NULL,
+            FOREIGN KEY (cpfCliente) REFERENCES sistema.cliente(cpf)
         )`;
 
         try {
@@ -43,6 +44,7 @@ export class PetRepository{
         try {
             const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.peso, pet.especie, pet.historicoPet]);
             console.log('Pet cadastrado com sucesso, id: ', resultado.insertId);
+            pet.id = resultado.insertId;
             return new Promise<PetEntity>((resolve)=>{
                 resolve(pet);
             })
