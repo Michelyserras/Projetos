@@ -53,8 +53,9 @@ const models: TsoaRoute.Models = {
         "properties": {
             "data": {"dataType":"datetime","required":true},
             "hora": {"dataType":"double","required":true},
-            "idServico": {"dataType":"double","required":true},
-            "cpfCliente": {"dataType":"double","required":true},
+            "tipoServico": {"dataType":"string","required":true},
+            "valorServico": {"dataType":"double","required":true},
+            "cpfCliente": {"dataType":"string","required":true},
             "idPet": {"dataType":"double","required":true},
         },
         "additionalProperties": false,

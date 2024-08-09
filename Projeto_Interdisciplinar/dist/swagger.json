@@ -89,13 +89,15 @@
 						"type": "number",
 						"format": "double"
 					},
-					"idServico": {
+					"tipoServico": {
+						"type": "string"
+					},
+					"valorServico": {
 						"type": "number",
 						"format": "double"
 					},
 					"cpfCliente": {
-						"type": "number",
-						"format": "double"
+						"type": "string"
 					},
 					"idPet": {
 						"type": "number",
@@ -105,7 +107,8 @@
 				"required": [
 					"data",
 					"hora",
-					"idServico",
+					"tipoServico",
+					"valorServico",
 					"cpfCliente",
 					"idPet"
 				],
