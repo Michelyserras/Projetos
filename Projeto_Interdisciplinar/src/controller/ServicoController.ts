@@ -53,8 +53,9 @@ export class ServicoController{
         }
     };
         
+  //foi necessário nomear uma rota dentro dos dois metodos http get, para o tsoa entender que os dois executam diferentes funções
     
-    @Get()
+    @Get('filtrarServico')
     async filtrarServico(
         @Query() param: number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
@@ -69,7 +70,7 @@ export class ServicoController{
     };
         
     
-    @Get()
+    @Get('listarTodosServicos')
     async ListarTodosServicos(
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>

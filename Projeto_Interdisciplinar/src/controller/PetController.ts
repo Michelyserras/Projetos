@@ -53,8 +53,9 @@ export class PetController{
         }
     };
         
+    //foi necessário nomear uma rota dentro dos dois metodos http get, para o tsoa entender que os dois executam diferentes funções
     
-    @Get()
+    @Get('filtrarPet') 
     async filtrarPet(
         @Query() param:number,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
@@ -69,7 +70,7 @@ export class PetController{
     };
         
     
-    @Get()
+    @Get('listarTodosPets')
     async ListarTodosPets(
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>

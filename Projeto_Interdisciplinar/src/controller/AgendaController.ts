@@ -53,8 +53,9 @@ export class AgendaController{
         }
     };
         
-    
-    @Get()
+   //foi necessário nomear uma rota dentro dos dois metodos http get, para o tsoa entender que os dois executam diferentes funções
+      
+    @Get('filtrarAgenda')
     async filtrarAgenda(
         @Query() param:number,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
@@ -69,8 +70,8 @@ export class AgendaController{
     };
         
     
-    @Get()
-    async ListarTodosAgendas(
+    @Get('ListarTodasAgendas')
+    async ListarTodasAgendas(
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
