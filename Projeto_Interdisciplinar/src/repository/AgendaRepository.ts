@@ -133,4 +133,46 @@ export class AgendaRepository{
             
         }
     }
+
+    async geraFaturamento() :Promise<Number>{
+        const query = "SELECT SUM(valorServico) from sistema.Agenda;"
+
+        try {
+            const resultado = await executarComandoSQL(query, []);
+            return new Promise<Number>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao gerar o faturamento total da agenda: ${err}`);
+            throw err;
+        }
+    }
+
+    async geraFaturamentoPorCliente(cpfCliente: string) :Promise<Number>{
+        const query = "SELECT SUM(valorServico) from sistema.Agenda where cpfCliente = ?;"
+
+        try {
+            const resultado = await executarComandoSQL(query, []);
+            return new Promise<Number>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao gerar o faturamento por cliente da agenda: ${err}`);
+            throw err;
+        }
+    }
+
+    async geraFaturamentoPorPet(idPet: number) :Promise<Number>{
+        const query = "SELECT SUM(valorServico) from sistema.Agenda where idPet = ?;"
+
+        try {
+            const resultado = await executarComandoSQL(query, []);
+            return new Promise<Number>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao gerar o faturamento por pet da agenda: ${err}`);
+            throw err;
+        }
+    }
 }
