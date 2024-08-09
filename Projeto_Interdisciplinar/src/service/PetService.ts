@@ -1,13 +1,20 @@
 import { PetEntity } from "../model/entity/Pet";
 import { PetRepository } from "../repository/PetRepository";
+import { ClienteRepository } from "../repository/ClienteRepository";
 
 export class PetService{
 
     private petRepository = PetRepository.getInstance();
+    private clienteRepository = ClienteRepository.getInstance();
 
     async cadastrarPet(petData: any): Promise<PetEntity> {
         const { cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
-        
+        const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
+
+        if(!cpfClienteEncontrado){
+            throw new Error('CPF do dono do pet não cadastrado.');
+        }
+
         const pet = new PetEntity(undefined, cpfCliente, nome, idade, peso, especie, historicoPet);
 
         const novoPet =  await this.petRepository.insertPet(pet);
@@ -17,16 +24,32 @@ export class PetService{
 
     async atualizarPet(petData: any): Promise<PetEntity> {
         const { id, cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
+        const petEncontrado = await this.filtrarPet(id);
+        const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
-        const pet = new PetEntity(id, cpfCliente, nome, idade, peso, especie, historicoPet);
+        if(!petEncontrado){
+            throw new Error('Pet não encontrado.');
+        }
+        else{
+            if(!cpfClienteEncontrado){
+                throw new Error('CPF do dono do pet não cadastrado.');
+            }
+            
+            const pet = new PetEntity(id, cpfCliente, nome, idade, peso, especie, historicoPet);
 
-        await this.petRepository.updatePet(pet);
-        console.log("Service - Update ", pet);
-        return pet;
+            await this.petRepository.updatePet(pet);
+            console.log("Service - Update ", pet);
+            return pet;
+        }
     }
 
     async deletarPet(petData: any): Promise<PetEntity> {
         const { id, cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
+        const petEncontrado = await this.filtrarPet(id);
+
+        if(!petEncontrado){
+            throw new Error('Pet não encontrado.');
+        }
 
         const pet = new PetEntity(id, cpfCliente, nome, idade, peso, especie, historicoPet);
 
