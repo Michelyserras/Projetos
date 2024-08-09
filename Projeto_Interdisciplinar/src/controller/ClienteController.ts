@@ -75,8 +75,8 @@ export class ClienteController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const cliente = await this.clienteService.listarTodosClientes();
-            return sucess(200, new BasicResponseDto("ClienteS encontrados com suceso!", cliente));
+            const clientes = await this.clienteService.listarTodosClientes();
+            return sucess(200, new BasicResponseDto("ClienteS encontrados com suceso!", clientes));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }

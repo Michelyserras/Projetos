@@ -75,8 +75,8 @@ export class AgendaController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const agenda = await this.agendaService.listarTodasAgendas();
-            return sucess(200, new BasicResponseDto("AgendaS encontrados com suceso!", agenda));
+            const agendas = await this.agendaService.listarTodasAgendas();
+            return sucess(200, new BasicResponseDto("AgendaS encontrados com suceso!", agendas));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }

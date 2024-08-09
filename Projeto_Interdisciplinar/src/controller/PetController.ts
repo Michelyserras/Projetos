@@ -75,8 +75,8 @@ export class PetController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Pet = await this.petService.listarTodosPets();
-            return sucess(200, new BasicResponseDto("PetS encontrados com suceso!", Pet));
+            const Pets = await this.petService.listarTodosPets();
+            return sucess(200, new BasicResponseDto("PetS encontrados com suceso!", Pets));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
