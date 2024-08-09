@@ -91,10 +91,14 @@ export class AgendaService{
         return agenda;
     }
 
-    async geraFaturamento(){
+    async geraFaturamento() :Promise<Number>{
         const faturamento = await this.agendaRepository.geraFaturamento();
         console.log("Service - Gerar faturamento total", faturamento);
         return faturamento;
+    }
+
+    async geraFaturamentoPorCliente(cpfCliente: any) :Promise<Number>{
+        const faturamento = await this.agendaRepository.geraFaturamentoPorCliente(cpfCliente)
     }
     //GERAR FATURAMENTO SERIA SOMAR O VALOR DE TODOS OS SERVIÇOS
     //CRIAR FUNÇÃO GERAR FATURA TOTAL DA AGENDA
