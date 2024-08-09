@@ -1,6 +1,6 @@
 export class PetEntity{
     id: number;
-    cpfCliente: string;
+    cpfCliente: string; //FOREIGN KEY
     nome: string;
     idade: number;
     peso: number; //ALTERAR NO DIAGRAMA DE CLASSES, colocar o peso e tirar a raça do pet

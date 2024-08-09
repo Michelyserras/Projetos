@@ -5,7 +5,7 @@ export class ServicoService{
 
     private servicoRepository = ServicoRepository.getInstance();
 
-    async cadastrarServico(servicoData: any): Promise<ServicoEntity> {
+    async cadastrarServico(servicoData: any): Promise<ServicoEntity> { //No cadastro teremos tipos de serviços prontos como banho e tosa, consultas veterinárias e aplicações de vacinas
         const { tipoServico, valor, descricao } = servicoData;
         
         const servico = new ServicoEntity(undefined, tipoServico, valor, descricao);

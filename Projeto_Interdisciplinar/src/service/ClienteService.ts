@@ -5,7 +5,7 @@ export class ClienteService{
 
     private clienteRepository = ClienteRepository.getInstance();
 
-    async cadastrarCliente(clienteData: any): Promise<ClienteEntity> {
+    async cadastrarCliente(clienteData: any): Promise<ClienteEntity> { //Ao cadastrar cliente é necessário cadastrar pet, mas o cliente depois de cadastrado tbm poderá cadastrar pets separadamente
         const { cpf, nome, endereco, telefone } = clienteData;
         
         const cliente = new ClienteEntity(cpf, nome, endereco, telefone);
@@ -25,7 +25,7 @@ export class ClienteService{
         return cliente;
     }
 
-    async deletarCliente(clienteData: any): Promise<ClienteEntity> {
+    async deletarCliente(clienteData: any): Promise<ClienteEntity> { //Ao deletar um cliente é necessário deletar todos os pets ligados a esse cliente tbm
         const { cpf, nome, endereco, telefone } = clienteData;
 
         const cliente = new ClienteEntity(cpf, nome, endereco, telefone);

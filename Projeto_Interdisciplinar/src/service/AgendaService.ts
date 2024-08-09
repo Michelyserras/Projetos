@@ -5,7 +5,7 @@ export class AgendaService{
 
     private agendaRepository = AgendaRepository.getInstance();
 
-    async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para determinar o valor
+    async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
         const { data, hora, tipoServico, cpfCliente, idPet } = agendaData;
         
         const agenda = new AgendaEntity(undefined, data, hora, tipoServico, cpfCliente, idPet);

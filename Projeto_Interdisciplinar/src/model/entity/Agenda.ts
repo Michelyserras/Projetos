@@ -4,11 +4,12 @@ export class AgendaEntity{
     id: number;
     data: Date;
     hora: number; //VERIFICAR DEPOIS O FORMATO DA HORA
-    tipoServico: string; //Mudar para tipo serviço(string)
-    cpfCliente: number;
-    idPet: number;
+    tipoServico: string; //FOREIGN KEY
+    cpfCliente: number; //FOREIGN KEY
+    idPet: number; //FOREIGN KEY
+
 //CONFIRMAR SE ESSA ENTIDADE ESTÁ CERTA, A IDEIA É ARMAZENAR DADOS DO PET, CLIENTE E DO SERVIÇO REALIZADO NA DATA E HORA MARCADA
-//ID PET FICA NA AGENDA OU LIGADA A SERVIÇO?
+
     constructor(id?:number, data?:string, hora?:number, tipoServico?:string, cpfCliente?:number, idPet?:number){
         this.validatesInformation(data, hora, tipoServico)
         this.id = id || 0;
