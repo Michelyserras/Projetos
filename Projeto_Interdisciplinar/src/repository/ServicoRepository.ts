@@ -111,7 +111,7 @@ export class ServicoRepository{
         const query = "SELECT * FROM sistema.servico WHERE tipoServico LIKE ?;";
 
         try{
-            const resultado = await executarComandoSQL(query, [tipoServico]);
+            const resultado = await executarComandoSQL(query, [`%${tipoServico}%`]);
             console.log('Esse tipo de serviço já foi cadastrado', resultado);
             return resultado;
         } catch (err:any){
