@@ -85,10 +85,10 @@ export class AgendaService{
         return agenda;
     }
 
-    async verificaAgenda(data: Date, hora: number): Promise<AgendaEntity> {
-        const agenda = await this.agendaRepository.verificaAgenda(data, hora);
-        console.log("Service - Verifica agenda", agenda);
-        return agenda;
+    async verificaAgenda(data: Date, hora: number): Promise<AgendaEntity | undefined> {
+        const agendaExiste = await this.agendaRepository.verificaAgenda(data, hora);
+        console.log("Service - Verifica agenda", agendaExiste);
+        return agendaExiste;
     }
 
     async geraFaturamento() :Promise<Number>{
