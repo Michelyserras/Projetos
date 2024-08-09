@@ -87,6 +87,9 @@ export class AgendaService{
 
     async verificaAgenda(data: Date, hora: number): Promise<AgendaEntity | undefined> {
         const agendaExiste = await this.agendaRepository.verificaAgenda(data, hora);
+        if(agendaExiste){
+            throw new Error('Data e hora já em uso.');
+        }
         console.log("Service - Verifica agenda", agendaExiste);
         return agendaExiste;
     }

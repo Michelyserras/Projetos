@@ -116,18 +116,11 @@ export class AgendaRepository{
     }
 
     async verificaAgenda(data: Date, hora: number) :Promise<AgendaEntity | undefined>{
-        const query = "SELECT * FROM sistema.Agenda where hora = ?, data: ?";
+        const query = "SELECT * FROM sistema.Agenda where data = ?, hora: ?";
 
         try{
             const agendaExiste = await executarComandoSQL(query, [data , hora]);
-            console.log(`Agenda encontrada com suceso`, agendaExiste);
-
-            if(agendaExiste.length < 0){
-                console.log('Horario e data disponivel: ', agendaExiste);
-            }
-            console.log(`Esse horário no dia: ${data} `, agendaExiste);
             return agendaExiste;
-
         } catch(err: any){
             console.error(`Falha ao verificar agenda`, err);
             
