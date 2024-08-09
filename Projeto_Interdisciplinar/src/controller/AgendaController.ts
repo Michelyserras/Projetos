@@ -6,7 +6,7 @@ import { AgendaService } from "../service/AgendaService";
 // aaaaaaaaaaa
 @Route("agenda")
 @Tags("Agenda")
-export class ProductController{ 
+export class AgendaController{ 
     agendaService = new AgendaService();
     
     @Post()

@@ -6,7 +6,7 @@ import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 // aaaaaaaaaaa
 @Route("cliente")
 @Tags("Cliente")
-export class ProductController{ 
+export class ClienteController{ 
     clienteService = new ClienteService();
     
     @Post()
@@ -55,7 +55,7 @@ export class ProductController{
         
     
     @Get()
-    async filtrarProduto(
+    async filtrarCliente(
         @Query() dto:ClienteRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
