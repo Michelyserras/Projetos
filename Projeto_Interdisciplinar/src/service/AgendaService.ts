@@ -10,7 +10,7 @@ export class AgendaService{
     private clienteRepository = ClienteRepository.getInstance();
 
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
-        const { data, hora, idServico, cpfCliente, idPet } = agendaData;
+        const { data, hora, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.verificaAgenda(data, hora);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
@@ -25,7 +25,7 @@ export class AgendaService{
             throw new Error('Cliente não encontrado.');
         }
         else{
-            const agenda = new AgendaEntity(undefined, data, hora, idServico, cpfCliente, idPet);
+            const agenda = new AgendaEntity(undefined, data, hora, tipoServico, valorServico, cpfCliente, idPet);
     
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
             console.log("Service - Insert ", novaAgenda);
@@ -35,7 +35,7 @@ export class AgendaService{
     //FAZER A FUNÇÃO DE CADASTRAR APRESENTAR OS DADOS DO PET QUE SERÁ ATENDIDO, DADOS DO CLIENTE DONO DO PET E DADOS DO SERVIÇO ESCOLHIDO
 
     async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao atualizar agenda deve ser possível trocar o tipo de serviço escolhido durante o cadastro
-        const { id, data, hora, idServico, cpfCliente, idPet } = agendaData;
+        const { id, data, hora, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.filtrarAgenda(agendaData);
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
@@ -50,7 +50,7 @@ export class AgendaService{
             throw new Error('Cliente não encontrado.');
         }
         else{
-            const agenda = new AgendaEntity(id, data, hora, idServico, cpfCliente, idPet);
+            const agenda = new AgendaEntity(id, data, hora, tipoServico, valorServico, cpfCliente, idPet);
     
             await this.agendaRepository.updateAgenda(agenda);
             console.log("Service - Update ", agenda);
@@ -59,14 +59,14 @@ export class AgendaService{
     }
 
     async deletarAgenda(agendaData: any): Promise<AgendaEntity> { 
-        const { id, data, hora, idServico, cpfCliente, idPet } = agendaData;
+        const { id, data, hora, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.filtrarAgenda(agendaData);
 
         if(!agendaEncontrada){
             throw new Error('Agendamento não encontrado.');
         }
 
-        const agenda = new AgendaEntity(id, data, hora, idServico, cpfCliente, idPet);
+        const agenda = new AgendaEntity(id, data, hora, tipoServico, valorServico, cpfCliente, idPet);
 
         await this.agendaRepository.deleteAgenda(agenda);
         console.log("Service - Delete ", agenda);
