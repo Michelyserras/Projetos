@@ -3,7 +3,7 @@ import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delet
 import { ServicoRequestDto } from "../model/dto/ServicoRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { ServicoService } from "../service/ServicoService";
-// aaaaaaaaaaa
+
 @Route("Servico")
 @Tags("Servico")
 export class ServicoController{ 
@@ -46,7 +46,7 @@ export class ServicoController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Servico = await this.servicoService.deletarservico(dto);
+            const Servico = await this.servicoService.deletarServico(dto);
             return sucess(200, new BasicResponseDto("Servico excluido com suceso!", Servico));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
@@ -57,12 +57,12 @@ export class ServicoController{
     
     @Get('filtrarServico')
     async filtrarServico(
-        @Query() param: number, 
+        @Query() id: number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Servico = await this.servicoService.filtrarservico(param);
+            const Servico = await this.servicoService.filtrarServico(id);
             return sucess(200, new BasicResponseDto("Servico encontrado com suceso!", Servico));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
@@ -76,7 +76,7 @@ export class ServicoController{
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Servicos = await this.servicoService.listarTodosservicos();
+            const Servicos = await this.servicoService.listarTodosServicos();
             return sucess(200, new BasicResponseDto("ServicoS encontrados com suceso!", Servicos));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

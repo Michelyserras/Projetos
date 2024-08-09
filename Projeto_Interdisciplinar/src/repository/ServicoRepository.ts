@@ -50,7 +50,7 @@ export class ServicoRepository{
     }
 
     async updateServico(servico:ServicoEntity) :Promise<ServicoEntity>{ //ATUALIZAR OS DADOS(NOME, ENDEREÇO E TELEFONE) DE UM servico PELO SEU CPF
-        const query = "UPDATE sistema.Servico set tipoServico = ?, valor = ?, descricao = ? where id = ?;" ;
+        const query = "UPDATE sistema.Servico set tipoServico = ?, valor = ?, descricao = ? where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [servico.tipoServico, servico.valor, servico.descricao, servico.id]);
@@ -63,7 +63,7 @@ export class ServicoRepository{
     }
 
     async deleteServico(servico:ServicoEntity) :Promise<ServicoEntity>{ //DELETAR UM servico DO SISTEMA
-        const query = "DELETE FROM sistema.Servico where id = ?;" ;
+        const query = "DELETE FROM sistema.Servico where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [servico.id]);
@@ -83,6 +83,7 @@ export class ServicoRepository{
             const resultado = await executarComandoSQL(query, [id]);
             console.log(`Servico localizado com sucesso, id: ${id} `, resultado);
             return resultado;
+            
         } catch (err:any) {
             console.error(`Falha ao procurar o servico de id ${id} gerando o erro: ${err}`);
             throw err;

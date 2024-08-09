@@ -11,7 +11,7 @@ export class AgendaService{
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
         const { data, hora, tipoServico, cpfCliente, idPet } = agendaData;
         const verificaServico = await this.verificarTipoServico(tipoServico);
-        const agendaEncontrada = await this.filtrarAgenda(agendaData);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
+        const agendaEncontrada = await this.agendaRepository.verificaAgenda(data, hora);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
 
         if(agendaEncontrada){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
             throw new Error('Já há um agendamento nesta data e hora.');
@@ -20,7 +20,6 @@ export class AgendaService{
             if(!verificaServico){
                 throw new Error('Tipo de serviço inexistente.');
             }
-            
             const agenda = new AgendaEntity(undefined, data, hora, tipoServico, cpfCliente, idPet);
     
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);

@@ -308,7 +308,7 @@
 				"parameters": [
 					{
 						"in": "query",
-						"name": "param",
+						"name": "id",
 						"required": true,
 						"schema": {
 							"format": "double",
@@ -774,7 +774,7 @@
 				"parameters": []
 			}
 		},
-		"/agenda": {
+		"/agenda/Cadastrar/agenda": {
 			"post": {
 				"operationId": "CadastrarAgenda",
 				"responses": {
@@ -817,7 +817,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/agenda/Atualizar/agenda": {
 			"put": {
 				"operationId": "AtualizarAgenda",
 				"responses": {
@@ -860,7 +862,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/agenda/Deletar/agenda": {
 			"delete": {
 				"operationId": "DeleteAgenda",
 				"responses": {

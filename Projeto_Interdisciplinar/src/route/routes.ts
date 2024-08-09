@@ -191,7 +191,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ServicoController_filtrarServico(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
+                    id: {"in":"query","name":"id","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -566,7 +566,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/agenda',
+        app.post('/agenda/Cadastrar/agenda',
             ...(fetchMiddlewares<RequestHandler>(AgendaController)),
             ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.cadastrarAgenda)),
 
@@ -598,7 +598,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/agenda',
+        app.put('/agenda/Atualizar/agenda',
             ...(fetchMiddlewares<RequestHandler>(AgendaController)),
             ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.atualizarAgenda)),
 
@@ -630,7 +630,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/agenda',
+        app.delete('/agenda/Deletar/agenda',
             ...(fetchMiddlewares<RequestHandler>(AgendaController)),
             ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.deleteAgenda)),
 
