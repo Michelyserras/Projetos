@@ -6,9 +6,9 @@ export class AgendaService{
     private agendaRepository = AgendaRepository.getInstance();
 
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para determinar o valor
-        const { data, hora, idServico, cpfCliente, idPet } = agendaData;
+        const { data, hora, tipoServico, cpfCliente, idPet } = agendaData;
         
-        const agenda = new AgendaEntity(undefined, data, hora, idServico, cpfCliente, idPet);
+        const agenda = new AgendaEntity(undefined, data, hora, tipoServico, cpfCliente, idPet);
 
         const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
         console.log("Service - Insert ", novaAgenda);
@@ -16,9 +16,9 @@ export class AgendaService{
     }
 
     async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao atualizar agenda deve ser possível trocar o tipo de serviço escolhido durante o cadastro
-        const { id, data, hora, idServico, cpfCliente, idPet } = agendaData;
+        const { id, data, hora, tipoServico, cpfCliente, idPet } = agendaData;
 
-        const agenda = new AgendaEntity(id, data, hora, idServico, cpfCliente, idPet);
+        const agenda = new AgendaEntity(id, data, hora, tipoServico, cpfCliente, idPet);
 
         await this.agendaRepository.updateAgenda(agenda);
         console.log("Service - Update ", agenda);
@@ -26,9 +26,9 @@ export class AgendaService{
     }
 
     async deletarAgenda(agendaData: any): Promise<AgendaEntity> { 
-        const { id, data, hora, idServico, cpfCliente, idPet } = agendaData;
+        const { id, data, hora, tipoServico, cpfCliente, idPet } = agendaData;
 
-        const agenda = new AgendaEntity(id, data, hora, idServico, cpfCliente, idPet);
+        const agenda = new AgendaEntity(id, data, hora, tipoServico, cpfCliente, idPet);
 
         await this.agendaRepository.deleteAgenda(agenda);
         console.log("Service - Delete ", agenda);
