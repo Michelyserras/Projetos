@@ -3,6 +3,7 @@ import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delet
 import { PetRequestDto } from "../model/dto/PetRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { PetService } from "../service/PetService";
+import { PetEntity } from "../model/entity/Pet";
 // aaaaaaaaaaa
 @Route("Pet")
 @Tags("Pet")
@@ -26,13 +27,13 @@ export class PetController{
     
     @Put()
     async atualizarPet( 
-        @Body() dto:PetRequestDto,
+        @Body() pet: PetEntity,
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
             try {
-                const PetAtlz = await this.petService.atualizarPet(dto); //ALTERAR ESSE RECEBIMENTO DA QUERY DTO, É NECESSÁRIO INSERIR O ID PARA ATUALIZAR UM PET
+                const PetAtlz = await this.petService.atualizarPet(pet); 
                 if(PetAtlz === null){
                     console.error("Pet não encontrado.");
                     return notFound(404, new BasicResponseDto("Pet não encontrado", undefined));
@@ -46,13 +47,13 @@ export class PetController{
     
     @Delete()
     async deletePet(
-        @Body() dto:PetRequestDto,
+        @Body() pet:PetEntity,
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const Pet = await this.petService.deletarPet(dto);
+            const Pet = await this.petService.deletarPet(pet);
             if(Pet === null){
                 console.error("Pet não encontrado.");
                 return notFound(404, new BasicResponseDto("Pet não encontrado", undefined));
