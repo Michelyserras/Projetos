@@ -55,6 +55,45 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"PetEntity": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"cpfCliente": {
+						"type": "string"
+					},
+					"nome": {
+						"type": "string"
+					},
+					"idade": {
+						"type": "number",
+						"format": "double"
+					},
+					"peso": {
+						"type": "number",
+						"format": "double"
+					},
+					"especie": {
+						"type": "string"
+					},
+					"historicoPet": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"cpfCliente",
+					"nome",
+					"idade",
+					"peso",
+					"especie",
+					"historicoPet"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ClienteRequestDto": {
 				"properties": {
 					"cpf": {
@@ -209,7 +248,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/PetRequestDto"
+								"$ref": "#/components/schemas/PetEntity"
 							}
 						}
 					}
@@ -262,7 +301,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/PetRequestDto"
+								"$ref": "#/components/schemas/PetEntity"
 							}
 						}
 					}

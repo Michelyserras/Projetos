@@ -37,6 +37,20 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "PetEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "cpfCliente": {"dataType":"string","required":true},
+            "nome": {"dataType":"string","required":true},
+            "idade": {"dataType":"double","required":true},
+            "peso": {"dataType":"double","required":true},
+            "especie": {"dataType":"string","required":true},
+            "historicoPet": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ClienteRequestDto": {
         "dataType": "refObject",
         "properties": {
@@ -115,7 +129,7 @@ export function RegisterRoutes(app: Router) {
 
             async function PetController_atualizarPet(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"PetRequestDto"},
+                    pet: {"in":"body","name":"pet","required":true,"ref":"PetEntity"},
                     notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
@@ -148,7 +162,7 @@ export function RegisterRoutes(app: Router) {
 
             async function PetController_deletePet(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"PetRequestDto"},
+                    pet: {"in":"body","name":"pet","required":true,"ref":"PetEntity"},
                     notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},

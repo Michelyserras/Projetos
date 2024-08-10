@@ -122,12 +122,14 @@ export class PetRepository{
     }
 
     async deleteTodosPetPorCliente(cpfCliente: string) :Promise<PetEntity[]>{ //DELETAR UM pet DO SISTEMA
-        const query = "DELETE * FROM sistema.Pet where cpfCliente = ?;" ;
+        const query = "DELETE FROM sistema.Pet where cpfCliente = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [cpfCliente]);
             console.log('pets deletado com sucesso: ', resultado);
-            return resultado;
+            return new Promise<PetEntity[]>((resolve)=>{
+                resolve(resultado);
+            })
         } catch (err:any) {
             console.error(`Falha ao deletar os pet do  ${cpfCliente} gerando o erro: ${err}`);
             throw err;
