@@ -3,10 +3,6 @@ import { stringParaData, verificaFormatoData } from "../../util/DataUtil";
 export class AgendaEntity{
     id: number;
     data: Date;
-<<<<<<< HEAD
-    hora: number; //VERIFICAR DEPOIS O FORMATO DA HORA
-=======
->>>>>>> origin/New-dev
     tipoServico: string; 
     valorServico: number;
     cpfCliente: number; //FOREIGN KEY
@@ -14,35 +10,20 @@ export class AgendaEntity{
 
 //CONFIRMAR SE ESSA ENTIDADE ESTÁ CERTA, A IDEIA É ARMAZENAR DADOS DO PET, CLIENTE E DO SERVIÇO REALIZADO NA DATA E HORA MARCADA
 
-<<<<<<< HEAD
-    constructor(id?:number, data?:string, hora?:number, tipoServico?:string, valorServico?:number, cpfCliente?:number, idPet?:number){
-        this.validatesInformation(data, hora, tipoServico, valorServico)
-        this.id = id || 0;
-        this.data = stringParaData(data || '');
-        this.hora = hora || 0;
-=======
     constructor(id?:number, data?:string, tipoServico?:string, valorServico?:number, cpfCliente?:number, idPet?:number){
         this.validatesInformation(data, tipoServico, valorServico)
         this.id = id || 0;
         this.data = stringParaData(data || '');
->>>>>>> origin/New-dev
         this.tipoServico = tipoServico || '';
         this.valorServico = valorServico || 0;
         this.cpfCliente = cpfCliente || 0;
         this.idPet = idPet || 0;
     }
 
-<<<<<<< HEAD
-    private validatesInformation(data:any, hora:any, tipoServico:any, valorServico:any){
-        let error = '';
-
-        if(typeof data !== 'string' || typeof hora !== 'number' || typeof tipoServico !== 'string' || typeof valorServico !== 'number'){
-=======
     private validatesInformation(data:any, tipoServico:any, valorServico:any){
         let error = '';
 
         if(typeof data !== 'string' || typeof tipoServico !== 'string' || typeof valorServico !== 'number'){
->>>>>>> origin/New-dev
             error += ("Informaçõe incompletas ou incorretas.");
         }
 
