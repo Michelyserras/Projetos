@@ -82,8 +82,7 @@
 			"AgendaRequestDto": {
 				"properties": {
 					"data": {
-						"type": "string",
-						"format": "date-time"
+						"type": "string"
 					},
 					"tipoServico": {
 						"type": "string"

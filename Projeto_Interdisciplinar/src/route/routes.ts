@@ -51,7 +51,7 @@ const models: TsoaRoute.Models = {
     "AgendaRequestDto": {
         "dataType": "refObject",
         "properties": {
-            "data": {"dataType":"datetime","required":true},
+            "data": {"dataType":"string","required":true},
             "tipoServico": {"dataType":"string","required":true},
             "valorServico": {"dataType":"double","required":true},
             "cpfCliente": {"dataType":"string","required":true},

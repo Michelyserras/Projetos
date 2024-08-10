@@ -2,6 +2,7 @@ import { AgendaEntity } from "../model/entity/Agenda";
 import { AgendaRepository } from "../repository/AgendaRepository";
 import { PetRepository } from "../repository/PetRepository";
 import { ClienteRepository } from "../repository/ClienteRepository";
+import { stringParaData } from "../util/DataUtil";
 
 export class AgendaService{
 
@@ -11,7 +12,10 @@ export class AgendaService{
 
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
         const { data,  tipoServico, valorServico, cpfCliente, idPet } = agendaData;
-        const agendaEncontrada = await this.verificaAgenda(data);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
+
+        const dataDate = stringParaData(data);
+
+        const agendaEncontrada = await this.verificaAgenda(dataDate);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
