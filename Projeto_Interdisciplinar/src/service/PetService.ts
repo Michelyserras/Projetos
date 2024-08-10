@@ -11,7 +11,7 @@ export class PetService{
         const { cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
-        if(!cpfClienteEncontrado){
+        if(cpfClienteEncontrado === null){
             throw new Error('CPF do dono do pet não cadastrado.');
         }
 
@@ -27,11 +27,11 @@ export class PetService{
         const petEncontrado = await this.filtrarPet(id);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
-        if(!petEncontrado){
+        if(petEncontrado === null){
             throw new Error('Pet não encontrado.');
         }
         else{
-            if(!cpfClienteEncontrado){
+            if(cpfClienteEncontrado === null){
                 throw new Error('CPF do dono do pet não cadastrado.');
             }
             
@@ -47,7 +47,7 @@ export class PetService{
         const { id, cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
         const petEncontrado = await this.filtrarPet(id);
 
-        if(!petEncontrado){
+        if(petEncontrado === null){
             throw new Error('Pet não encontrado.');
         }
 
@@ -58,13 +58,13 @@ export class PetService{
         return pet;
     }
 
-    async filtrarPet(petData: any): Promise<PetEntity> {
+    async filtrarPet(petData: any): Promise<PetEntity | null> {
         const pet =  await this.petRepository.filterPet(petData);
         console.log("Service - Filtrar", pet);
         return pet;
     }
 
-    async listarTodosPets(): Promise<PetEntity[]> { //FUNÇÃO JÁ LISTA TODOS OS PETS EXISTENTES
+    async listarTodosPets(): Promise<PetEntity[] | null> { //FUNÇÃO JÁ LISTA TODOS OS PETS EXISTENTES
         const pet =  await this.petRepository.filterAllPet();
         console.log("Service - Filtrar Todos", pet);
         return pet;

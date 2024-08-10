@@ -27,7 +27,7 @@ export class ClienteController{
     @Put()
     async atualizarCliente(
         @Body() dto:ClienteRequestDto,
-        @Res() noFound: TsoaResponse<404, BasicResponseDto>,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
@@ -35,7 +35,7 @@ export class ClienteController{
                 const clienteAtlz = await this.clienteService.atualizarCliente(dto);
                 if(clienteAtlz === null){
                     console.error("Cliente não encontrado.");
-                    return noFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
+                    return notFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
                 }
                 return sucess(200, new BasicResponseDto("Os dados do Cliente foram atualizado com sucesso!", clienteAtlz));
             } catch (error: any) {
@@ -47,7 +47,7 @@ export class ClienteController{
     @Delete()
     async deleteCliente(
         @Body() dto:ClienteRequestDto,
-        @Res() noFound: TsoaResponse<404, BasicResponseDto>,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
@@ -55,7 +55,7 @@ export class ClienteController{
             const cliente = await this.clienteService.deletarCliente(dto);
             if(cliente === null){
                 console.error("Cliente não encontrado.");
-                return noFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
+                return notFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
             }
             return sucess(200, new BasicResponseDto("Cliente excluido com suceso!", cliente));
         } catch (error: any) {
@@ -68,7 +68,7 @@ export class ClienteController{
     @Get('filtrarCliente')
     async filtrarCliente(
         @Query() param:string,
-        @Res() noFound: TsoaResponse<404, BasicResponseDto>,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
@@ -76,7 +76,7 @@ export class ClienteController{
             const cliente = await this.clienteService.filtrarCliente(param);
             if(cliente === null){
                 console.error("Cliente não encontrado.");
-                return noFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
+                return notFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
             }
             return sucess(200, new BasicResponseDto("Cliente encontrado com suceso!", cliente));
         } catch (error: any) {
@@ -88,14 +88,14 @@ export class ClienteController{
     @Get('ListarTodosClientes')
     async ListarTodosClientes(
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
-        @Res() noFound: TsoaResponse<404, BasicResponseDto>,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const clientes = await this.clienteService.listarTodosClientes();
             if(clientes === null){
                 console.error("Cliente não encontrado.");
-                return noFound(404, new BasicResponseDto("Não há clientes cadastrados", undefined));
+                return notFound(404, new BasicResponseDto("Não há clientes cadastrados", undefined));
             }
             return sucess(200, new BasicResponseDto("Clientes encontrados com suceso!", clientes));
         } catch (error: any) {

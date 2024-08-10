@@ -25,13 +25,18 @@ export class PetController{
         
     
     @Put()
-    async atualizarPet(
+    async atualizarPet( 
         @Body() dto:PetRequestDto,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
             try {
-                const PetAtlz = await this.petService.atualizarPet(dto);
+                const PetAtlz = await this.petService.atualizarPet(dto); //ALTERAR ESSE RECEBIMENTO DA QUERY DTO, É NECESSÁRIO INSERIR O ID PARA ATUALIZAR UM PET
+                if(PetAtlz === null){
+                    console.error("Pet não encontrado.");
+                    return notFound(404, new BasicResponseDto("Pet não encontrado", undefined));
+                }
                 return sucess(200, new BasicResponseDto("Os dados do Pet foram atualizado com sucesso!", PetAtlz));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
@@ -42,11 +47,16 @@ export class PetController{
     @Delete()
     async deletePet(
         @Body() dto:PetRequestDto,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const Pet = await this.petService.deletarPet(dto);
+            if(Pet === null){
+                console.error("Pet não encontrado.");
+                return notFound(404, new BasicResponseDto("Pet não encontrado", undefined));
+            }
             return sucess(200, new BasicResponseDto("Pet excluido com suceso!", Pet));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
@@ -58,11 +68,16 @@ export class PetController{
     @Get('filtrarPet') 
     async filtrarPet(
         @Query() param:number,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const Pet = await this.petService.filtrarPet(param);
+            if(Pet === null){
+                console.error("Pet não encontrado.");
+                return notFound(404, new BasicResponseDto("Pet não encontrado", undefined));
+            }
             return sucess(200, new BasicResponseDto("Pet encontrado com suceso!", Pet));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
@@ -72,11 +87,16 @@ export class PetController{
     
     @Get('listarTodosPets')
     async ListarTodosPets(
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const Pets = await this.petService.listarTodosPets();
+            if(Pets === null){
+                console.error("Não há pets cadastrados.");
+                return notFound(404, new BasicResponseDto("Não há pets cadastrados", undefined));
+            }
             return sucess(200, new BasicResponseDto("PetS encontrados com suceso!", Pets));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

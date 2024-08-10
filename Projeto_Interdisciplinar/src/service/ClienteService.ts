@@ -1,10 +1,13 @@
 import { ClienteEntity } from "../model/entity/Cliente";
+import { PetEntity } from "../model/entity/Pet";
 import { ClienteRepository } from "../repository/ClienteRepository";
+import { PetRepository } from "../repository/PetRepository";
 
 
 export class ClienteService{
 
     private clienteRepository = ClienteRepository.getInstance();
+    private petRepository = PetRepository.getInstance();
 
     async cadastrarCliente(clienteData: any): Promise<ClienteEntity> {
         const { cpf, nome, endereco, telefone } = clienteData;
@@ -44,6 +47,7 @@ export class ClienteService{
             throw new Error('Cliente não encontrado.');
         }
 
+        await this.petRepository.deleteTodosPetPorCliente(cpf);
         const cliente = new ClienteEntity(cpf, nome, endereco, telefone);
 
         await this.clienteRepository.deleteCliente(cliente);

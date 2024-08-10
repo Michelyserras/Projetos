@@ -84,44 +84,52 @@ export class PetRepository{
         }
     }
 
-    async filterPet(id: number) :Promise<PetEntity>{ //PROCURAR POR pet
+    async filterPet(id: number) :Promise<PetEntity | null>{ //PROCURAR POR pet
         const query = "SELECT * FROM sistema.Pet where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
             console.log('Pet localizado com sucesso, id: ', resultado);
-            return new Promise<PetEntity>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.length > 0){
+                console.log("Pet encontrado com sucesso.");
+                return resultado[0];
+            }
+            else{
+                return null;
+            }
         } catch (err:any) {
             console.error(`Falha ao procurar o pet de id ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllPet() :Promise<PetEntity[]>{ //LISTAR TODOS OS petS EXISTENTES
+    async filterAllPet() :Promise<PetEntity[] | null>{ //LISTAR TODOS OS petS EXISTENTES
         const query = "SELECT * FROM sistema.Pet" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<PetEntity[]>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.length > 0){
+                console.log("Há pets cadastrados.", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
         } catch (err:any) {
             console.error(`Falha ao listar os pets gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async deleteTodosPetPorCliente(pet:PetEntity) :Promise<PetEntity[]>{ //DELETAR UM pet DO SISTEMA
+    async deleteTodosPetPorCliente(cpfCliente: string) :Promise<PetEntity[]>{ //DELETAR UM pet DO SISTEMA
         const query = "DELETE * FROM sistema.Pet where cpfCliente = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [pet.cpfCliente]);
+            const resultado = await executarComandoSQL(query, [cpfCliente]);
             console.log('pets deletado com sucesso: ', resultado);
             return resultado;
         } catch (err:any) {
-            console.error(`Falha ao deletar os pet do  ${pet.cpfCliente} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar os pet do  ${cpfCliente} gerando o erro: ${err}`);
             throw err;
         }
     }
