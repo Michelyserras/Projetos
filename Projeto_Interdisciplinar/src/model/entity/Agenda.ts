@@ -27,6 +27,10 @@ export class AgendaEntity{
             error += ("Informaçõe incompletas ou incorretas.");
         }
 
+        if(!verificaFormatoData(data)){
+            error += ("A data deve possuir o formato: dd/MM/yyyy");
+        }
+
         if(error != ''){
             throw new Error(error);
         }
