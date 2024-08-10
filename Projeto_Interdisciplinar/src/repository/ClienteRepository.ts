@@ -83,23 +83,33 @@ export class ClienteRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [cpf]);
+            console.log('Resultado da busca, cpf: ', resultado);
 
-            console.log('Cliente localizado com sucesso, cpf: ', resultado);
-            return resultado;
+            if(resultado.length > 0){
+                console.log('Cliente encontrado com sucesso.');
+                return resultado[0];
+            }
+            else{
+                return null;
+            }
         } catch (err:any) {
             console.error(`Falha ao procurar o cliente de cpf ${cpf} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllCliente() :Promise<ClienteEntity[]>{ //LISTAR TODOS OS CLIENTES EXISTENTES
+    async filterAllCliente() :Promise<ClienteEntity[] | null>{ //LISTAR TODOS OS CLIENTES EXISTENTES
         const query = "SELECT * FROM sistema.Cliente" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<ClienteEntity[]>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.length > 0){
+                console.log('Há clientes cadastrados', resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
         } catch (err:any) {
             console.error(`Falha ao listar os clientes gerando o erro: ${err}`);
             throw err;

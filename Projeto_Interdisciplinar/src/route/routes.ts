@@ -275,6 +275,7 @@ export function RegisterRoutes(app: Router) {
             async function ClienteController_atualizarCliente(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     dto: {"in":"body","name":"dto","required":true,"ref":"ClienteRequestDto"},
+                    noFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -307,6 +308,7 @@ export function RegisterRoutes(app: Router) {
             async function ClienteController_deleteCliente(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     dto: {"in":"body","name":"dto","required":true,"ref":"ClienteRequestDto"},
+                    noFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -372,6 +374,7 @@ export function RegisterRoutes(app: Router) {
             async function ClienteController_ListarTodosClientes(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    noFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
 

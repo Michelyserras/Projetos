@@ -8,9 +8,9 @@ export class ClienteService{
 
     async cadastrarCliente(clienteData: any): Promise<ClienteEntity> {
         const { cpf, nome, endereco, telefone } = clienteData;
-        const cpfEncontrado = await this.filtrarCliente(cpf);
+        const clienteEncontrado = await this.filtrarCliente(cpf);
 
-        if(cpfEncontrado == cpf){
+        if(clienteEncontrado && clienteEncontrado.cpf === cpf){
             throw new Error('Cliente já cadastrado.');
         }
         
@@ -25,7 +25,7 @@ export class ClienteService{
         const { cpf, nome, endereco, telefone } = clienteData;
         const cpfEncontrado = await this.filtrarCliente(cpf);
 
-        if(!cpfEncontrado){
+        if(cpfEncontrado === null){
             throw new Error('Cliente não encontrado.');
         }
 
@@ -40,7 +40,7 @@ export class ClienteService{
         const { cpf, nome, endereco, telefone } = clienteData;
         const cpfEncontrado = await this.filtrarCliente(cpf);
 
-        if(cpfEncontrado){
+        if(cpfEncontrado === null){
             throw new Error('Cliente não encontrado.');
         }
 
@@ -53,12 +53,11 @@ export class ClienteService{
 
     async filtrarCliente(clienteData: any): Promise<ClienteEntity | null> {
         const cliente =  await this.clienteRepository.filterCliente(clienteData);
-        
         console.log("Service - Filtrar", cliente);
         return cliente;
     }
 
-    async listarTodosClientes(): Promise<ClienteEntity[]> {
+    async listarTodosClientes(): Promise<ClienteEntity[] | null> {
         const cliente =  await this.clienteRepository.filterAllCliente();
         console.log("Service - Filtrar Todos", cliente);
         return cliente;
