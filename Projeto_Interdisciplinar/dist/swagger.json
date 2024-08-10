@@ -85,10 +85,6 @@
 						"type": "string",
 						"format": "date-time"
 					},
-					"hora": {
-						"type": "number",
-						"format": "double"
-					},
 					"tipoServico": {
 						"type": "string"
 					},
@@ -106,7 +102,6 @@
 				},
 				"required": [
 					"data",
-					"hora",
 					"tipoServico",
 					"valorServico",
 					"cpfCliente",

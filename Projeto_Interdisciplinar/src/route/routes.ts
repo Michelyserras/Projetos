@@ -52,7 +52,6 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "data": {"dataType":"datetime","required":true},
-            "hora": {"dataType":"double","required":true},
             "tipoServico": {"dataType":"string","required":true},
             "valorServico": {"dataType":"double","required":true},
             "cpfCliente": {"dataType":"string","required":true},
