@@ -41,7 +41,10 @@ export class AgendaService{
     async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao atualizar agenda deve ser possível trocar o tipo de serviço escolhido durante o cadastro
         const { id, data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.agendaRepository.filterAgenda(id);
-        const dataEmUso = await this.agendaRepository.verificaAgenda(data);
+
+        const dataDate = stringParaData(data);
+        const dataEmUso = await this.agendaRepository.verificaAgenda(dataDate);
+
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
 
