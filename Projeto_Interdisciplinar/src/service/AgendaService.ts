@@ -74,7 +74,7 @@ export class AgendaService{
     }
 
     async filtrarAgenda(agendaData: any): Promise<AgendaEntity> {
-        const agenda =  await this.agendaRepository.filterAgenda(agendaData.id);
+        const agenda =  await this.agendaRepository.filterAgenda(agendaData);
         console.log("Service - Filtrar", agenda);
         return agenda;
     }

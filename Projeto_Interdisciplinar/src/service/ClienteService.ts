@@ -52,7 +52,7 @@ export class ClienteService{
     }
 
     async filtrarCliente(clienteData: any): Promise<ClienteEntity> {
-        const cliente =  await this.clienteRepository.filterCliente(clienteData.cpf);
+        const cliente =  await this.clienteRepository.filterCliente(clienteData);
         console.log("Service - Filtrar", cliente);
         return cliente;
     }
