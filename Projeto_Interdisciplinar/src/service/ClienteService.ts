@@ -1,6 +1,7 @@
 import { ClienteEntity } from "../model/entity/Cliente";
 import { ClienteRepository } from "../repository/ClienteRepository";
 
+
 export class ClienteService{
 
     private clienteRepository = ClienteRepository.getInstance();
@@ -9,7 +10,7 @@ export class ClienteService{
         const { cpf, nome, endereco, telefone } = clienteData;
         const cpfEncontrado = await this.filtrarCliente(cpf);
 
-        if(cpfEncontrado){
+        if(cpfEncontrado == cpf){
             throw new Error('Cliente já cadastrado.');
         }
         
@@ -51,7 +52,7 @@ export class ClienteService{
     }
 
     async filtrarCliente(clienteData: any): Promise<ClienteEntity> {
-        const cliente =  await this.clienteRepository.filterCliente(clienteData.cpf);
+        const cliente =  await this.clienteRepository.filterCliente(clienteData);
         console.log("Service - Filtrar", cliente);
         return cliente;
     }

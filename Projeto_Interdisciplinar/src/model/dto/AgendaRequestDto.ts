@@ -1,16 +1,16 @@
 import { stringParaData } from "../../util/DataUtil";
 export class AgendaRequestDto {
-    data: Date;
-    hora: number; //VERIFICAR DEPOIS O FORMATO DA HORA
-    idServico: number;
-    cpfCliente: number;
+    data: string; //VERIFICAR HORA DEPOIS
+    tipoServico: string;
+    valorServico: number;
+    cpfCliente: string;
     idPet: number;
 
-    constructor(data?:string, hora?:number, idServico?:number, cpfCliente?:number, idPet?:number){
-        this.data = stringParaData(data || '');
-        this.hora = hora || 0;
-        this.idServico = idServico || 0;
-        this.cpfCliente = cpfCliente || 0;
+    constructor(data?:string, tipoServico?:string, valorServico?:number, cpfCliente?:string, idPet?:number){
+        this.data = (data || '');
+        this.tipoServico = tipoServico || '';
+        this.valorServico = valorServico || 0;
+        this.cpfCliente = cpfCliente || '';
         this.idPet = idPet || 0;
     }
 

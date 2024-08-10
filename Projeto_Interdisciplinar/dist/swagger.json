@@ -7,41 +7,6 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"ServicoRequestDto": {
-				"properties": {
-					"tipoServico": {
-						"type": "string"
-					},
-					"valor": {
-						"type": "number",
-						"format": "double"
-					},
-					"descricao": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"tipoServico",
-					"valor",
-					"descricao"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"BasicResponseDto": {
-				"properties": {
-					"message": {
-						"type": "string"
-					},
-					"object": {}
-				},
-				"required": [
-					"message",
-					"object"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"PetRequestDto": {
 				"properties": {
 					"cpfCliente": {
@@ -76,6 +41,20 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"BasicResponseDto": {
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"object": {}
+				},
+				"required": [
+					"message",
+					"object"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ClienteRequestDto": {
 				"properties": {
 					"cpf": {
@@ -103,20 +82,17 @@
 			"AgendaRequestDto": {
 				"properties": {
 					"data": {
-						"type": "string",
-						"format": "date-time"
+						"type": "string"
 					},
-					"hora": {
-						"type": "number",
-						"format": "double"
+					"tipoServico": {
+						"type": "string"
 					},
-					"idServico": {
+					"valorServico": {
 						"type": "number",
 						"format": "double"
 					},
 					"cpfCliente": {
-						"type": "number",
-						"format": "double"
+						"type": "string"
 					},
 					"idPet": {
 						"type": "number",
@@ -125,8 +101,8 @@
 				},
 				"required": [
 					"data",
-					"hora",
-					"idServico",
+					"tipoServico",
+					"valorServico",
 					"cpfCliente",
 					"idPet"
 				],
@@ -142,217 +118,6 @@
 		"description": "Documentação da API usando Swagger"
 	},
 	"paths": {
-		"/Servico": {
-			"post": {
-				"operationId": "CadastrarServico",
-				"responses": {
-					"201": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					},
-					"204": {
-						"description": "No content"
-					},
-					"400": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Servico"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ServicoRequestDto"
-							}
-						}
-					}
-				}
-			},
-			"put": {
-				"operationId": "AtualizarServico",
-				"responses": {
-					"200": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					},
-					"204": {
-						"description": "No content"
-					},
-					"400": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Servico"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ServicoRequestDto"
-							}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "DeleteServico",
-				"responses": {
-					"200": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					},
-					"204": {
-						"description": "No content"
-					},
-					"400": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Servico"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ServicoRequestDto"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/Servico/filtrarServico": {
-			"get": {
-				"operationId": "FiltrarServico",
-				"responses": {
-					"200": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					},
-					"204": {
-						"description": "No content"
-					},
-					"400": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Servico"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "param",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			}
-		},
-		"/Servico/listarTodosServicos": {
-			"get": {
-				"operationId": "ListarTodosServicos",
-				"responses": {
-					"200": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					},
-					"204": {
-						"description": "No content"
-					},
-					"400": {
-						"description": "",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BasicResponseDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Servico"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
 		"/Pet": {
 			"post": {
 				"operationId": "CadastrarPet",
@@ -774,7 +539,7 @@
 				"parameters": []
 			}
 		},
-		"/agenda": {
+		"/agenda/Cadastrar/agenda": {
 			"post": {
 				"operationId": "CadastrarAgenda",
 				"responses": {
@@ -817,7 +582,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/agenda/Atualizar/agenda": {
 			"put": {
 				"operationId": "AtualizarAgenda",
 				"responses": {
@@ -860,7 +627,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/agenda/Deletar/agenda": {
 			"delete": {
 				"operationId": "DeleteAgenda",
 				"responses": {
@@ -953,6 +722,41 @@
 		"/agenda/ListarTodasAgendas": {
 			"get": {
 				"operationId": "ListarTodasAgendas",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Agenda"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/agenda/geraFaturamento": {
+			"get": {
+				"operationId": "GeraFaturamento",
 				"responses": {
 					"200": {
 						"description": "",

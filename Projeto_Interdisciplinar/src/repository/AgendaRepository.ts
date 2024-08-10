@@ -22,9 +22,14 @@ export class AgendaRepository{
         CREATE TABLE IF NOT EXISTS sistema.Agenda (
             id INT AUTO_INCREMENT PRIMARY KEY,
             data DATE NOT NULL,
+<<<<<<< HEAD
             hora TIME NOT NULL, 
             tipoServico VARCHAR(255) NOT NULL,
             valorServico NUMBER(10, 5) NOT NULL,
+=======
+            tipoServico VARCHAR(255) NOT NULL,
+            valorServico DECIMAL(10,5) NOT NULL,
+>>>>>>> origin/New-dev
             cpfCliente VARCHAR(14) NOT NULL,
             idPet INT NOT NULL,
             FOREIGN KEY (cpfCliente) REFERENCES sistema.Cliente(cpf),
@@ -40,10 +45,17 @@ export class AgendaRepository{
     }
 
     async insertAgenda(agenda:AgendaEntity) :Promise<AgendaEntity>{ //CADASTRAR UM agenda
+<<<<<<< HEAD
         const query = "INSERT INTO sistema.Agenda (data, hora, tipoServico, valorServico, cpfCliente, idPet) VALUES (?, ?, ?, ?, ?, ?)" ;
 
         try {
             const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.tipoServico, agenda.valorServico, agenda.cpfCliente, agenda.idPet]);
+=======
+        const query = "INSERT INTO sistema.Agenda (data, tipoServico, valorServico, cpfCliente, idPet) VALUES (?, ?, ?, ?, ?)" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [agenda.data, agenda.tipoServico, agenda.valorServico, agenda.cpfCliente, agenda.idPet]);
+>>>>>>> origin/New-dev
             console.log('Agenda cadastrada com sucesso, id: ', resultado.insertId);
             agenda.id = resultado.insertId;
 
@@ -57,10 +69,17 @@ export class AgendaRepository{
     }
 
     async updateAgenda(agenda:AgendaEntity) :Promise<AgendaEntity>{ //ATUALIZAR OS DADOS(NOME, ENDEREÇO E TELEFONE) DE UM agenda PELO SEU CPF
+<<<<<<< HEAD
         const query = "UPDATE sistema.Agenda set data = ?, hora = ?, tipoServico = ?, valorServico = ? where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [agenda.data, agenda.hora, agenda.tipoServico, agenda.valorServico, agenda.id]);
+=======
+        const query = "UPDATE sistema.Agenda SET data = ?, tipoServico = ?, valorServico = ? WHERE id = ?;" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [agenda.data, agenda.tipoServico, agenda.valorServico, agenda.id]);
+>>>>>>> origin/New-dev
             console.log('Agenda atualizada com sucesso: ', resultado);
             return new Promise<AgendaEntity>((resolve)=>{
                 resolve(agenda);
@@ -115,9 +134,28 @@ export class AgendaRepository{
         }
     }
 
+<<<<<<< HEAD
     async geraFaturamento() :Promise<Number>{
         const query = "SELECT SUM(valorServico) from sistema.Agenda;"
 
+=======
+    async verificaAgenda(data: Date) :Promise<AgendaEntity | undefined>{
+        const query = "SELECT * FROM sistema.Agenda where data = ?";
+
+        try{
+            const agendaExiste = await executarComandoSQL(query, [data]);
+            console.log('Data cadastrada:', agendaExiste);
+            return agendaExiste;
+        } catch(err: any){
+            console.error(`Falha ao verificar agenda`, err);
+            
+        }
+    }
+
+    async geraFaturamento() :Promise<Number>{
+        const query = "SELECT SUM(valorServico) from sistema.Agenda;"
+
+>>>>>>> origin/New-dev
         try {
             const resultado = await executarComandoSQL(query, []);
             return new Promise<Number>((resolve)=>{

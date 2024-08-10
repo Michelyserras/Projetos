@@ -9,7 +9,7 @@ import { AgendaService } from "../service/AgendaService";
 export class AgendaController{ 
     agendaService = new AgendaService();
     
-    @Post()
+    @Post('Cadastrar agenda')
     async cadastrarAgenda(
         @Body() dto:AgendaRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
@@ -24,7 +24,7 @@ export class AgendaController{
     };
         
     
-    @Put()
+    @Put('Atualizar agenda')
     async atualizarAgenda(
         @Body() dto:AgendaRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
@@ -39,7 +39,7 @@ export class AgendaController{
         };
         
     
-    @Delete()
+    @Delete('Deletar agenda')
     async deleteAgenda(
         @Body() dto:AgendaRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,

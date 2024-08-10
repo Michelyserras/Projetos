@@ -3,8 +3,6 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { TsoaRoute, fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ServicoController } from './../controller/ServicoController';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { PetController } from './../controller/PetController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ClienteController } from './../controller/ClienteController';
@@ -17,25 +15,6 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "ServicoRequestDto": {
-        "dataType": "refObject",
-        "properties": {
-            "tipoServico": {"dataType":"string","required":true},
-            "valor": {"dataType":"double","required":true},
-            "descricao": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "BasicResponseDto": {
-        "dataType": "refObject",
-        "properties": {
-            "message": {"dataType":"string","required":true},
-            "object": {"dataType":"any","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "PetRequestDto": {
         "dataType": "refObject",
         "properties": {
@@ -45,6 +24,15 @@ const models: TsoaRoute.Models = {
             "peso": {"dataType":"double","required":true},
             "especie": {"dataType":"string","required":true},
             "historicoPet": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "BasicResponseDto": {
+        "dataType": "refObject",
+        "properties": {
+            "message": {"dataType":"string","required":true},
+            "object": {"dataType":"any","required":true},
         },
         "additionalProperties": false,
     },
@@ -63,10 +51,10 @@ const models: TsoaRoute.Models = {
     "AgendaRequestDto": {
         "dataType": "refObject",
         "properties": {
-            "data": {"dataType":"datetime","required":true},
-            "hora": {"dataType":"double","required":true},
-            "idServico": {"dataType":"double","required":true},
-            "cpfCliente": {"dataType":"double","required":true},
+            "data": {"dataType":"string","required":true},
+            "tipoServico": {"dataType":"string","required":true},
+            "valorServico": {"dataType":"double","required":true},
+            "cpfCliente": {"dataType":"string","required":true},
             "idPet": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
@@ -89,165 +77,6 @@ export function RegisterRoutes(app: Router) {
 
 
     
-        app.post('/Servico',
-            ...(fetchMiddlewares<RequestHandler>(ServicoController)),
-            ...(fetchMiddlewares<RequestHandler>(ServicoController.prototype.cadastrarServico)),
-
-            async function ServicoController_cadastrarServico(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ServicoRequestDto"},
-                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
-                    sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
-
-                const controller = new ServicoController();
-
-              await templateService.apiHandler({
-                methodName: 'cadastrarServico',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/Servico',
-            ...(fetchMiddlewares<RequestHandler>(ServicoController)),
-            ...(fetchMiddlewares<RequestHandler>(ServicoController.prototype.atualizarServico)),
-
-            async function ServicoController_atualizarServico(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ServicoRequestDto"},
-                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
-                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
-
-                const controller = new ServicoController();
-
-              await templateService.apiHandler({
-                methodName: 'atualizarServico',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/Servico',
-            ...(fetchMiddlewares<RequestHandler>(ServicoController)),
-            ...(fetchMiddlewares<RequestHandler>(ServicoController.prototype.deleteServico)),
-
-            async function ServicoController_deleteServico(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ServicoRequestDto"},
-                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
-                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
-
-                const controller = new ServicoController();
-
-              await templateService.apiHandler({
-                methodName: 'deleteServico',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/Servico/filtrarServico',
-            ...(fetchMiddlewares<RequestHandler>(ServicoController)),
-            ...(fetchMiddlewares<RequestHandler>(ServicoController.prototype.filtrarServico)),
-
-            async function ServicoController_filtrarServico(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
-                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
-                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
-
-                const controller = new ServicoController();
-
-              await templateService.apiHandler({
-                methodName: 'filtrarServico',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/Servico/listarTodosServicos',
-            ...(fetchMiddlewares<RequestHandler>(ServicoController)),
-            ...(fetchMiddlewares<RequestHandler>(ServicoController.prototype.ListarTodosServicos)),
-
-            async function ServicoController_ListarTodosServicos(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
-                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
-
-                const controller = new ServicoController();
-
-              await templateService.apiHandler({
-                methodName: 'ListarTodosServicos',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/Pet',
             ...(fetchMiddlewares<RequestHandler>(PetController)),
             ...(fetchMiddlewares<RequestHandler>(PetController.prototype.cadastrarPet)),
@@ -566,7 +395,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/agenda',
+        app.post('/agenda/Cadastrar/agenda',
             ...(fetchMiddlewares<RequestHandler>(AgendaController)),
             ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.cadastrarAgenda)),
 
@@ -598,7 +427,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/agenda',
+        app.put('/agenda/Atualizar/agenda',
             ...(fetchMiddlewares<RequestHandler>(AgendaController)),
             ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.atualizarAgenda)),
 
@@ -630,7 +459,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/agenda',
+        app.delete('/agenda/Deletar/agenda',
             ...(fetchMiddlewares<RequestHandler>(AgendaController)),
             ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.deleteAgenda)),
 
@@ -714,6 +543,37 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'ListarTodasAgendas',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/agenda/geraFaturamento',
+            ...(fetchMiddlewares<RequestHandler>(AgendaController)),
+            ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.geraFaturamento)),
+
+            async function AgendaController_geraFaturamento(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new AgendaController();
+
+              await templateService.apiHandler({
+                methodName: 'geraFaturamento',
                 controller,
                 response,
                 next,

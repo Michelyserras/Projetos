@@ -59,7 +59,7 @@ export class PetService{
     }
 
     async filtrarPet(petData: any): Promise<PetEntity> {
-        const pet =  await this.petRepository.filterPet(petData.id);
+        const pet =  await this.petRepository.filterPet(petData);
         console.log("Service - Filtrar", pet);
         return pet;
     }

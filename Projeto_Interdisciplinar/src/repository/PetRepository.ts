@@ -112,4 +112,19 @@ export class PetRepository{
             throw err;
         }
     }
+
+    async deleteTodosPetPorCliente(pet:PetEntity) :Promise<PetEntity[]>{ //DELETAR UM pet DO SISTEMA
+        const query = "DELETE * FROM sistema.Pet where cpfCliente = ?;" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [pet.cpfCliente]);
+            console.log('pets deletado com sucesso: ', resultado);
+            return resultado;
+        } catch (err:any) {
+            console.error(`Falha ao deletar os pet do  ${pet.cpfCliente} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+
+
 }
