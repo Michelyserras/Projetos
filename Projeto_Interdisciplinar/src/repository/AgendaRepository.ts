@@ -119,6 +119,7 @@ export class AgendaRepository{
 
         try{
             const agendaExiste = await executarComandoSQL(query, [data]);
+            console.log('Data cadastrada:', agendaExiste);
             return agendaExiste;
         } catch(err: any){
             console.error(`Falha ao verificar agenda`, err);

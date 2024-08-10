@@ -23,7 +23,7 @@ export class AgendaEntity{
     private validatesInformation(data:any, tipoServico:any, valorServico:any){
         let error = '';
 
-        if(typeof data !== 'string' || typeof tipoServico !== 'string' || typeof valorServico !== 'number'){
+        if(typeof data !== 'string' || typeof tipoServico !== 'string' || typeof valorServico !== 'number' || ){
             error += ("Informaçõe incompletas ou incorretas.");
         }
 

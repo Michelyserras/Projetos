@@ -15,8 +15,8 @@ export class AgendaService{
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
-        if(agendaEncontrada){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
-            throw new Error('Já há um agendamento nesta data e hora.');
+        if(agendaEncontrada?.data == data){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
+            throw new Error('Já há um agendamento nesta data.');
         } 
         else if(!petEncontrado){
             throw new Error('Pet não encontrado.');
@@ -36,11 +36,11 @@ export class AgendaService{
 
     async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao atualizar agenda deve ser possível trocar o tipo de serviço escolhido durante o cadastro
         const { id, data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
-        const agendaEncontrada = await this.filtrarAgenda(agendaData);
+        const agendaEncontrada = await this.agendaRepository.verificaAgenda(data);
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
 
-        if(agendaEncontrada){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
+        if(agendaEncontrada?.data == data){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
             throw new Error('Já há um agendamento nesta data e hora.');
         }
         else if(!petEncontrado){
@@ -87,8 +87,8 @@ export class AgendaService{
 
     async verificaAgenda(data: Date): Promise<AgendaEntity | undefined> {
         const agendaExiste = await this.agendaRepository.verificaAgenda(data);
-        if(agendaExiste){
-            throw new Error('Data e hora já em uso.');
+        if(agendaExiste?.data == data){
+            throw new Error('Data já agendada.');
         }
         console.log("Service - Verifica agenda", agendaExiste);
         return agendaExiste;
