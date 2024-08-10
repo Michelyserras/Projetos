@@ -47,7 +47,7 @@ export class PetController{
     
     @Delete()
     async deletePet(
-        @Body() pet:PetEntity,
+        @Body() pet:PetEntity, //ALTERAR PARA PARAMETRO EM TODAS AS FUNÇÕES DEPOIS, PARA RECEBER APENAS O ID
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>

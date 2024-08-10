@@ -3,6 +3,7 @@ import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delet
 import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { AgendaService } from "../service/AgendaService";
+import { AgendaEntity } from "../model/entity/Agenda";
 // aaaaaaaaaaa
 @Route("agenda")
 @Tags("Agenda")
@@ -26,12 +27,12 @@ export class AgendaController{
     
     @Put('Atualizar agenda')
     async atualizarAgenda(
-        @Body() dto:AgendaRequestDto,
+        @Body() agenda:AgendaEntity,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
             try {
-                const agendaAtlz = await this.agendaService.atualizarAgenda(dto);
+                const agendaAtlz = await this.agendaService.atualizarAgenda(agenda);
                 return sucess(200, new BasicResponseDto("Os dados do Agenda foram atualizado com sucesso!", agendaAtlz));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
@@ -41,12 +42,12 @@ export class AgendaController{
     
     @Delete('Deletar agenda')
     async deleteAgenda(
-        @Body() dto:AgendaRequestDto,
+        @Body() agendaBody:AgendaEntity, //ALTERAR PARA PARAMETRO EM TODAS AS FUNÇÕES DEPOIS, PARA RECEBER APENAS O ID
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const agenda = await this.agendaService.deletarAgenda(dto);
+            const agenda = await this.agendaService.deletarAgenda(agendaBody);
             return sucess(200, new BasicResponseDto("Agenda excluido com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
