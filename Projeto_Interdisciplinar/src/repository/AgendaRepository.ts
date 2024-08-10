@@ -85,29 +85,36 @@ export class AgendaRepository{
         }
     }
 
-    async filterAgenda(id: number) :Promise<AgendaEntity>{ //PROCURAR POR agenda
+    async filterAgenda(id: number) :Promise<AgendaEntity | null>{ //PROCURAR POR agenda
         const query = "SELECT * FROM sistema.Agenda where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Agenda localizada com sucesso, id: ', resultado);
-            return new Promise<AgendaEntity>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.length > 0){
+                console.log("Agendamento encontrado com sucesso.", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
         } catch (err:any) {
             console.error(`Falha ao procurar a agenda de id ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllAgenda() :Promise<AgendaEntity[]>{ //LISTAR TODOS OS agendaS EXISTENTES
+    async filterAllAgenda() :Promise<AgendaEntity[] | null>{ //LISTAR TODOS OS agendaS EXISTENTES
         const query = "SELECT * FROM sistema.Agenda" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<AgendaEntity[]>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.length > 0){
+                console.log("Há agendamentos cadastrados.", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
         } catch (err:any) {
             console.error(`Falha ao listar as agendas gerando o erro: ${err}`);
             throw err;
@@ -119,8 +126,13 @@ export class AgendaRepository{
 
         try{
             const agendaExiste = await executarComandoSQL(query, [data]);
-            console.log('Data cadastrada:', agendaExiste);
-            return agendaExiste;
+            if(agendaExiste.length > 0){
+                console.log('Data já cadastrada:', agendaExiste);
+                return agendaExiste[0];
+            }
+            else{
+                return undefined;
+            }
         } catch(err: any){
             console.error(`Falha ao verificar agenda`, err);
             
