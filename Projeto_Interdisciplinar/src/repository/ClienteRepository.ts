@@ -79,7 +79,7 @@ export class ClienteRepository{
     }
 
     async filterCliente(cpf: string) :Promise<ClienteEntity>{ //PROCURAR POR CLIENTE
-        const query = "SELECT * FROM sistema.Cliente where cpf = ?" ;
+        const query = "SELECT * FROM sistema.Cliente where cpf = '?';" ;
 
         try {
             const resultado = await executarComandoSQL(query, [cpf]);
