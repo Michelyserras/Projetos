@@ -339,6 +339,7 @@ export function RegisterRoutes(app: Router) {
             async function ClienteController_filtrarCliente(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     param: {"in":"query","name":"param","required":true,"dataType":"string"},
+                    noFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };

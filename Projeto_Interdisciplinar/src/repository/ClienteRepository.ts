@@ -78,15 +78,14 @@ export class ClienteRepository{
         }
     }
 
-    async filterCliente(cpf: string) :Promise<ClienteEntity>{ //PROCURAR POR CLIENTE
-        const query = "SELECT * FROM sistema.Cliente where cpf = '?';" ;
+    async filterCliente(cpf: string) :Promise<ClienteEntity | null>{ //PROCURAR POR CLIENTE
+        const query = "SELECT * FROM sistema.Cliente where cpf = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [cpf]);
+
             console.log('Cliente localizado com sucesso, cpf: ', resultado);
-            return new Promise<ClienteEntity>((resolve)=>{
-                resolve(resultado);
-            })
+            return resultado;
         } catch (err:any) {
             console.error(`Falha ao procurar o cliente de cpf ${cpf} gerando o erro: ${err}`);
             throw err;

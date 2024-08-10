@@ -58,11 +58,16 @@ export class ClienteController{
     @Get('filtrarCliente')
     async filtrarCliente(
         @Query() param:string,
+        @Res() noFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const cliente = await this.clienteService.filtrarCliente(param);
+            if(!cliente || (Array.isArray(cliente) && cliente.length === 0)){
+                console.error("Cliente não encontrado.");
+                return noFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
+            }
             return sucess(200, new BasicResponseDto("Cliente encontrado com suceso!", cliente));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

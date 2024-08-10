@@ -51,8 +51,9 @@ export class ClienteService{
         return cliente;
     }
 
-    async filtrarCliente(clienteData: any): Promise<ClienteEntity> {
+    async filtrarCliente(clienteData: any): Promise<ClienteEntity | null> {
         const cliente =  await this.clienteRepository.filterCliente(clienteData);
+        
         console.log("Service - Filtrar", cliente);
         return cliente;
     }
