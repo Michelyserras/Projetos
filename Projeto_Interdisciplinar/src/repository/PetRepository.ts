@@ -121,7 +121,7 @@ export class PetRepository{
         }
     }
 
-    async deleteTodosPetPorCliente(cpfCliente: string) :Promise<PetEntity[]>{ //DELETAR UM pet DO SISTEMA
+    async deleteTodosPetPorCliente(cpfCliente: string) :Promise<PetEntity[]>{ 
         const query = "DELETE FROM sistema.Pet where cpfCliente = ?;" ;
 
         try {

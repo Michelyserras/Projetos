@@ -147,6 +147,43 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"AgendaEntity": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"tipoServico": {
+						"type": "string"
+					},
+					"valorServico": {
+						"type": "number",
+						"format": "double"
+					},
+					"cpfCliente": {
+						"type": "number",
+						"format": "double"
+					},
+					"idPet": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"data",
+					"tipoServico",
+					"valorServico",
+					"cpfCliente",
+					"idPet"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -546,17 +583,16 @@
 					"Cliente"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ClienteRequestDto"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"type": "string"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/cliente/filtrarCliente": {
@@ -741,7 +777,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/AgendaRequestDto"
+								"$ref": "#/components/schemas/AgendaEntity"
 							}
 						}
 					}
@@ -786,7 +822,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/AgendaRequestDto"
+								"$ref": "#/components/schemas/AgendaEntity"
 							}
 						}
 					}

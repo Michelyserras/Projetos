@@ -74,6 +74,19 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AgendaEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "data": {"dataType":"datetime","required":true},
+            "tipoServico": {"dataType":"string","required":true},
+            "valorServico": {"dataType":"double","required":true},
+            "cpfCliente": {"dataType":"double","required":true},
+            "idPet": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const templateService = new ExpressTemplateService(models, {"noImplicitAdditionalProperties":"throw-on-extras","bodyCoercion":true});
 
@@ -325,7 +338,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ClienteController_deleteCliente(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ClienteRequestDto"},
+                    param: {"in":"query","name":"param","required":true,"dataType":"string"},
                     notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
@@ -455,7 +468,7 @@ export function RegisterRoutes(app: Router) {
 
             async function AgendaController_atualizarAgenda(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"AgendaRequestDto"},
+                    agenda: {"in":"body","name":"agenda","required":true,"ref":"AgendaEntity"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -487,7 +500,7 @@ export function RegisterRoutes(app: Router) {
 
             async function AgendaController_deleteAgenda(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"AgendaRequestDto"},
+                    agendaBody: {"in":"body","name":"agendaBody","required":true,"ref":"AgendaEntity"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };

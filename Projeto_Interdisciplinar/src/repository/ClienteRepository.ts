@@ -63,17 +63,17 @@ export class ClienteRepository{
         }
     }
 
-    async deleteCliente(cliente:ClienteEntity) :Promise<ClienteEntity>{ //DELETAR UM CLIENTE DO SISTEMA
+    async deleteCliente(cpf:string) :Promise<ClienteEntity>{ //DELETAR UM CLIENTE DO SISTEMA
         const query = "DELETE FROM sistema.Cliente where cpf = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [cliente.cpf]);
+            const resultado = await executarComandoSQL(query, [cpf]);
             console.log('Cliente deletado com sucesso: ', resultado);
             return new Promise<ClienteEntity>((resolve)=>{
-                resolve(cliente);
+                resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao deletar o cliente de cpf ${cliente.cpf} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar o cliente de cpf ${cpf} gerando o erro: ${err}`);
             throw err;
         }
     }

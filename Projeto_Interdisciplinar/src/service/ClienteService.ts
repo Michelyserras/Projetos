@@ -39,18 +39,17 @@ export class ClienteService{
         return cliente;
     }
 
-    async deletarCliente(clienteData: any): Promise<ClienteEntity> { //Ao deletar um cliente é necessário deletar todos os pets ligados a esse cliente tbm
-        const { cpf, nome, endereco, telefone } = clienteData;
-        const cpfEncontrado = await this.filtrarCliente(cpf);
+    async deletarCliente(cpf: any): Promise<ClienteEntity> { 
+        const clienteEncontrado = await this.filtrarCliente(cpf);
 
-        if(cpfEncontrado === null){
+        if(clienteEncontrado === null){
             throw new Error('Cliente não encontrado.');
         }
 
-        await this.petRepository.deleteTodosPetPorCliente(cpf);
-        const cliente = new ClienteEntity(cpf, nome, endereco, telefone);
+        const cliente = new ClienteEntity(clienteEncontrado.cpf, clienteEncontrado.nome, clienteEncontrado.endereco, clienteEncontrado.telefone);
+        await this.petRepository.deleteTodosPetPorCliente(cpf); //DELETA TODOS OS PETS QUE PERTECEM AO CLIENTE
 
-        await this.clienteRepository.deleteCliente(cliente);
+        await this.clienteRepository.deleteCliente(cpf);
         console.log("Service - Delete ", cliente);
         return cliente;
     }

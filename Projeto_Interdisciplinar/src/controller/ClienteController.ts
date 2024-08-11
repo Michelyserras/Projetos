@@ -3,6 +3,7 @@ import { ClienteService } from "../service/ClienteService";
 import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delete, Query} from "tsoa";
 import { ClienteRequestDto } from "../model/dto/ClienteRequestDto copy";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
+import { ClienteEntity } from "../model/entity/Cliente";
 // aaaaaaaaaaa
 @Route("cliente")
 @Tags("Cliente")
@@ -46,13 +47,13 @@ export class ClienteController{
     
     @Delete()
     async deleteCliente(
-        @Body() dto:ClienteRequestDto,
+        @Query() param:string,
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const cliente = await this.clienteService.deletarCliente(dto);
+            const cliente = await this.clienteService.deletarCliente(param);
             if(cliente === null){
                 console.error("Cliente não encontrado.");
                 return notFound(404, new BasicResponseDto("Cliente não encontrado", undefined));
