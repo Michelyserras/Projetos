@@ -90,8 +90,14 @@ export class AgendaService{
 
     async listarTodasAgendas(): Promise<AgendaEntity[] | null> {
         const agenda =  await this.agendaRepository.filterAllAgenda();
-        console.log("Service - Filtrar Todos", agenda);
-        return agenda;
+        if(agenda === null){
+            console.log("Não há agendamentos marcados.");
+            return null;
+        }
+        else{
+            console.log("Service - Filtrar Todos", agenda);
+            return agenda;
+        }
     }
 
     async verificaAgenda(data: Date): Promise<AgendaEntity | undefined> {

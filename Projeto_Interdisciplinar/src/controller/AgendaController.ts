@@ -59,11 +59,15 @@ export class AgendaController{
     @Get('filtrarAgenda')
     async filtrarAgenda(
         @Query() param:number,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const agenda = await this.agendaService.filtrarAgenda(param);
+            if(agenda === null){
+                return notFound(404, new BasicResponseDto("Agendamento não encontrado.", undefined));
+            }
             return sucess(200, new BasicResponseDto("Agenda encontrado com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
@@ -73,11 +77,15 @@ export class AgendaController{
     
     @Get('ListarTodasAgendas')
     async ListarTodasAgendas(
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
             const agendas = await this.agendaService.listarTodasAgendas();
+            if(agendas === null){
+                return notFound(404, new BasicResponseDto("A agenda está vazia.", undefined));
+            }
             return sucess(200, new BasicResponseDto("AgendaS encontrados com suceso!", agendas));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
@@ -91,7 +99,7 @@ export class AgendaController{
     ):Promise<void>{
         try {
             const faturamento = await this.agendaService.geraFaturamento();
-            return sucess(200, new BasicResponseDto("Faturamento total da agenda com sucesso!", faturamento));
+            return sucess(200, new BasicResponseDto("Faturamento total da agenda:", faturamento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
