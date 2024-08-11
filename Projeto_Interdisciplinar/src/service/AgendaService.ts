@@ -13,7 +13,9 @@ export class AgendaService{
     async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { 
         const { data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
 
-        const agendaEncontrada = await this.verificaAgenda(data);
+        let agenda = new AgendaEntity(undefined, data, tipoServico, valorServico, cpfCliente, idPet);
+
+        const agendaEncontrada = await this.verificaAgenda(agenda.data);
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
@@ -27,8 +29,6 @@ export class AgendaService{
             throw new Error('Cliente não encontrado.');
         }
         else{
-            const agenda = new AgendaEntity(undefined, data, tipoServico, valorServico, cpfCliente, idPet);
-
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
             console.log("Service - Insert ", novaAgenda);
             return novaAgenda;
