@@ -622,6 +622,70 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/agenda/geraFaturamentoPorCliente',
+            ...(fetchMiddlewares<RequestHandler>(AgendaController)),
+            ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.geraFaturamentoPorCliente)),
+
+            async function AgendaController_geraFaturamentoPorCliente(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    param: {"in":"query","name":"param","required":true,"dataType":"string"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new AgendaController();
+
+              await templateService.apiHandler({
+                methodName: 'geraFaturamentoPorCliente',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/agenda/geraFaturamentoPorPet',
+            ...(fetchMiddlewares<RequestHandler>(AgendaController)),
+            ...(fetchMiddlewares<RequestHandler>(AgendaController.prototype.geraFaturamentoPorPet)),
+
+            async function AgendaController_geraFaturamentoPorPet(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new AgendaController();
+
+              await templateService.apiHandler({
+                methodName: 'geraFaturamentoPorPet',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 

@@ -3,7 +3,7 @@ export class ClienteEntity{
     nome: string;
     endereco: string;
     telefone: string;
-//Vamos colocar histórico de serviços? Ou ficará apenas salvo na agenda e será necessário buscar por cpf do cliente?
+//ADICIONAR FORMA DE VERIFICAR FORMATO CORRETO DO CPF E DO TELEFONE??
 //ADICIONAR LISTA DE PETS QUE SÃO DO CLIENTE?
     constructor(cpf?:string, nome?:string, endereco?:string, telefone?: string){
         this.validatesInformation(cpf, nome, endereco, telefone);
