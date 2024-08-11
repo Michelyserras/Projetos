@@ -10,16 +10,14 @@ export class AgendaService{
     private petRepository = PetRepository.getInstance();
     private clienteRepository = ClienteRepository.getInstance();
 
-    async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao cadastrar um agendamento é necessário verificar qual o tipo de serviço escolhido para buscarmos na tabela Serviço se existe e descobrir o valor
-        const { data,  tipoServico, valorServico, cpfCliente, idPet } = agendaData;
+    async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { 
+        const { data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
 
-        const dataDate = stringParaData(data);
-
-        const agendaEncontrada = await this.verificaAgenda(dataDate);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
+        const agendaEncontrada = await this.verificaAgenda(data);
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
-        if(agendaEncontrada && agendaEncontrada.data === data){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
+        if(agendaEncontrada){ 
             throw new Error('Já há um agendamento nesta data.');
         } 
         else if(petEncontrado === null){
@@ -30,7 +28,7 @@ export class AgendaService{
         }
         else{
             const agenda = new AgendaEntity(undefined, data, tipoServico, valorServico, cpfCliente, idPet);
-    
+
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
             console.log("Service - Insert ", novaAgenda);
             return novaAgenda;

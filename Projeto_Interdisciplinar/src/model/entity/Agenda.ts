@@ -1,4 +1,4 @@
-import { stringParaData, verificaFormatoData } from "../../util/DataUtil";
+import { stringParaDataTempo, verificaFormatoDataDDMMYYYHHmm } from "../../util/DataUtil";
 
 export class AgendaEntity{
     id: number;
@@ -14,7 +14,7 @@ export class AgendaEntity{
     constructor(id?:number, data?:string, tipoServico?:string, valorServico?:number, cpfCliente?:number, idPet?:number){
         this.validatesInformation(data, tipoServico, valorServico)
         this.id = id || 0;
-        this.data = stringParaData(data || '');
+        this.data = stringParaDataTempo(data || '');
         this.tipoServico = tipoServico || '';
         this.valorServico = valorServico || 0;
         this.cpfCliente = cpfCliente || 0;
@@ -28,8 +28,8 @@ export class AgendaEntity{
             error += ("Informaçõe incompletas ou incorretas.");
         }
 
-        if(!verificaFormatoData(data)){
-            error += ("A data deve possuir o formato: dd/MM/yyyy");
+        if(!verificaFormatoDataDDMMYYYHHmm(data)){
+            error += ("A data deve possuir o formato: dd/MM/yyyy HH:mm");
         }
 
         if(error != ''){

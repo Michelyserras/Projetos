@@ -1,3 +1,4 @@
+import { DateTimeValidator } from "tsoa";
 import { executarComandoSQL } from "../database/mysql";
 import { AgendaEntity } from "../model/entity/Agenda";
 

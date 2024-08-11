@@ -822,8 +822,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"type": "number",
-								"format": "double"
+								"$ref": "#/components/schemas/AgendaEntity"
 							}
 						}
 					}
