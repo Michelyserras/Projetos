@@ -31,6 +31,12 @@ export function calculaDiferencaDiasEntreDatas(menorData: Date, maiorData: Date)
     return dias;
 }
 
+// dd/MM/yyyy HH:mm
+export function verificaFormatoDataDDMMYYYHHmm(dataString: string): boolean {
+    const regex = /^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/;
+    return regex.test(dataString);
+}
+
 export function stringParaDataTempo(dataString: string): Date {
     const [data, hora] = dataString.split(' ');
     const [dia, mes, ano] = data.split('/').map(part => parseInt(part, 10));
