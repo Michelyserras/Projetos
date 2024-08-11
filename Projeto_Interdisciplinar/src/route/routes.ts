@@ -500,7 +500,7 @@ export function RegisterRoutes(app: Router) {
 
             async function AgendaController_deleteAgenda(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    agendaBody: {"in":"body","name":"agendaBody","required":true,"ref":"AgendaEntity"},
+                    idAgenda: {"in":"body","name":"idAgenda","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };

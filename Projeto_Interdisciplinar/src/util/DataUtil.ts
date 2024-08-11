@@ -30,3 +30,16 @@ export function calculaDiferencaDiasEntreDatas(menorData: Date, maiorData: Date)
     }
     return dias;
 }
+
+export function stringParaDataTempo(dataString: string): Date {
+    const [data, hora] = dataString.split(' ');
+    const [dia, mes, ano] = data.split('/').map(part => parseInt(part, 10));
+    const [horas, minutos] = hora.split(':').map(part => parseInt(part, 10));
+
+    const dataFinal = new Date(ano, mes - 1, dia, horas, minutos);
+
+    if (isNaN(dataFinal.getTime())) {
+        throw new Error("Data inválida");
+    }
+    return dataFinal;
+}
