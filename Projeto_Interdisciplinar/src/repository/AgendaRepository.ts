@@ -21,7 +21,7 @@ export class AgendaRepository{
         const query = `
         CREATE TABLE IF NOT EXISTS sistema.Agenda (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            data DATE NOT NULL,
+            data DATETIME NOT NULL,
             tipoServico VARCHAR(255) NOT NULL,
             valorServico DECIMAL(10,5) NOT NULL,
             cpfCliente VARCHAR(14) NOT NULL,

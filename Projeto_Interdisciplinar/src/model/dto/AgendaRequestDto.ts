@@ -1,4 +1,4 @@
-import { stringParaDataTempo, verificaFormatoData } from "../../util/DataUtil";
+import { stringParaDataTempo, verificaFormatoDataDDMMYYYHHmm } from "../../util/DataUtil";
 export class AgendaRequestDto {
     data: string; //VERIFICAR HORA DEPOIS
     tipoServico: string;
@@ -7,7 +7,7 @@ export class AgendaRequestDto {
     idPet: number;
 
     constructor(data?:string, tipoServico?:string, valorServico?:number, cpfCliente?:string, idPet?:number){
-        verificaFormatoData
+        verificaFormatoDataDDMMYYYHHmm(data);
         this.data = (data || '');
         this.tipoServico = tipoServico || '';
         this.valorServico = valorServico || 0;
