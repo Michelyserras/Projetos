@@ -34,9 +34,8 @@ export class AgendaService{
             return novaAgenda;
         }
     }
-    //FAZER A FUNÇÃO DE CADASTRAR APRESENTAR OS DADOS DO PET QUE SERÁ ATENDIDO, DADOS DO CLIENTE DONO DO PET E DADOS DO SERVIÇO ESCOLHIDO
 
-    async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { //Ao atualizar agenda deve ser possível trocar o tipo de serviço escolhido durante o cadastro
+    async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { 
         const { id, data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.agendaRepository.filterAgenda(id);
 
@@ -44,9 +43,9 @@ export class AgendaService{
         const dataEmUso = await this.agendaRepository.verificaAgenda(dataDate);
 
         const petEncontrado = await this.petRepository.filterPet(idPet);
-        const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);//USAR AQUI A NOVA FUNÇÃO PARA VERIFICAR SE O AGENDAMENTO JÁ EXISTE NA DATA E HORA
+        const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
-        if(agendaEncontrada === null){ //PRECISA FAZER UMA FUNÇÃO PARA PODERMOS VERIFICAR SE JÁ HÁ O AGENDAMENTO NA DATA E HORA ESCOLHIDA
+        if(agendaEncontrada === null){ 
             throw new Error('Agendamento não encontrado.');
         }
         else if(dataEmUso && dataEmUso.data === data){
@@ -113,12 +112,26 @@ export class AgendaService{
     }
 
     async geraFaturamentoPorCliente(cpfCliente: any) :Promise<Number>{
+        const clienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
+
+        if(clienteEncontrado === null){
+            console.log("Cliente não existe.");
+            throw new Error("Este cliente não está cadastrado.");
+        }
+
         const faturamento = await this.agendaRepository.geraFaturamentoPorCliente(cpfCliente);
         console.log("Service - Gera faturamento por cliente", faturamento);
         return faturamento;
     }
 
     async geraFaturamentoPorPet(idPet: any) :Promise<Number>{
+        const petEncontrado = await this.petRepository.filterPet(idPet);
+
+        if(petEncontrado === null){
+            console.log("Pet não existe.");
+            throw new Error("Este pet não está cadastrado.");
+        }
+
         const faturamento = await this.geraFaturamentoPorPet(idPet);
         console.log("Service - Gera faturamento por pet", faturamento);
         return faturamento;

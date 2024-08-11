@@ -18,7 +18,7 @@ export class AgendaController{
     ): Promise<void> {
             try {
                 const novoagenda =  await this.agendaService.cadastrarAgenda(dto);
-               return sucess(201, new BasicResponseDto("Agenda cadastrado com sucesso!", novoagenda));
+               return sucess(201, new BasicResponseDto("Agenda cadastrada com sucesso!", novoagenda));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
             }
@@ -33,7 +33,7 @@ export class AgendaController{
     ): Promise<void>{
             try {
                 const agendaAtlz = await this.agendaService.atualizarAgenda(agenda);
-                return sucess(200, new BasicResponseDto("Os dados do Agenda foram atualizado com sucesso!", agendaAtlz));
+                return sucess(200, new BasicResponseDto("Os dados da agenda foram atualizados com sucesso!", agendaAtlz));
             } catch (error: any) {
                 return fail(400, new BasicResponseDto(error.message, undefined));
             }
@@ -48,7 +48,7 @@ export class AgendaController{
     ):Promise<void>{
         try {
             const agenda = await this.agendaService.deletarAgenda(agendaBody);
-            return sucess(200, new BasicResponseDto("Agenda excluido com suceso!", agenda));
+            return sucess(200, new BasicResponseDto("Agenda excluida com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
@@ -68,7 +68,7 @@ export class AgendaController{
             if(agenda === null){
                 return notFound(404, new BasicResponseDto("Agendamento não encontrado.", undefined));
             }
-            return sucess(200, new BasicResponseDto("Agenda encontrado com suceso!", agenda));
+            return sucess(200, new BasicResponseDto("Agenda encontrada com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
@@ -86,7 +86,7 @@ export class AgendaController{
             if(agendas === null){
                 return notFound(404, new BasicResponseDto("A agenda está vazia.", undefined));
             }
-            return sucess(200, new BasicResponseDto("AgendaS encontrados com suceso!", agendas));
+            return sucess(200, new BasicResponseDto("Agendas encontrados com suceso!", agendas));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
@@ -100,6 +100,34 @@ export class AgendaController{
         try {
             const faturamento = await this.agendaService.geraFaturamento();
             return sucess(200, new BasicResponseDto("Faturamento total da agenda:", faturamento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined));
+        }
+    }
+
+    @Get('geraFaturamentoPorCliente')
+    async geraFaturamentoPorCliente(
+        @Query() param: string,
+        @Res() fail:TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ):Promise<void>{
+        try {
+            const faturamento = await this.agendaService.geraFaturamentoPorCliente(param);
+            return sucess(200, new BasicResponseDto("Valor total da agenda do cliente:", faturamento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined));
+        }
+    }
+
+    @Get('geraFaturamentoPorPet')
+    async geraFaturamentoPorPet(
+        @Query() param: number,
+        @Res() fail:TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ):Promise<void>{
+        try {
+            const faturamento = await this.agendaService.geraFaturamentoPorPet(param);
+            return sucess(200, new BasicResponseDto("Valor total da agenda do pet:", faturamento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
