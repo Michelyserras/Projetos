@@ -140,6 +140,20 @@ export class AgendaRepository{
         }
     }
 
+    async deleteTodaAgendaPorCliente(cpfCliente: string) :Promise<AgendaEntity[]>{
+        const query = "DELETE FROM sistema.Agenda where cpfCliente = ?;"
+
+        try {
+            const resultado = await executarComandoSQL(query, [cpfCliente]);
+            return new Promise<AgendaEntity[]>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao deletar todos os agendamentos de um cliente: ${err}`);
+            throw err;
+        }
+    }
+
     async geraFaturamento() :Promise<Number>{
         const query = "SELECT SUM(valorServico) from sistema.Agenda;"
 
@@ -158,7 +172,7 @@ export class AgendaRepository{
         const query = "SELECT SUM(valorServico) from sistema.Agenda where cpfCliente = ?;"
 
         try {
-            const resultado = await executarComandoSQL(query, []);
+            const resultado = await executarComandoSQL(query, [cpfCliente]);
             return new Promise<Number>((resolve)=>{
                 resolve(resultado);
             })
@@ -172,7 +186,7 @@ export class AgendaRepository{
         const query = "SELECT SUM(valorServico) from sistema.Agenda where idPet = ?;"
 
         try {
-            const resultado = await executarComandoSQL(query, []);
+            const resultado = await executarComandoSQL(query, [idPet]);
             return new Promise<Number>((resolve)=>{
                 resolve(resultado);
             })

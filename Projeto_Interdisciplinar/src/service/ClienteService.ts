@@ -1,6 +1,7 @@
 import { ClienteEntity } from "../model/entity/Cliente";
 import { PetEntity } from "../model/entity/Pet";
 import { ClienteRepository } from "../repository/ClienteRepository";
+import { AgendaRepository } from "../repository/AgendaRepository";
 import { PetRepository } from "../repository/PetRepository";
 
 
@@ -8,6 +9,7 @@ export class ClienteService{
 
     private clienteRepository = ClienteRepository.getInstance();
     private petRepository = PetRepository.getInstance();
+    private agendaRepository = AgendaRepository.getInstance();
 
     async cadastrarCliente(clienteData: any): Promise<ClienteEntity> {
         const { cpf, nome, endereco, telefone } = clienteData;
@@ -47,6 +49,7 @@ export class ClienteService{
         }
 
         const cliente = new ClienteEntity(clienteEncontrado.cpf, clienteEncontrado.nome, clienteEncontrado.endereco, clienteEncontrado.telefone);
+        await this.agendaRepository.deleteTodaAgendaPorCliente(cpf); //DELETA TODOS OS AGENDAMENTOS QUE PERTENCEM AO CLIENTE
         await this.petRepository.deleteTodosPetPorCliente(cpf); //DELETA TODOS OS PETS QUE PERTECEM AO CLIENTE
 
         await this.clienteRepository.deleteCliente(cpf);
