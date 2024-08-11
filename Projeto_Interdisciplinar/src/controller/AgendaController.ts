@@ -115,7 +115,7 @@ export class AgendaController{
             const faturamento = await this.agendaService.geraFaturamentoPorCliente(param);
             return sucess(200, new BasicResponseDto("Valor total da agenda do cliente:", faturamento));
         } catch (error: any) {
-            return fail(400, new BasicResponseDto(error.message, undefined));
+            return fail(400, new BasicResponseDto(error.message, undefined));        
         }
     }
 

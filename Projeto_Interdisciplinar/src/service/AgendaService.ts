@@ -132,7 +132,7 @@ export class AgendaService{
             throw new Error("Este pet não está cadastrado.");
         }
 
-        const faturamento = await this.geraFaturamentoPorPet(idPet);
+        const faturamento = await this.agendaRepository.geraFaturamentoPorPet(idPet);
         console.log("Service - Gera faturamento por pet", faturamento);
         return faturamento;
     }
