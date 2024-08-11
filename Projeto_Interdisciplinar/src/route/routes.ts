@@ -533,6 +533,7 @@ export function RegisterRoutes(app: Router) {
             async function AgendaController_filtrarAgenda(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
                     param: {"in":"query","name":"param","required":true,"dataType":"double"},
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -564,6 +565,7 @@ export function RegisterRoutes(app: Router) {
 
             async function AgendaController_ListarTodasAgendas(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
