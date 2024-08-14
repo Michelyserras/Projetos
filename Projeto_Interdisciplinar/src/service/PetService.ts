@@ -71,8 +71,8 @@ export class PetService{
     }
 
     //CRIAR FUNÇÃO PARA LISTAR PET POR CPF CLIENTE
-    async listarPetsPorCpf(cpfCliente: any): Promise<PetEntity[]>{
-        const pets = await this.listarPetsPorCpf(cpfCliente);
+    async listarPetsPorCpf(cpfCliente: any): Promise<PetEntity[] | null>{
+        const pets = await this.petRepository.pesquisarPetporCpf(cpfCliente);
         console.log("Service - Filtrar por CPF", pets);
         return pets;
     }
