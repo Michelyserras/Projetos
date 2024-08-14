@@ -156,7 +156,7 @@ export class AgendaRepository{
     }
 
     async geraFaturamento() :Promise<Number>{
-        const query = "SELECT SUM(valorServico) from sistema.Agenda;"
+        const query = "SELECT SUM(valorServico) as Total from sistema.Agenda;"
 
         try {
             const resultado = await executarComandoSQL(query, []);
@@ -170,7 +170,7 @@ export class AgendaRepository{
     }
 
     async geraFaturamentoPorCliente(cpfCliente: string) :Promise<Number>{
-        const query = "SELECT SUM(valorServico) from sistema.Agenda where cpfCliente = ?;"
+        const query = "SELECT SUM(valorServico) as Total from sistema.Agenda where cpfCliente = ?;"
 
         try {
             const resultado = await executarComandoSQL(query, [cpfCliente]);
@@ -184,7 +184,7 @@ export class AgendaRepository{
     }
 
     async geraFaturamentoPorPet(idPet: number) :Promise<Number>{
-        const query = "SELECT SUM(valorServico) from sistema.Agenda where idPet = ?;"
+        const query = "SELECT SUM(valorServico) as Total from sistema.Agenda where idPet = ?;"
 
         try {
             const resultado = await executarComandoSQL(query, [idPet]);
@@ -196,4 +196,24 @@ export class AgendaRepository{
             throw err;
         }
     }
+
+    async pesquisarAgendaPorCPF(cpfCliente: string): Promise<AgendaEntity[] | null>{
+        const query = "SELECT * FROM sistema.Agenda where cpfCliente = ?;";
+
+        try{
+            const resultado = await executarComandoSQL(query, [cpfCliente]);
+            if(resultado.length > 0){
+                console.log(`Os agendamentos do cliente ${cpfCliente} são: `, resultado);
+                return resultado;
+            }     
+            else{
+                return null
+            }
+        }catch (err: any){
+            console.error(`Falha ao procurar agendamentos por cpf, gerando o erro: ${err}`);
+            throw err;
+    
+    }
+}
+
 }

@@ -141,4 +141,16 @@ export class AgendaService{
     //CRIAR FUNÇÃO GERAR FATURA TOTAL DA AGENDA
     //CRIAR FUNÇÃO GERAR FATURA POR CPF CLIENTE
     //CRIAR FUNÇÃO GERAR FATURA POR PET ID
+
+    async listarTodasAgendasPorCpf(cpfCliente: any): Promise<AgendaEntity[] | null> {
+        const agenda =  await this.agendaRepository.pesquisarAgendaPorCPF(cpfCliente);
+        if(agenda === null){
+            console.log(`Não há agendamentos vinculados ao cliente: ${cpfCliente}`);
+            return null;
+        }
+        else{
+            console.log("Service - Filtrar Todos Por CPF", agenda);
+            return agenda;
+        }
+    }
 }
