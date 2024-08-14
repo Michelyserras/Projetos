@@ -267,6 +267,39 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/Pet/listarTodosPetsPorCPF',
+            ...(fetchMiddlewares<RequestHandler>(PetController)),
+            ...(fetchMiddlewares<RequestHandler>(PetController.prototype.ListarPetsPorCpf)),
+
+            async function PetController_ListarPetsPorCpf(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    cpfCliente: {"in":"query","name":"cpfCliente","required":true,"dataType":"string"},
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new PetController();
+
+              await templateService.apiHandler({
+                methodName: 'ListarPetsPorCpf',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/cliente',
             ...(fetchMiddlewares<RequestHandler>(ClienteController)),
             ...(fetchMiddlewares<RequestHandler>(ClienteController.prototype.cadastrarCliente)),
