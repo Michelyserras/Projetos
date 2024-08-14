@@ -37,15 +37,16 @@ export function verificaFormatoDataDDMMYYYHHmm(dataString: string): boolean {
     return regex.test(dataString);
 }
 
-export function stringParaDataTempo(dataString: string): Date {
+export function stringParaDataTempo(dataString: string): any {
     const [data, hora] = dataString.split(' ');
     const [dia, mes, ano] = data.split('/').map(part => parseInt(part, 10));
     const [horas, minutos] = hora.split(':').map(part => parseInt(part, 10));
 
-    const dataFinal = new Date(ano, mes - 1, dia, horas, minutos);
+    const dataFinal = new Date(ano, mes - 1, dia, horas-3, minutos);
 
     if (isNaN(dataFinal.getTime())) {
         throw new Error("Data inválida");
     }
     return dataFinal;
 }
+

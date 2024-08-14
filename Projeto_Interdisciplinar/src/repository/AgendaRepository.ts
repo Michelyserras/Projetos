@@ -40,7 +40,8 @@ export class AgendaRepository{
     }
 
     async insertAgenda(agenda:AgendaEntity) :Promise<AgendaEntity>{ //CADASTRAR UM agenda
-        const query = "INSERT INTO sistema.Agenda (data, tipoServico, valorServico, cpfCliente, idPet) VALUES (?, ?, ?, ?, ?)" ;
+        const query = "INSERT INTO sistema.Agenda (data, tipoServico, valorServico, cpfCliente, idPet) VALUES (date_add(?, INTERVAL 3 HOUR), ?, ?, ?, ?)" ;
+         // a função date_add() permite adicionar um intervalo de horas a mais ao tipo Date Time
 
         try {
             const resultado = await executarComandoSQL(query, [agenda.data, agenda.tipoServico, agenda.valorServico, agenda.cpfCliente, agenda.idPet]);

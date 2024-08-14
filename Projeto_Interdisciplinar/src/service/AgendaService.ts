@@ -28,6 +28,7 @@ export class AgendaService{
         else if(cpfClienteEncontrado === null){
             throw new Error('Cliente não encontrado.');
         }
+        
         else{
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
             console.log("Service - Insert ", novaAgenda);

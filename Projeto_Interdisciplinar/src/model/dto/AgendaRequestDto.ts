@@ -8,7 +8,7 @@ export class AgendaRequestDto {
 
     constructor(data?:string, tipoServico?:string, valorServico?:number, cpfCliente?:string, idPet?:number){
         //verificaFormatoDataDDMMYYYHHmm(data);
-        this.data = (data || '');
+        this.data = data || '';
         this.tipoServico = tipoServico || '';
         this.valorServico = valorServico || 0;
         this.cpfCliente = cpfCliente || '';
