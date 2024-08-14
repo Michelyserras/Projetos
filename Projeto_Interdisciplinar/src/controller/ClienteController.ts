@@ -10,7 +10,7 @@ import { ClienteEntity } from "../model/entity/Cliente";
 export class ClienteController{ 
     clienteService = new ClienteService();
     
-    @Post()
+    @Post('CadastrarCliente')
     async cadastrarCliente(
         @Body() dto:ClienteRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
@@ -25,7 +25,7 @@ export class ClienteController{
     };
         
     
-    @Put()
+    @Put('AtualizarCliente')
     async atualizarCliente(
         @Body() dto:ClienteRequestDto,
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
@@ -45,7 +45,7 @@ export class ClienteController{
         };
         
     
-    @Delete()
+    @Delete('DeletarCliente')
     async deleteCliente(
         @Query() param:string,
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,

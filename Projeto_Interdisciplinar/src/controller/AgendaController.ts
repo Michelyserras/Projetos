@@ -132,4 +132,23 @@ export class AgendaController{
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
     }
+
+    @Get('PesquisarAgendaPorCpf')
+    async pesquisarAgendaPorCpf(
+        @Query() Cpf: string,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ): Promise<void>{
+        try{
+            const agendamentos = await this.agendaService.listarTodasAgendasPorCpf(Cpf);
+            if(agendamentos === null){
+                return notFound(404, new BasicResponseDto(`Não há agendamentos vinculados ao cpf:${Cpf}`, undefined));
+            }
+            return sucess(200, new BasicResponseDto(`Agendamentos do cliente: ${Cpf} encontrados com suceso!`, agendamentos));
+        }catch (error: any){
+            return fail(400, new BasicResponseDto(error.message, undefined));      
+         }
+    }
+
 }

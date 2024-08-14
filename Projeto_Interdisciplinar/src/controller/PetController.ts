@@ -11,7 +11,7 @@ import { PetEntity } from "../model/entity/Pet";
 export class PetController{ 
     petService = new PetService();
     
-    @Post()
+    @Post('CadastrarPet')
     async cadastrarPet(
         @Body() dto:PetRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
@@ -26,7 +26,7 @@ export class PetController{
     };
         
     
-    @Put()
+    @Put('AtualizarPet')
     async atualizarPet( 
         @Body() pet: PetEntity,
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
@@ -46,7 +46,7 @@ export class PetController{
         };
         
     
-    @Delete()
+    @Delete('DeletarPet')
     async deletePet(
         @Body() pet:PetEntity, //ALTERAR PARA PARAMETRO EM TODAS AS FUNÇÕES DEPOIS, PARA RECEBER APENAS O ID
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
