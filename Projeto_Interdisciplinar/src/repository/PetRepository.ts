@@ -136,15 +136,19 @@ export class PetRepository{
         }
     }
 
-    async pesquisarPetporCpf(cpfCliente: string) :Promise<PetEntity[]>{
+    async pesquisarPetporCpf(cpfCliente: string) :Promise<PetEntity[] | null >{
         const query = "SELECT * FROM sistema.Pet where cpfCliente = ?;";
 
         try{
             const resultado = await executarComandoSQL(query, [cpfCliente]);
-            console.log('pets encontrados com sucesso: ', resultado);
-            return new Promise<PetEntity[]>((resolve)=>{
-                resolve(resultado);
-            })
+            if(resultado.length > 0){
+                console.log('Pets encontrados com sucesso: ', resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
+          
         } catch (err: any){
             console.error(`Falha ao procurar os pets do ${cpfCliente} gerando o erro: ${err}`);
             throw err;
