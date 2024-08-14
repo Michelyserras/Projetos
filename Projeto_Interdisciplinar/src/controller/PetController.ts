@@ -4,7 +4,8 @@ import { PetRequestDto } from "../model/dto/PetRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { PetService } from "../service/PetService";
 import { PetEntity } from "../model/entity/Pet";
-// aaaaaaaaaaa
+
+
 @Route("Pet")
 @Tags("Pet")
 export class PetController{ 
@@ -103,4 +104,23 @@ export class PetController{
             return fail(400, new BasicResponseDto(error.message, undefined));
         }
     };
+
+    @Get('listarTodosPetsPorCPF')
+    async ListarPetsPorCpf(
+        @Query() cpfCliente: string,
+        @Res() notFound: TsoaResponse<404, BasicResponseDto>,
+        @Res() fail: TsoaResponse<400,  BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ):Promise<void>{
+        try{
+            const Pets = await this.petService.listarPetsPorCpf(cpfCliente);
+            if(Pets == null){
+                console.error(`Não há pets vinculados a esse CPF: ${cpfCliente}.`);
+                return notFound(404, new BasicResponseDto(`Não há pets vinculados ao CPF: ${cpfCliente}`, undefined));
+            }
+            return sucess(200, new BasicResponseDto(`Os Pets do cliente: ${cpfCliente} foram encontrados com sucesso`, Pets));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined));
+        }
+    }
 }
