@@ -1,6 +1,6 @@
 import { stringParaData, verificaFormatoData } from "../../util/DataUtil";
 
-export class ProductEntity{
+export class EmprestimoEntity{
     id: number;
     livroId: number;
     usuarioId: number;
