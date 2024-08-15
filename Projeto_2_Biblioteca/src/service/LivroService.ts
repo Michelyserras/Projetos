@@ -1,10 +1,9 @@
-import { NullLiteral } from "typescript";
 import { LivroEntity } from "../model/entity/Livro";
 import { LivroRepository } from "../repository/LivroRepository";
 
 export class LivroService{
 
-    livroRepository = LivroRepository.getInstance();
+    private livroRepository = LivroRepository.getInstance();
 
     async cadastrarLivro(livroData: any): Promise<LivroEntity> {
         const { titulo, autor, categoriaId } = livroData;

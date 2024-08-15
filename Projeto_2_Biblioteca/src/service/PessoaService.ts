@@ -1,18 +1,18 @@
 import { PessoaEntity } from "../model/entity/Pessoa";
 import { PessoaRepository } from "../repository/PessoaRepository";
 
-export class ProductService{
+export class PessoaService{
 
-    pessoaRepository = PessoaRepository.getInstance();
+    private pessoaRepository = PessoaRepository.getInstance();
 
     async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> {
         const { nome, email } = pessoaData;
         
         const pessoa = new PessoaEntity(undefined, nome, email)
 
-        const novoPessoa =  await this.pessoaRepository.cadastrarPessoa(pessoa);
-        console.log("Service - Insert ", novoPessoa);
-        return novoPessoa;
+        const novaPessoa =  await this.pessoaRepository.cadastrarPessoa(pessoa);
+        console.log("Service - Insert ", novaPessoa);
+        return novaPessoa;
     }
 
     async atualizarPessoa(pessoaData: any): Promise<PessoaEntity> {
@@ -48,5 +48,4 @@ export class ProductService{
         console.log("Service - Filtrar Todos", pessoa);
         return pessoa;
     }
-
 }
