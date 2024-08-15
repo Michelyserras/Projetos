@@ -1,12 +1,22 @@
 import { EmprestimoEntity } from "../model/entity/Emprestimo";
 import { EmprestimoRepository } from "../repository/EmprestimoRepository";
+import { UsuarioRepository } from "../repository/UsuarioRepository";
+import { LivroRepository } from "../repository/LivroRepository";
 
 export class EmprestimoService{
 
     private emprestimoRepository = EmprestimoRepository.getInstance();
+    private usuarioRepository = UsuarioRepository.getInstance();
+    private livroRepository = LivroRepository.getInstance();
 
     async realizarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> { //Ao registrar um empréstimo, verficar se o usuário e o livro existem, garantindo também a existência associada da pessoa correspondente ao usuário.
         const { livroId, usuarioId, dataEmprestimo, dataDevolucao } = emprestimoData;
+        const usuarioEncontrado = await this.usuarioRepository.filtrarUsuarioPorId(usuarioId); //Verifica se o usuário existe
+        const livroEncontrado = await this.livroRepository.filtrarLivroPorId(livroId); //Verifica se o livro existe
+
+        if(usuarioEncontrado === null || livroEncontrado === null){ //Se o usuário ou livro não estiver cadastrado o empréstimo não é realizado
+            throw new Error("Usuário ou livro não cadastrado.");
+        }
         
         const emprestimo = new EmprestimoEntity(undefined, livroId, usuarioId, dataEmprestimo, dataDevolucao);
 
