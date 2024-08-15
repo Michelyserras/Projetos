@@ -112,5 +112,24 @@ export class PessoaRepository{
 
     }
 
+    async pesquisarPessoaPorEmail(email: string): Promise<PessoaEntity | null>{
+        const query = 'SELECT * FROM biblioteca.Pessoas WHERE email = ?;';
+
+        try{
+            const emailExiste = await executarComandoSQL(query, [email]);
+            if(emailExiste.length > 0){
+                console.log(`O email: ${email} já foi cadastrado`, emailExiste);
+                return emailExiste;
+            }
+            else{
+                return null;
+            }
+
+        }catch(err: any){
+            console.error("Erro ao localizar email!", err);
+            throw err;
+        }
+    }
+
 
 }
