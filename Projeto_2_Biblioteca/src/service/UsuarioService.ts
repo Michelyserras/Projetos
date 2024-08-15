@@ -1,12 +1,19 @@
 import { UsuarioEntity } from "../model/entity/Usuario";
 import { UsuarioRepository } from "../repository/UsuarioRepository";
+import { PessoaRepository } from "../repository/PessoaRepository";
 
 export class UsuarioService{
 
     private usuarioRepository = UsuarioRepository.getInstance();
+    private pessoaRepository = PessoaRepository.getInstance();
 
     async cadastrarUsuario(usuarioData: any): Promise<UsuarioEntity> { //Ao cadastrar um usuário, verificar se a pessoa existe.
         const { idPessoa, senha } = usuarioData;
+        const pessoaEncontrada = await this.pessoaRepository.filtrarPessoaPorId(idPessoa); //Verifica se a pessoa existe
+
+        if(pessoaEncontrada === null){ //Se a pessoa não for encontrada o usuário não será cadastrado
+            throw new Error("Pessoa não cadastrada.");
+        }
         
         const usuario = new UsuarioEntity(undefined, idPessoa, senha);
 
