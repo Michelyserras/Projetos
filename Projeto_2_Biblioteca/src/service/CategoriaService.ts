@@ -5,8 +5,13 @@ export class CategoriaService{
 
     private categoriaRepository = CategoriaRepository.getInstance();
 
-    async cadastrarCategoria(categoriaData: any): Promise<CategoriaEntity> { //DEVE VERIFICAR SE O NOME DA CATEGORIA JÁ ESTÁ CADASTRADA?
+    async cadastrarCategoria(categoriaData: any): Promise<CategoriaEntity> { 
         const { nome } = categoriaData;
+        const nomeEncontrado = await this.categoriaRepository.pesquisarCategoriaPorNome(nome); //Verifica se o nome da categoria já está cadastrado
+
+        if(nomeEncontrado !== null){ //Se o nome já estiver cadastrado não realiza o cadastro da categoria para impedir nomes duplicados
+            throw new Error("O nome dessa categoria já está cadastrado.");
+        }
         
         const categoria = new CategoriaEntity(undefined, nome);
 

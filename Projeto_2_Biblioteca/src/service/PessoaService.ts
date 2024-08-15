@@ -5,7 +5,7 @@ export class PessoaService{
 
     private pessoaRepository = PessoaRepository.getInstance();
 
-    async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> { //DEVE VERIFICAR SE O EMAIL JÁ ESTÁ CADASTRADO?
+    async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> { 
         const { nome, email } = pessoaData;
         const emailEncontrado = await this.pessoaRepository.pesquisarPessoaPorEmail(email); //Verifica se o email já está cadastrado
 
