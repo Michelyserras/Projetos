@@ -6,8 +6,6 @@ export class EmprestimoEntity{
     usuarioId: number;
     dataEmprestimo: Date;
     dataDevolucao: Date;
-  
-
 
     constructor(id?:number, livroId?:number, usuarioId?:number, dataEmprestimo?: string, dataDevolucao?: string){
         this.validatesInformation(livroId, usuarioId, dataEmprestimo, dataDevolucao);
@@ -16,7 +14,6 @@ export class EmprestimoEntity{
         this.usuarioId = usuarioId || 0;
         this.dataEmprestimo = stringParaData(dataEmprestimo || '');
         this.dataDevolucao = stringParaData(dataDevolucao || '');
-
     }
 
     private validatesInformation(livroId:any, usuarioId:any, dataEmprestimo:any, dataDevolucao: any){

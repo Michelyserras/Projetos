@@ -10,8 +10,6 @@ export class LivroEntity{
         this.titulo = titulo || '';
         this.autor = autor || '';
         this.categoriaId = categoriaId || 0;
-
-
     }
 
     private validatesInformation(titulo:any, autor:any, categoriaId:any){

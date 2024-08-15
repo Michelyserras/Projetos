@@ -1,4 +1,3 @@
-
 export class PessoaEntity{
     id: number;
     nome: string;
@@ -9,7 +8,6 @@ export class PessoaEntity{
         this.id = id || 0;
         this.nome = nome || '';
         this.email = email || '';
-    
     }
 
     private validatesInformation(nome:any, email:any){

@@ -7,6 +7,7 @@ export class CategoriaEntity{
         this.id = id || 0;
         this.nome = nome || '';
     }
+    
     private validatesInformation(nome:any){
         let error ='';
         if (typeof nome !== 'string') {

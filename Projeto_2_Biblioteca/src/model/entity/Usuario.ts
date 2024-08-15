@@ -1,4 +1,3 @@
-
 export class UsuarioEntity{
     id: number;
     idPessoa: number;
