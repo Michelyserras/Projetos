@@ -24,6 +24,11 @@ export class LivroService{
 
     async atualizarLivro(livroData: any): Promise<LivroEntity> {
         const { id, titulo, autor, categoriaId } = livroData;
+        const livroEncontrado = await this.filtrarLivro(id); //Verifica se o livro com esse id está cadastrado
+
+        if(livroEncontrado === null){ //Se o livro não estiver cadastrado não é possível realizar as atualizações
+            throw new Error("Livro não cadastrado."); 
+        }
 
         const livro = new LivroEntity(id, titulo, autor, categoriaId);
 
@@ -32,8 +37,13 @@ export class LivroService{
         return livro;
     }
 
-    async deletarLivro(livroData: any): Promise<LivroEntity> {
+    async deletarLivro(livroData: any): Promise<LivroEntity> { 
         const { id, name, price, expirationDate } = livroData;
+        const livroEncontrado = await this.filtrarLivro(id); //Verifica se o livro com esse id está cadastrado
+
+        if(livroEncontrado === null){ //Se o livro não estiver cadastrado não é possível realizar o delete
+            throw new Error("Livro não cadastrado.");
+        }
 
         const livro = new LivroEntity(id, name, price, expirationDate);
 
