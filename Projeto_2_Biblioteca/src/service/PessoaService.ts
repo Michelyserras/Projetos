@@ -17,6 +17,11 @@ export class PessoaService{
 
     async atualizarPessoa(pessoaData: any): Promise<PessoaEntity> {
         const { id, nome, email } = pessoaData;
+        const pessoaEncontrada = await this.filtrarPessoa(id); //Verifica se a pessoa existe
+
+        if(pessoaEncontrada === null){ //Se a pessoa não exister não é possível realizar as atualizações
+            throw new Error("Pessoa não existe.");
+        }
 
         const pessoa = new PessoaEntity(id, nome, email);
 
@@ -25,8 +30,13 @@ export class PessoaService{
         return pessoa;
     }
 
-    async deletarPessoa(pessoaData: any): Promise<PessoaEntity> {
+    async deletarPessoa(pessoaData: any): Promise<PessoaEntity> { 
         const { id, nome, email } = pessoaData;
+        const pessoaEncontrada = await this.filtrarPessoa(id); //Verifica se a pessoa existe
+
+        if(pessoaEncontrada === null){ //Se a pessoa não exister não é possível realizar o delete
+            throw new Error("Pessoa não existe.");
+        }
 
         const pessoa = new PessoaEntity(id, nome, email);
 
