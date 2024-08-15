@@ -31,6 +31,11 @@ export function calculaDiferencaDiasEntreDatas(menorData: Date, maiorData: Date)
     return dias;
 }
 
+export function adjusteTimeZone(date: Date, offset: number){
+    const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+    return new Date(utc + (360000 * offset));
+}
+
 // dd/MM/yyyy HH:mm
 export function verificaFormatoDataDDMMYYYHHmm(dataString: string): boolean {
     const regex = /^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/;
@@ -42,7 +47,7 @@ export function stringParaDataTempo(dataString: string): any {
     const [dia, mes, ano] = data.split('/').map(part => parseInt(part, 10));
     const [horas, minutos] = hora.split(':').map(part => parseInt(part, 10));
 
-    const dataFinal = new Date(ano, mes - 1, dia, horas-3, minutos);
+    const dataFinal = new Date(ano, mes - 1, dia, horas, minutos);
 
     if (isNaN(dataFinal.getTime())) {
         throw new Error("Data inválida");

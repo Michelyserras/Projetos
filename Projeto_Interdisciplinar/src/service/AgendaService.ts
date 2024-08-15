@@ -3,6 +3,7 @@ import { AgendaRepository } from "../repository/AgendaRepository";
 import { PetRepository } from "../repository/PetRepository";
 import { ClienteRepository } from "../repository/ClienteRepository";
 import { stringParaData } from "../util/DataUtil";
+import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
 
 export class AgendaService{
 
@@ -10,7 +11,7 @@ export class AgendaService{
     private petRepository = PetRepository.getInstance();
     private clienteRepository = ClienteRepository.getInstance();
 
-    async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { 
+    async cadastrarAgenda(agendaData: any): Promise<AgendaRequestDto> { 
         const { data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
 
         let agenda = new AgendaEntity(undefined, data, tipoServico, valorServico, cpfCliente, idPet);
@@ -31,8 +32,9 @@ export class AgendaService{
         
         else{
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
-            console.log("Service - Insert ", novaAgenda);
-            return novaAgenda;
+            const agendaString: AgendaRequestDto = new AgendaRequestDto(novaAgenda.data.toString(), novaAgenda.tipoServico, novaAgenda.valorServico, novaAgenda.cpfCliente.toString(), novaAgenda.idPet);
+            console.log("Service - Insert ", agendaString);
+            return agendaString;
         }
     }
 
