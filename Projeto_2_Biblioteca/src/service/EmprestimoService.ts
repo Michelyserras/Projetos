@@ -5,7 +5,7 @@ export class EmprestimoService{
 
     private emprestimoRepository = EmprestimoRepository.getInstance();
 
-    async realizarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> {
+    async realizarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> { //Ao registrar um empréstimo, verficar se o usuário e o livro existem, garantindo também a existência associada da pessoa correspondente ao usuário.
         const { livroId, usuarioId, dataEmprestimo, dataDevolucao } = emprestimoData;
         
         const emprestimo = new EmprestimoEntity(undefined, livroId, usuarioId, dataEmprestimo, dataDevolucao);

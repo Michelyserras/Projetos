@@ -5,7 +5,7 @@ export class LivroService{
 
     private livroRepository = LivroRepository.getInstance();
 
-    async cadastrarLivro(livroData: any): Promise<LivroEntity> {
+    async cadastrarLivro(livroData: any): Promise<LivroEntity> { //Ao cadastrar um livro, verficar se a categoria existe.
         const { titulo, autor, categoriaId } = livroData;
         
         const livro = new LivroEntity(undefined, titulo, autor, categoriaId);

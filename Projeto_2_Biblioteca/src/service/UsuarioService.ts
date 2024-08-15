@@ -5,7 +5,7 @@ export class UsuarioService{
 
     private usuarioRepository = UsuarioRepository.getInstance();
 
-    async cadastrarUsuario(usuarioData: any): Promise<UsuarioEntity> {
+    async cadastrarUsuario(usuarioData: any): Promise<UsuarioEntity> { //Ao cadastrar um usuário, verificar se a pessoa existe.
         const { idPessoa, senha } = usuarioData;
         
         const usuario = new UsuarioEntity(undefined, idPessoa, senha);
