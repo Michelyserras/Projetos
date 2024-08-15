@@ -5,7 +5,7 @@ export class PessoaService{
 
     private pessoaRepository = PessoaRepository.getInstance();
 
-    async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> {
+    async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> { //DEVE VERIFICAR SE O EMAIL JÁ ESTÁ CADASTRADO?
         const { nome, email } = pessoaData;
         
         const pessoa = new PessoaEntity(undefined, nome, email);
