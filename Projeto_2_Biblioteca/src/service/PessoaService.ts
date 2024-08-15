@@ -7,6 +7,11 @@ export class PessoaService{
 
     async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> { //DEVE VERIFICAR SE O EMAIL JÁ ESTÁ CADASTRADO?
         const { nome, email } = pessoaData;
+        const emailEncontrado = await this.pessoaRepository.pesquisarPessoaPorEmail(email); //Verifica se o email já está cadastrado
+
+        if(emailEncontrado !== null){ //Se o email já está cadastrado não é possível realizar o cadastro da pessoa para não ter email duplicado
+            throw new Error("Esse email já está cadastrado.");
+        }
         
         const pessoa = new PessoaEntity(undefined, nome, email);
 
