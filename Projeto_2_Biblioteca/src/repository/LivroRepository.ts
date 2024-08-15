@@ -53,7 +53,7 @@ export class LivroRepository{
         const query = 'UPDATE biblioteca.Livros SET autor = ?, titulo = ?, categoriaId = ? WHERE id = ?;';
 
         try{
-            const resultado = await executarComandoSQL(query, [Livro.autor, Livro.titulo, Livro.categoriaId]);
+            const resultado = await executarComandoSQL(query, [Livro.autor, Livro.titulo, Livro.categoriaId, Livro.id]);
             console.log("Livro atualizado com sucesso:", resultado);
             return new Promise<LivroEntity>((resolve)=>{
                 resolve(Livro);

@@ -50,7 +50,7 @@ export class CategoriaRepository{
         const query = 'UPDATE biblioteca.Categorias SET nome = ? WHERE id = ?;';
 
         try{
-            const resultado = await executarComandoSQL(query, [Categoria.nome]);
+            const resultado = await executarComandoSQL(query, [Categoria.nome, Categoria.id]);
             console.log("Categoria atualizada com sucesso:", resultado);
             return new Promise<CategoriaEntity>((resolve)=>{
                 resolve(Categoria);

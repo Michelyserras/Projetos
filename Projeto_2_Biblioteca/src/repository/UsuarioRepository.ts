@@ -53,7 +53,7 @@ export class UsuarioRepository{
         const query = 'UPDATE biblioteca.Usuarios SET idPessoa= ?, senha = ? WHERE id = ?;';
 
         try{
-            const resultado = await executarComandoSQL(query, [Usuario.idPessoa, Usuario.senha]);
+            const resultado = await executarComandoSQL(query, [Usuario.idPessoa, Usuario.senha, Usuario.id]);
             console.log("Usuario atualizado com sucesso:", resultado);
             return new Promise<UsuarioEntity>((resolve)=>{
                 resolve(Usuario);
