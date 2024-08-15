@@ -111,5 +111,20 @@ export class CategoriaRepository{
 
     }
 
-
+    async pesquisarCategoriaPorNome(nome: string): Promise<CategoriaEntity | null>{
+        const query = 'SELECT * FROM biblioteca.Categorias WHERE nome = ?;';
+        try{
+            const categoriaExiste = await executarComandoSQL(query, [nome]);
+            if(categoriaExiste.length > 0){
+                console.log(` Já existe uma categoria com o nome: ${nome} na base de dados`, categoriaExiste);
+                return categoriaExiste;
+            }
+            else{
+                return null;
+            }
+        }catch(err: any){
+            console.error(`Erro ao localizar Categoria`, err);
+            throw err;
+        }
+        }
 }
