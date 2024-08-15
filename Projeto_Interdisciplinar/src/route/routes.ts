@@ -104,7 +104,7 @@ export function RegisterRoutes(app: Router) {
 
 
     
-        app.post('/Pet',
+        app.post('/Pet/CadastrarPet',
             ...(fetchMiddlewares<RequestHandler>(PetController)),
             ...(fetchMiddlewares<RequestHandler>(PetController.prototype.cadastrarPet)),
 
@@ -136,7 +136,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/Pet',
+        app.put('/Pet/AtualizarPet',
             ...(fetchMiddlewares<RequestHandler>(PetController)),
             ...(fetchMiddlewares<RequestHandler>(PetController.prototype.atualizarPet)),
 
@@ -169,7 +169,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/Pet',
+        app.delete('/Pet/DeletarPet',
             ...(fetchMiddlewares<RequestHandler>(PetController)),
             ...(fetchMiddlewares<RequestHandler>(PetController.prototype.deletePet)),
 
@@ -300,7 +300,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/cliente',
+        app.post('/cliente/CadastrarCliente',
             ...(fetchMiddlewares<RequestHandler>(ClienteController)),
             ...(fetchMiddlewares<RequestHandler>(ClienteController.prototype.cadastrarCliente)),
 
@@ -332,7 +332,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/cliente',
+        app.put('/cliente/AtualizarCliente',
             ...(fetchMiddlewares<RequestHandler>(ClienteController)),
             ...(fetchMiddlewares<RequestHandler>(ClienteController.prototype.atualizarCliente)),
 
@@ -365,7 +365,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/cliente',
+        app.delete('/cliente/DeletarCliente',
             ...(fetchMiddlewares<RequestHandler>(ClienteController)),
             ...(fetchMiddlewares<RequestHandler>(ClienteController.prototype.deleteCliente)),
 

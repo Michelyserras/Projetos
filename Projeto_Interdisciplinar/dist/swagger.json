@@ -194,7 +194,7 @@
 		"description": "Documentação da API usando Swagger"
 	},
 	"paths": {
-		"/Pet": {
+		"/Pet/CadastrarPet": {
 			"post": {
 				"operationId": "CadastrarPet",
 				"responses": {
@@ -237,7 +237,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/Pet/AtualizarPet": {
 			"put": {
 				"operationId": "AtualizarPet",
 				"responses": {
@@ -290,7 +292,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/Pet/DeletarPet": {
 			"delete": {
 				"operationId": "DeletePet",
 				"responses": {
@@ -499,7 +503,7 @@
 				]
 			}
 		},
-		"/cliente": {
+		"/cliente/CadastrarCliente": {
 			"post": {
 				"operationId": "CadastrarCliente",
 				"responses": {
@@ -542,7 +546,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/cliente/AtualizarCliente": {
 			"put": {
 				"operationId": "AtualizarCliente",
 				"responses": {
@@ -595,7 +601,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/cliente/DeletarCliente": {
 			"delete": {
 				"operationId": "DeleteCliente",
 				"responses": {
