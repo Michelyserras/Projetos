@@ -15,4 +15,5 @@ export class AgendaRequestDto {
         this.idPet = idPet || 0;
     }
 
+    
 }
