@@ -5,7 +5,7 @@ export class CategoriaService{
 
     private categoriaRepository = CategoriaRepository.getInstance();
 
-    async cadastrarCategoria(categoriaData: any): Promise<CategoriaEntity> {
+    async cadastrarCategoria(categoriaData: any): Promise<CategoriaEntity> { //DEVE VERIFICAR SE O NOME DA CATEGORIA JÁ ESTÁ CADASTRADA?
         const { nome } = categoriaData;
         
         const categoria = new CategoriaEntity(undefined, nome);
