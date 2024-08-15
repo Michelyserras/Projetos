@@ -71,7 +71,7 @@ export class LivroController{
     };  
     
     @Get('Listar Todos os Livros')
-    async ListarTodosLivros(
+    async listarTodosLivros(
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>

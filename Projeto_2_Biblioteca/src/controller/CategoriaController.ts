@@ -71,7 +71,7 @@ export class CategoriaController{
     };  
     
     @Get('Listar Todas as Categorias')
-    async ListarTodasCategorias(
+    async listarTodasCategorias(
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>

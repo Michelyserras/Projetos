@@ -71,7 +71,7 @@ export class PessoaController{
     };  
     
     @Get('Listar Todas as Pessoas')
-    async ListarTodasPessoas(
+    async listarTodasPessoas(
         @Res() notFound: TsoaResponse<404, BasicResponseDto>,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
