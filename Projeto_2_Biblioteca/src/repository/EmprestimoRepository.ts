@@ -19,7 +19,7 @@ export class EmprestimoRepository{
 
     private async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS biblioteca.Emprestimo (
+        CREATE TABLE IF NOT EXISTS biblioteca.Emprestimos(
             id INT AUTO_INCREMENT PRIMARY KEY,
             livroId INT NOT NULL,
             usuarioId INT NOT NULL,
@@ -38,7 +38,7 @@ export class EmprestimoRepository{
     }
 
     async realizarEmprestimo(Emprestimo: EmprestimoEntity): Promise<EmprestimoEntity>{
-        const query = 'INSERT INTO biblioteca.Emprestimo(livroId, usuarioId, dataEmprestimo, dataDevolucao) VALUES (?,?,?,?)'
+        const query = 'INSERT INTO biblioteca.Emprestimos(livroId, usuarioId, dataEmprestimo, dataDevolucao) VALUES (?,?,?,?)'
         try{
             const resultado = await executarComandoSQL(query, [Emprestimo.livroId, Emprestimo.usuarioId, Emprestimo.dataEmprestimo, Emprestimo.dataDevolucao]);
             console.log("Emprestimo realizado com sucesso!", resultado);
@@ -47,7 +47,7 @@ export class EmprestimoRepository{
                 resolve(Emprestimo);
             })
         } catch (err) {
-            console.error('Erro ao cadastrar a agenda:', err);
+            console.error('Erro ao realizar emprestimo:', err);
             throw err;
         }
     }
@@ -107,7 +107,7 @@ export class EmprestimoRepository{
         try{
 
             const resultado = await executarComandoSQL(query,[id]);
-            console.log(`O Emprestimo com o id = ${id} foi deletada com sucesso!`, resultado);
+            console.log(`O Emprestimo com o id = ${id} foi deletado com sucesso!`, resultado);
             return new Promise<EmprestimoEntity>((resolve)=>{
                 resolve(resultado);
             });

@@ -18,7 +18,7 @@ export class PessoaRepository{
 
     private async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS biblioteca.Pessoa (
+        CREATE TABLE IF NOT EXISTS biblioteca.Pessoas (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nome VARCHAR(50) NOT NULL,
             email VARCHAR(50) NOT NULL
@@ -33,7 +33,7 @@ export class PessoaRepository{
     }
 
     async cadastrarPessoa(pessoa: PessoaEntity): Promise<PessoaEntity>{
-        const query = 'INSERT INTO biblioteca.Pessoa(nome, email) VALUES (?,?)'
+        const query = 'INSERT INTO biblioteca.Pessoas(nome, email) VALUES (?,?)'
         try{
             const resultado = await executarComandoSQL(query, [pessoa.nome, pessoa.email]);
             console.log("Pessoa cadastrada com sucesso!", resultado);
@@ -48,7 +48,7 @@ export class PessoaRepository{
     }
 
     async atualizarPessoa(pessoa: PessoaEntity): Promise<PessoaEntity>{
-        const query = 'UPDATE biblioteca.Pessoa set nome = ?, email = ? WHERE id = ?;';
+        const query = 'UPDATE biblioteca.Pessoas set nome = ?, email = ? WHERE id = ?;';
 
         try{
             const resultado = await executarComandoSQL(query, [pessoa.nome, pessoa.email]);
@@ -63,7 +63,7 @@ export class PessoaRepository{
     }
 
     async filtrarPessoaPorId(id: number): Promise<PessoaEntity | null>{
-        const query = 'SELECT * FROM biblioteca.Pessoa where id = ?';
+        const query = 'SELECT * FROM biblioteca.Pessoas where id = ?';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             if(resultado.length > 0){
@@ -80,7 +80,7 @@ export class PessoaRepository{
     }
 
     async listarTodasPessoas(): Promise<PessoaEntity[] | null>{
-        const query = 'SELECT * FROM biblioteca.Pessoa;';
+        const query = 'SELECT * FROM biblioteca.Pessoas;';
 
         try{
             const resultado = await executarComandoSQL(query, []);
@@ -98,7 +98,7 @@ export class PessoaRepository{
     }
 
     async deletarPessoa(id: number): Promise<PessoaEntity>{
-        const query = 'DELETE * FROM biblioteca.Pessoa WHERE id = ?;';
+        const query = 'DELETE * FROM biblioteca.Pessoas WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             console.log(`A pessoa com o id = ${id} foi deletada com sucesso!`, resultado);

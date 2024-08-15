@@ -44,7 +44,7 @@ export class LivroRepository{
                 resolve(Livro);
             })
         } catch (err) {
-            console.error('Erro ao cadastrar uma nova Livro:', err);
+            console.error('Erro ao cadastrar um novo Livro:', err);
             throw err;
         }
     }
@@ -69,7 +69,7 @@ export class LivroRepository{
         try{
             const resultado = await executarComandoSQL(query,[id]);
             if(resultado.length > 0){
-                console.log("Livro localizada com sucesso:", resultado);
+                console.log("Livro localizado com sucesso:", resultado);
                 return resultado;
             }
             else{
@@ -103,7 +103,7 @@ export class LivroRepository{
         const query = 'DELETE * FROM biblioteca.Livros WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
-            console.log(`A Livro com o id = ${id} foi deletada com sucesso!`, resultado);
+            console.log(`O Livro com o id = ${id} foi deletado com sucesso!`, resultado);
             return new Promise<LivroEntity>((resolve)=>{
                 resolve(resultado);
             });
