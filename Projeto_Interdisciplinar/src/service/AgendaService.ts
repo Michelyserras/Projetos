@@ -4,6 +4,7 @@ import { PetRepository } from "../repository/PetRepository";
 import { ClienteRepository } from "../repository/ClienteRepository";
 import { adjusteTimeZone, stringParaData } from "../util/DataUtil";
 import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
+import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
 
 export class AgendaService{
 
