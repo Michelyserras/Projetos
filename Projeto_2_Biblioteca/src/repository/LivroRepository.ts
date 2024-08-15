@@ -37,7 +37,7 @@ export class LivroRepository{
     async cadastrarLivro(Livro: LivroEntity): Promise<LivroEntity>{
         const query = 'INSERT INTO biblioteca.Livros(titulo, autor, categoriaId) VALUES (?,?,?)'
         try{
-            const resultado = await executarComandoSQL(query, [Livro.autor, Livro.titulo, Livro.categoriaId]);
+            const resultado = await executarComandoSQL(query, [Livro.autor, Livro.titulo, Livro.categoriaId, Livro.id]);
             console.log("Livro cadastrado com sucesso:", resultado);
             Livro.id = resultado.insertId;
             return new Promise<LivroEntity>((resolve)=>{

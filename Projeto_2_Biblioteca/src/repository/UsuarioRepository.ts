@@ -37,7 +37,7 @@ export class UsuarioRepository{
     async cadastrarUsuario(Usuario: UsuarioEntity): Promise<UsuarioEntity>{
         const query = 'INSERT INTO biblioteca.Usuarios(idPessoa, senha) VALUES (?,?)'
         try{
-            const resultado = await executarComandoSQL(query, [Usuario.idPessoa, Usuario.senha]);
+            const resultado = await executarComandoSQL(query, [Usuario.idPessoa, Usuario.senha, Usuario.id]);
             console.log("Usuario cadastrado com sucesso:", resultado);
             Usuario.id = resultado.insertId;
             return new Promise<UsuarioEntity>((resolve)=>{

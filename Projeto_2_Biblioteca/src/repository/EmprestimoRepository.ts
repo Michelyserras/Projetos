@@ -56,7 +56,7 @@ export class EmprestimoRepository{
         const query = 'UPDATE biblioteca.Emprestimos SET livroId = ?, usuarioId = ?, dataEmprestimo = ?, dataDevolucao = ? WHERE id = ?;';
 
         try{
-            const resultado = await executarComandoSQL(query, [Emprestimo.livroId, Emprestimo.usuarioId, Emprestimo.dataEmprestimo, Emprestimo.dataDevolucao]);
+            const resultado = await executarComandoSQL(query, [Emprestimo.livroId, Emprestimo.usuarioId, Emprestimo.dataEmprestimo, Emprestimo.dataDevolucao, Emprestimo.id]);
             console.log("Emprestimo atualizado com sucesso:", resultado);
             return new Promise<EmprestimoEntity>((resolve)=>{
                 resolve(Emprestimo);

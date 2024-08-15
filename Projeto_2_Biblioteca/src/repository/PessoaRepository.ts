@@ -51,7 +51,7 @@ export class PessoaRepository{
         const query = 'UPDATE biblioteca.Pessoas set nome = ?, email = ? WHERE id = ?;';
 
         try{
-            const resultado = await executarComandoSQL(query, [pessoa.nome, pessoa.email]);
+            const resultado = await executarComandoSQL(query, [pessoa.nome, pessoa.email, pessoa.id]);
             console.log("Pessoa atualizada com sucesso:", resultado);
             return new Promise<PessoaEntity>((resolve)=>{
                 resolve(pessoa);
