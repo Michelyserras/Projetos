@@ -62,7 +62,7 @@ export class PessoaRepository{
         }
     }
 
-    async filtrarPessoaPorId(id: any): Promise<PessoaEntity | null>{
+    async filtrarPessoaPorId(id: number): Promise<PessoaEntity | null>{
         const query = 'SELECT * FROM biblioteca.Pessoa where id = ?';
         try{
             const resultado = await executarComandoSQL(query,[id]);
