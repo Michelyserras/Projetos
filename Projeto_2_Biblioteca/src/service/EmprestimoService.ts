@@ -27,6 +27,11 @@ export class EmprestimoService{
 
     async atualizarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> {
         const { id, livroId, usuarioId, dataEmprestimo, dataDevolucao} = emprestimoData;
+        const emprestimoEncontrado = await this.filtrarEmprestimo(id); //Verifica se o emprestimo existe
+
+        if(emprestimoEncontrado === null){ //Se o emprestimo não existir não realiza as atualizações
+            throw new Error("Emprestimo não existe.");
+        }
 
         const emprestimo = new EmprestimoEntity(id, livroId, usuarioId, dataEmprestimo, dataDevolucao);
 
@@ -37,6 +42,11 @@ export class EmprestimoService{
 
     async deletarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> {
         const { id, nome } = emprestimoData;
+        const emprestimoEncontrado = await this.filtrarEmprestimo(id); //Verifica se o emprestimo existe
+
+        if(emprestimoEncontrado === null){ //Se o emprestimo não existir não realizar o delete
+            throw new Error("Emprestimo não existe.");
+        }
 
         const emprestimo = new EmprestimoEntity(id, nome);
 
