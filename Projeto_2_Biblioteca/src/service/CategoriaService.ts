@@ -17,6 +17,11 @@ export class CategoriaService{
 
     async atualizarCategoria(categoriaData: any): Promise<CategoriaEntity> {
         const { id, nome} = categoriaData;
+        const categoriaEncontrada = await this.filtrarCategoria(id); //Verifica se a categoria está cadastrada
+
+        if(categoriaEncontrada === null){ //Se a categoria não estiver cadastrada não realiza as atualizações
+            throw new Error("Categoria não cadastrada.");
+        }
 
         const categoria = new CategoriaEntity(id, nome);
 
@@ -27,6 +32,11 @@ export class CategoriaService{
 
     async deletarCategoria(categoriaData: any): Promise<CategoriaEntity> {
         const { id, nome } = categoriaData;
+        const categoriaEncontrada = await this.filtrarCategoria(id); //Verifica se a categoria está cadastrada
+
+        if(categoriaEncontrada === null){ //Se a categoria não estiver cadastrada não realiza o delete
+            throw new Error("Categoria não cadastrada.");
+        }
 
         const categoria = new CategoriaEntity(id, nome);
 
