@@ -1,13 +1,20 @@
 import { LivroEntity } from "../model/entity/Livro";
 import { LivroRepository } from "../repository/LivroRepository";
+import { CategoriaRepository } from "../repository/CategoriaRepository";
 
 export class LivroService{
 
     private livroRepository = LivroRepository.getInstance();
+    private categoriaRepository = CategoriaRepository.getInstance();
 
     async cadastrarLivro(livroData: any): Promise<LivroEntity> { //Ao cadastrar um livro, verficar se a categoria existe.
         const { titulo, autor, categoriaId } = livroData;
-        
+        const categoriaEncontrada = await this.categoriaRepository.filtrarCategoriaPorId(categoriaId); //Verifica se a categoria existe
+
+        if(categoriaEncontrada === null){ //Se a categoria não estiver cadastrada o livro não é cadastrado
+            throw new Error("Categoria não cadastrada.");
+        }
+
         const livro = new LivroEntity(undefined, titulo, autor, categoriaId);
 
         const novoLivro =  await this.livroRepository.cadastrarLivro(livro);
