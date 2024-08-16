@@ -1,4 +1,4 @@
-import { PessoaEntity } from "../model/entity/Pessoa";
+import { PessoaEntity } from "../model/entity/PessoaEntity";
 import { PessoaRepository } from "../repository/PessoaRepository";
 
 export class PessoaService{

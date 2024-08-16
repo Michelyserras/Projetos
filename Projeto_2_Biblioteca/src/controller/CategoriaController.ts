@@ -1,7 +1,7 @@
 import { Delete, Request, Response } from "tsoa";
 import { Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Query } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { CategoriaEntity } from "../model/entity/Categoria";
+import { CategoriaEntity } from "../model/entity/CategoriaEntity";
 import { CategoriaService } from "../service/CategoriaService";
 import { CategoriaRequestDto } from "../model/dto/CategoriaRequestDto";
 

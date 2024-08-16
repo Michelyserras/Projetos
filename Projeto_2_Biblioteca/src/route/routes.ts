@@ -3,7 +3,11 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { TsoaRoute, fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ProductController } from './../controller/ProductController';
+import { PessoaController } from '../controller/PessoaController';
+import { UsuarioController } from '../controller/UsuarioController';
+import { LivroController } from '../controller/LivroController';
+import { CategoriaController } from '../controller/CategoriaController';
+import { EmprestimoController } from '../controller/EmprestimoController';
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
 
 
@@ -11,16 +15,105 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "ProductRequestDto": {
+    "PessoaRequestDto": {
         "dataType": "refObject",
         "properties": {
-            "name": {"dataType":"string","required":true},
-            "price": {"dataType":"double","required":true},
-            "expirationDate": {"dataType":"string","required":true},
+            "nome": {"dataType":"string","required":true},
+            "email": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UsuarioRequestDto": {
+        "dataType": "refObject",
+        "properties": {
+            "idPessoa": {"dataType":"double","required":true},
+            "senha": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "LivroRequestDto": {
+        "dataType": "refObject",
+        "properties": {
+            "titulo": {"dataType":"string","required":true},
+            "autor": {"dataType":"string","required":true},
+            "categoriaId": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CategoriaRequestDto": {
+        "dataType": "refObject",
+        "properties": {
+            "nome": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EmprestimoRequestDto": {
+        "dataType": "refObject",
+        "properties": {
+            "livroId": {"dataType":"double","required":true},
+            "usuarioId": {"dataType":"double","required":true},
+            "dataEmprestimo": {"dataType":"string","required":true},
+            "dataDevolucao": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UsuarioEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "idPessoa": {"dataType":"double","required":true},
+            "senha": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+
+    "PessoaEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "nome": {"dataType":"string","required":true},
+            "email": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+
+    "LivroEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "titulo": {"dataType":"string","required":true},
+            "autor": {"dataType":"string","required":true},
+            "categoriaId": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+
+    "EmprestimoEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "livroId": {"dataType":"double","required":true},
+            "usuarioId": {"dataType":"double","required":true},
+            "dataEmprestimo": {"dataType":"string","required":true},
+            "dataDevolucao": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+
+    "CategoriaEntity": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "nome": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+
     "BasicResponseDto": {
         "dataType": "refObject",
         "properties": {

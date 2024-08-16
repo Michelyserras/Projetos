@@ -1,7 +1,7 @@
 import { Delete, Request, Response } from "tsoa";
 import { Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Query } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { LivroEntity } from "../model/entity/Livro";
+import { LivroEntity } from "../model/entity/LivroEntity";
 import { LivroRequestDto } from "../model/dto/LivroRequestDto";
 import { LivroService } from "../service/LivroService";
 

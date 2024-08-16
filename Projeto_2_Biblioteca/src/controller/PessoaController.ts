@@ -3,7 +3,7 @@ import { Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Query } from "tso
 import { PessoaService } from "../service/PessoaService";
 import { PessoaRequestDto } from "../model/dto/PessoaRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { PessoaEntity } from "../model/entity/Pessoa";
+import { PessoaEntity } from "../model/entity/PessoaEntity";
 
 @Route("pessoa")
 @Tags("Pessoa")

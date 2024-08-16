@@ -1,13 +1,13 @@
 import { Delete, Request, Response } from "tsoa";
 import { Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Query } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { EmprestimoEntity } from "../model/entity/Emprestimo";
+import { EmprestimoEntity } from "../model/entity/EmprestimoEntity";
 import { EmprestimoRequestDto } from "../model/dto/EmprestimoRequestDto";
 import { EmprestimoService } from "../service/EmprestimoService";
 
 @Route("emprestimo")
 @Tags("Emprestimo")
-export class emprestimoController{
+export class EmprestimoController{
     emprestimoService = new EmprestimoService();
 
     @Post('Realizar Emprestimo')

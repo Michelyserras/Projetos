@@ -1,13 +1,13 @@
 import { Delete, Request, Response } from "tsoa";
 import { Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Query } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { UsuarioEntity } from "../model/entity/Usuario";
+import { UsuarioEntity } from "../model/entity/UsuarioEntity";
 import { UsuarioRequestDto } from "../model/dto/UsuarioRequestDto";
 import { UsuarioService } from "../service/UsuarioService";
 
 @Route("usuario")
 @Tags("Usuario")
-export class usuarioController{
+export class UsuarioController{
     usuarioService = new UsuarioService();
 
     @Post('Cadastrar Usuario')
