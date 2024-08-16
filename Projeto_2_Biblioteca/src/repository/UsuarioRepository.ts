@@ -23,7 +23,7 @@ export class UsuarioRepository{
             id INT AUTO_INCREMENT PRIMARY KEY,
             idPessoa INT NOT NULL,
             senha INT(10) NOT NULL,
-            FOREIGN KEY (idPessoa) REFERENCES bilioteca.Pessoas(id)
+            FOREIGN KEY (idPessoa) REFERENCES biblioteca.Pessoas(id)
         )`;
 
         try {
