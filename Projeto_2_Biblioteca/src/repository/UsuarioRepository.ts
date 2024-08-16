@@ -35,7 +35,7 @@ export class UsuarioRepository{
     }
 
     async cadastrarUsuario(Usuario: UsuarioEntity): Promise<UsuarioEntity>{
-        const query = 'INSERT INTO biblioteca.Usuarios(idPessoa, senha) VALUES (?,?)'
+        const query = 'INSERT INTO biblioteca.Usuarios(idPessoa, senha) VALUES (?,?);'
         try{
             const resultado = await executarComandoSQL(query, [Usuario.idPessoa, Usuario.senha]);
             console.log("Usuario cadastrado com sucesso:", resultado);
@@ -65,7 +65,7 @@ export class UsuarioRepository{
     }
 
     async filtrarUsuarioPorId(id: number): Promise<UsuarioEntity | null>{
-        const query = 'SELECT * FROM biblioteca.Usuarios WHERE id = ?';
+        const query = 'SELECT * FROM biblioteca.Usuarios WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             if(resultado.length > 0){
