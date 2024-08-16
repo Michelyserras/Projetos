@@ -632,11 +632,11 @@ export function RegisterRoutes(app: Router) {
     });
     //CONTROLLER EMPRESTIMO
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.post('/emprestimo/CadastrarEmprestimo',
+    app.post('/emprestimo/RealizarEmprestimo',
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController)),
-        ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.cadastrarEmprestimo)),
+        ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.realizarEmprestimo)),
 
-        async function EmprestimoController_cadastrarEmprestimo(request: ExRequest, response: ExResponse, next: any) {
+        async function EmprestimoController_realizarEmprestimo(request: ExRequest, response: ExResponse, next: any) {
         const args: Record<string, TsoaRoute.ParameterSchema> = {
                 dto: {"in":"body","name":"dto","required":true,"ref":"EmprestimoRequestDto"},
                 fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
@@ -652,7 +652,7 @@ export function RegisterRoutes(app: Router) {
             const controller = new EmprestimoController();
 
           await templateService.apiHandler({
-            methodName: 'cadastrarEmprestimo',
+            methodName: 'realizarEmprestimo',
             controller,
             response,
             next,
