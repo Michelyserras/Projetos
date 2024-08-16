@@ -38,7 +38,7 @@ export class EmprestimoRepository{
     }
 
     async realizarEmprestimo(Emprestimo: EmprestimoEntity): Promise<EmprestimoEntity>{
-        const query = 'INSERT INTO biblioteca.Emprestimos(livroId, usuarioId, dataEmprestimo, dataDevolucao) VALUES (?,?,?,?)'
+        const query = 'INSERT INTO biblioteca.Emprestimos(livroId, usuarioId, dataEmprestimo, dataDevolucao) VALUES (?,?,?,?);'
         try{
             const resultado = await executarComandoSQL(query, [Emprestimo.livroId, Emprestimo.usuarioId, Emprestimo.dataEmprestimo, Emprestimo.dataDevolucao]);
             console.log("Emprestimo realizado com sucesso!", resultado);
@@ -68,7 +68,7 @@ export class EmprestimoRepository{
     }
 
     async filtrarEmprestimoPorId(id: number): Promise<EmprestimoEntity | null>{
-        const query = 'SELECT * FROM biblioteca.Emprestimos WHERE id = ?';
+        const query = 'SELECT * FROM biblioteca.Emprestimos WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             if(resultado.length > 0){
