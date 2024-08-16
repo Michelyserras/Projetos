@@ -303,7 +303,168 @@ export function RegisterRoutes(app: Router) {
         }
     });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/Pessoa/CadastrarPessoa',
+            ...(fetchMiddlewares<RequestHandler>(PessoaController)),
+            ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.cadastrarPessoa)),
 
+            async function PessoaController_cadastrarPessoa(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    dto: {"in":"body","name":"dto","required":true,"ref":"PessoaRequestDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new PessoaController();
+
+              await templateService.apiHandler({
+                methodName: 'cadastrarPessoa',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/Pessoa/AtualizarPessoa',
+            ...(fetchMiddlewares<RequestHandler>(PessoaController)),
+            ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.atualizarPessoa)),
+
+            async function PessoaController_atualizarPessoa(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    pessoaBody: {"in":"body","name":"pessoaBody","required":true,"ref":"PessoaEntity"},
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new PessoaController();
+
+              await templateService.apiHandler({
+                methodName: 'atualizarPessoa',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/Pessoa/DeletarPessoa',
+            ...(fetchMiddlewares<RequestHandler>(PessoaController)),
+            ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.deletePessoa)),
+
+            async function PessoaController_deletePessoa(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    pessoaBody: {"in":"body","name":"pessoaBody","required":true,"ref":"PessoaEntity"},
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new PessoaController();
+
+              await templateService.apiHandler({
+                methodName: 'deletePessoa',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/Pessoa/filtrarPessoa',
+            ...(fetchMiddlewares<RequestHandler>(PessoaController)),
+            ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.filtrarPessoa)),
+
+            async function PessoaController_filtrarPessoa(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new PessoaController();
+
+              await templateService.apiHandler({
+                methodName: 'filtrarPessoa',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/Pessoa/listarTodasPessoas',
+            ...(fetchMiddlewares<RequestHandler>(PessoaController)),
+            ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.listarTodasPessoas)),
+
+            async function PessoaController_ListarTodosPessoas(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new PessoaController();
+
+              await templateService.apiHandler({
+                methodName: 'listarTodasPessoas',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 
