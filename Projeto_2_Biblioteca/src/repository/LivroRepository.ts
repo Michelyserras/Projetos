@@ -24,7 +24,7 @@ export class LivroRepository{
             autor VARCHAR(50) NOT NULL,
             categoriaId INT NOT NULL,
             FOREIGN KEY (categoriaId) REFFERENCES biblioteca.Categorias(id)
-        );`;
+        )`;
 
         try {
                 const resultado =  await executarComandoSQL(query, []);
