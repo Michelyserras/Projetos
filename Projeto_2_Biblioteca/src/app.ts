@@ -14,4 +14,4 @@ app.use('/api', apiRouter);
 RegisterRoutes(app);
 setupSwagger(app);
 
-app.listen(PORT, ()=> console.log("API online na porta: " + PORT));
+app.listen(PORT, ()=> console.log(`API online na URL: http://localhost:${PORT}/api-docs`));
