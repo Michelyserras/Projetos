@@ -23,7 +23,7 @@ export class LivroRepository{
             titulo VARCHAR(50) NOT NULL,
             autor VARCHAR(50) NOT NULL,
             categoriaId INT NOT NULL,
-            FOREIGN KEY (categoriaId) REFFERENCES biblioteca.Categorias(id)
+            FOREIGN KEY (categoriaId) REFERENCES biblioteca.Categorias(id)
         )`;
 
         try {
