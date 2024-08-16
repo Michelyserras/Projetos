@@ -25,9 +25,10 @@ export class UsuarioService{
     async atualizarUsuario(usuarioData: any): Promise<UsuarioEntity> {
         const { id, idPessoa, senha} = usuarioData;
         const usuarioEncontrado = await this.filtrarUsuario(id); //Verifica se o usuário está cadastrado
+        const pessoaEncontrada = await this.pessoaRepository.filtrarPessoaPorId(idPessoa); //Verifica se a pessoa existe
 
-        if(usuarioEncontrado === null){ //Se o usuário não estiver cadastrado não é realizado as atualizações
-            throw new Error("Usuário não cadastrado.");
+        if(usuarioEncontrado === null || pessoaEncontrada === null){ //Se o usuário ou pessoa não estiverem cadastrados não é realizado as atualizações
+            throw new Error("Usuário ou pessoa não cadastrados.");
         }
 
         const usuario = new UsuarioEntity(id, idPessoa, senha);
