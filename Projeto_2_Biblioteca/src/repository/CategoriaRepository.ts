@@ -20,7 +20,7 @@ export class CategoriaRepository{
         const query = `
         CREATE TABLE IF NOT EXISTS biblioteca.Categorias (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nome VARCHAR(50) NOT NULL,
+            nome VARCHAR(50) NOT NULL
         );`;
 
         try {
