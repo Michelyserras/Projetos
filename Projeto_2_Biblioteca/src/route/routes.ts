@@ -139,38 +139,169 @@ export function RegisterRoutes(app: Router) {
     // ###########################################################################################################
 
 
-    
-        app.post('/product',
-            ...(fetchMiddlewares<RequestHandler>(ProductController)),
-            ...(fetchMiddlewares<RequestHandler>(ProductController.prototype.cadastrarProduto)),
+    //CONTROLLER USUARIO
+    app.post('/Usuario/CadastrarUsuario',
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.cadastrarUsuario)),
 
-            async function ProductController_cadastrarProduto(request: ExRequest, response: ExResponse, next: any) {
-            const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ProductRequestDto"},
-                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
-                    sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
-            };
+        async function UsuarioController_cadastrarUsuario(request: ExRequest, response: ExResponse, next: any) {
+        const args: Record<string, TsoaRoute.ParameterSchema> = {
+                dto: {"in":"body","name":"dto","required":true,"ref":"UsuarioRequestDto"},
+                fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
+        };
 
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+        let validatedArgs: any[] = [];
+        try {
+            validatedArgs = templateService.getValidatedArgs({ args, request, response });
 
-                const controller = new ProductController();
+            const controller = new UsuarioController();
 
-              await templateService.apiHandler({
-                methodName: 'cadastrarProduto',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: undefined,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
+          await templateService.apiHandler({
+            methodName: 'cadastrarUsuario',
+            controller,
+            response,
+            next,
+            validatedArgs,
+            successStatus: undefined,
+          });
+        } catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.put('/Usuario/AtualizarUsuario',
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.atualizarUsuario)),
+
+        async function UsuarioController_atualizarUsuario(request: ExRequest, response: ExResponse, next: any) {
+        const args: Record<string, TsoaRoute.ParameterSchema> = {
+                usuarioBody: {"in":"body","name":"usuarioBody","required":true,"ref":"UsuarioEntity"},
+                notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+        };
+
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+        let validatedArgs: any[] = [];
+        try {
+            validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+            const controller = new UsuarioController();
+
+          await templateService.apiHandler({
+            methodName: 'atualizarUsuario',
+            controller,
+            response,
+            next,
+            validatedArgs,
+            successStatus: undefined,
+          });
+        } catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.delete('/Usuario/DeletarUsuario',
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.deleteUsuario)),
+
+        async function UsuarioController_deleteUsuario(request: ExRequest, response: ExResponse, next: any) {
+        const args: Record<string, TsoaRoute.ParameterSchema> = {
+                usuarioBody: {"in":"body","name":"usuarioBody","required":true,"ref":"UsuarioEntity"},
+                notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+        };
+
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+        let validatedArgs: any[] = [];
+        try {
+            validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+            const controller = new UsuarioController();
+
+          await templateService.apiHandler({
+            methodName: 'deleteUsuario',
+            controller,
+            response,
+            next,
+            validatedArgs,
+            successStatus: undefined,
+          });
+        } catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.get('/Usuario/filtrarUsuario',
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.filtrarUsuario)),
+
+        async function UsuarioController_filtrarUsuario(request: ExRequest, response: ExResponse, next: any) {
+        const args: Record<string, TsoaRoute.ParameterSchema> = {
+                param: {"in":"query","name":"param","required":true,"dataType":"double"},
+                notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+        };
+
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+        let validatedArgs: any[] = [];
+        try {
+            validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+            const controller = new UsuarioController();
+
+          await templateService.apiHandler({
+            methodName: 'filtrarUsuario',
+            controller,
+            response,
+            next,
+            validatedArgs,
+            successStatus: undefined,
+          });
+        } catch (err) {
+            return next(err);
+        }
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.get('/Usuario/listarTodosUsuarios',
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
+        ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.listarTodosUsuarios)),
+
+        async function UsuarioController_ListarTodosUsuarios(request: ExRequest, response: ExResponse, next: any) {
+        const args: Record<string, TsoaRoute.ParameterSchema> = {
+                notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
+                fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+        };
+
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+        let validatedArgs: any[] = [];
+        try {
+            validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+            const controller = new UsuarioController();
+
+          await templateService.apiHandler({
+            methodName: 'listarTodosUsuarios',
+            controller,
+            response,
+            next,
+            validatedArgs,
+            successStatus: undefined,
+          });
+        } catch (err) {
+            return next(err);
+        }
+    });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
