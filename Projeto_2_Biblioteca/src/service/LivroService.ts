@@ -39,14 +39,14 @@ export class LivroService{
     }
 
     async deletarLivro(livroData: any): Promise<LivroEntity> { 
-        const { id, name, price, expirationDate } = livroData;
+        const { id, titulo, autor, categoriaId } = livroData;
         const livroEncontrado = await this.filtrarLivro(id); //Verifica se o livro com esse id está cadastrado
 
         if(livroEncontrado === null){ //Se o livro não estiver cadastrado não é possível realizar o delete
             throw new Error("Livro não cadastrado.");
         }
 
-        const livro = new LivroEntity(id, name, price, expirationDate);
+        const livro = new LivroEntity(id, titulo, autor, categoriaId);
 
         await this.livroRepository.deletarLivro(livro.id);
         console.log("Service - Delete ", livro);
