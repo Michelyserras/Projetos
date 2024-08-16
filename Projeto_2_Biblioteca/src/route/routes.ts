@@ -140,7 +140,7 @@ export function RegisterRoutes(app: Router) {
 
 
     //CONTROLLER USUARIO
-    app.post('/Usuario/CadastrarUsuario',
+    app.post('/usuario/CadastrarUsuario',
         ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
         ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.cadastrarUsuario)),
 
@@ -172,7 +172,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.put('/Usuario/AtualizarUsuario',
+    app.put('/usuario/AtualizarUsuario',
         ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
         ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.atualizarUsuario)),
 
@@ -205,7 +205,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.delete('/Usuario/DeletarUsuario',
+    app.delete('/usuario/DeletarUsuario',
         ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
         ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.deleteUsuario)),
 
@@ -238,7 +238,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Usuario/filtrarUsuario',
+    app.get('/usuario/filtrarUsuario',
         ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
         ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.filtrarUsuario)),
 
@@ -271,7 +271,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Usuario/listarTodosUsuarios',
+    app.get('/usuario/listarTodosUsuarios',
         ...(fetchMiddlewares<RequestHandler>(UsuarioController)),
         ...(fetchMiddlewares<RequestHandler>(UsuarioController.prototype.listarTodosUsuarios)),
 
@@ -302,8 +302,9 @@ export function RegisterRoutes(app: Router) {
             return next(err);
         }
     });
+    //CONTROLLER PESSOA
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/Pessoa/CadastrarPessoa',
+        app.post('/pessoa/CadastrarPessoa',
             ...(fetchMiddlewares<RequestHandler>(PessoaController)),
             ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.cadastrarPessoa)),
 
@@ -335,7 +336,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/Pessoa/AtualizarPessoa',
+        app.put('/pessoa/AtualizarPessoa',
             ...(fetchMiddlewares<RequestHandler>(PessoaController)),
             ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.atualizarPessoa)),
 
@@ -368,7 +369,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/Pessoa/DeletarPessoa',
+        app.delete('/pessoa/DeletarPessoa',
             ...(fetchMiddlewares<RequestHandler>(PessoaController)),
             ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.deletePessoa)),
 
@@ -401,7 +402,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/Pessoa/filtrarPessoa',
+        app.get('/pessoa/filtrarPessoa',
             ...(fetchMiddlewares<RequestHandler>(PessoaController)),
             ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.filtrarPessoa)),
 
@@ -434,7 +435,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/Pessoa/listarTodasPessoas',
+        app.get('/pessoa/listarTodasPessoas',
             ...(fetchMiddlewares<RequestHandler>(PessoaController)),
             ...(fetchMiddlewares<RequestHandler>(PessoaController.prototype.listarTodasPessoas)),
 
@@ -465,8 +466,9 @@ export function RegisterRoutes(app: Router) {
                 return next(err);
             }
         });
+    //CONTROLLER LIVRO
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.post('/Livro/CadastrarLivro',
+    app.post('/livro/CadastrarLivro',
         ...(fetchMiddlewares<RequestHandler>(LivroController)),
         ...(fetchMiddlewares<RequestHandler>(LivroController.prototype.cadastrarLivro)),
 
@@ -498,7 +500,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.put('/Livro/AtualizarLivro',
+    app.put('/livro/AtualizarLivro',
         ...(fetchMiddlewares<RequestHandler>(LivroController)),
         ...(fetchMiddlewares<RequestHandler>(LivroController.prototype.atualizarLivro)),
 
@@ -531,7 +533,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.delete('/Livro/DeletarLivro',
+    app.delete('/livro/DeletarLivro',
         ...(fetchMiddlewares<RequestHandler>(LivroController)),
         ...(fetchMiddlewares<RequestHandler>(LivroController.prototype.deleteLivro)),
 
@@ -564,7 +566,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Livro/filtrarLivro',
+    app.get('/livro/filtrarLivro',
         ...(fetchMiddlewares<RequestHandler>(LivroController)),
         ...(fetchMiddlewares<RequestHandler>(LivroController.prototype.filtrarLivro)),
 
@@ -597,7 +599,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Livro/listarTodosLivros',
+    app.get('/livro/listarTodosLivros',
         ...(fetchMiddlewares<RequestHandler>(LivroController)),
         ...(fetchMiddlewares<RequestHandler>(LivroController.prototype.listarTodosLivros)),
 
@@ -628,8 +630,9 @@ export function RegisterRoutes(app: Router) {
             return next(err);
         }
     });
+    //CONTROLLER EMPRESTIMO
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.post('/Emprestimo/CadastrarEmprestimo',
+    app.post('/emprestimo/CadastrarEmprestimo',
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController)),
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.cadastrarEmprestimo)),
 
@@ -661,7 +664,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.put('/Emprestimo/AtualizarEmprestimo',
+    app.put('/emprestimo/AtualizarEmprestimo',
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController)),
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.atualizarEmprestimo)),
 
@@ -694,7 +697,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.delete('/Emprestimo/DeletarEmprestimo',
+    app.delete('/emprestimo/DeletarEmprestimo',
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController)),
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.deleteEmprestimo)),
 
@@ -727,7 +730,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Emprestimo/filtrarEmprestimo',
+    app.get('/emprestimo/filtrarEmprestimo',
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController)),
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.filtrarEmprestimo)),
 
@@ -760,7 +763,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Emprestimo/listarTodosEmprestimos',
+    app.get('/emprestimo/listarTodosEmprestimos',
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController)),
         ...(fetchMiddlewares<RequestHandler>(EmprestimoController.prototype.listarTodosEmprestimos)),
 
@@ -791,8 +794,9 @@ export function RegisterRoutes(app: Router) {
             return next(err);
         }
     });
+    //CONTROLLER CATEGORIA
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.post('/Categoria/CadastrarCategoria',
+    app.post('/categoria/CadastrarCategoria',
         ...(fetchMiddlewares<RequestHandler>(CategoriaController)),
         ...(fetchMiddlewares<RequestHandler>(CategoriaController.prototype.cadastrarCategoria)),
 
@@ -824,7 +828,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.put('/Categoria/AtualizarCategoria',
+    app.put('/categoria/AtualizarCategoria',
         ...(fetchMiddlewares<RequestHandler>(CategoriaController)),
         ...(fetchMiddlewares<RequestHandler>(CategoriaController.prototype.atualizarCategoria)),
 
@@ -857,7 +861,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.delete('/Categoria/DeletarCategoria',
+    app.delete('/categoria/DeletarCategoria',
         ...(fetchMiddlewares<RequestHandler>(CategoriaController)),
         ...(fetchMiddlewares<RequestHandler>(CategoriaController.prototype.deleteCategoria)),
 
@@ -890,7 +894,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Categoria/filtrarCategoria',
+    app.get('/categoria/filtrarCategoria',
         ...(fetchMiddlewares<RequestHandler>(CategoriaController)),
         ...(fetchMiddlewares<RequestHandler>(CategoriaController.prototype.filtrarCategoria)),
 
@@ -923,7 +927,7 @@ export function RegisterRoutes(app: Router) {
         }
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/Categoria/listarTodasCategorias',
+    app.get('/categoria/listarTodasCategorias',
         ...(fetchMiddlewares<RequestHandler>(CategoriaController)),
         ...(fetchMiddlewares<RequestHandler>(CategoriaController.prototype.listarTodasCategorias)),
 
