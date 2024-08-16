@@ -98,7 +98,7 @@ export class PessoaRepository{
     }
 
     async deletarPessoa(id: number): Promise<PessoaEntity>{
-        const query = 'DELETE * FROM biblioteca.Pessoas WHERE id = ?;';
+        const query = 'DELETE FROM biblioteca.Pessoas WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             console.log(`A pessoa com o id = ${id} foi deletada com sucesso!`, resultado);

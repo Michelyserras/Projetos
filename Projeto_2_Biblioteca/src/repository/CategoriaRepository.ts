@@ -97,7 +97,7 @@ export class CategoriaRepository{
     }
 
     async deletarCategoria(id: number): Promise<CategoriaEntity>{
-        const query = 'DELETE * FROM biblioteca.Categorias WHERE id = ?;';
+        const query = 'DELETE FROM biblioteca.Categorias WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             console.log(`A Categoria com o id = ${id} foi deletada com sucesso!`, resultado);

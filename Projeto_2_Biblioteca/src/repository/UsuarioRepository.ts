@@ -100,7 +100,7 @@ export class UsuarioRepository{
     }
 
     async deletarUsuario(id: number): Promise<UsuarioEntity>{
-        const query = 'DELETE * FROM biblioteca.Usuarios WHERE id = ?;';
+        const query = 'DELETE FROM biblioteca.Usuarios WHERE id = ?;';
         try{
 
             const resultado = await executarComandoSQL(query,[id]);

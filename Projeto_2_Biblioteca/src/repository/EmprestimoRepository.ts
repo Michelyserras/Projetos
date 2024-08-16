@@ -103,7 +103,7 @@ export class EmprestimoRepository{
     }
 
     async deletarEmprestimo(id: number): Promise<EmprestimoEntity>{
-        const query = 'DELETE * FROM biblioteca.Emprestimos WHERE id = ?;';
+        const query = 'DELETE FROM biblioteca.Emprestimos WHERE id = ?;';
         try{
 
             const resultado = await executarComandoSQL(query,[id]);

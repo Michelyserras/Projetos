@@ -100,7 +100,7 @@ export class LivroRepository{
     }
 
     async deletarLivro(id: number): Promise<LivroEntity>{
-        const query = 'DELETE * FROM biblioteca.Livros WHERE id = ?;';
+        const query = 'DELETE FROM biblioteca.Livros WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             console.log(`O Livro com o id = ${id} foi deletado com sucesso!`, resultado);
