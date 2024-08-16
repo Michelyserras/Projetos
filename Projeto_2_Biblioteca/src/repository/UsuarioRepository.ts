@@ -22,7 +22,7 @@ export class UsuarioRepository{
         CREATE TABLE IF NOT EXISTS biblioteca.Usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             idPessoa INT NOT NULL,
-            senha INT(10) NOT NULL,
+            senha VARCHAR(255) NOT NULL,
             FOREIGN KEY (idPessoa) REFERENCES biblioteca.Pessoas(id)
         )`;
 
