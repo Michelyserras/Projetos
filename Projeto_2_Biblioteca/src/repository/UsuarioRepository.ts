@@ -22,9 +22,9 @@ export class UsuarioRepository{
         CREATE TABLE IF NOT EXISTS biblioteca.Usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             idPessoa INT NOT NULL,
-            senha INT(10) NOT NULL
+            senha INT(10) NOT NULL,
             FOREIGN KEY (idPessoa) REFERENCES bilioteca.Pessoas(id)
-        );`;
+        )`;
 
         try {
                 const resultado =  await executarComandoSQL(query, []);
