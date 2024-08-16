@@ -25,9 +25,10 @@ export class LivroService{
     async atualizarLivro(livroData: any): Promise<LivroEntity> {
         const { id, titulo, autor, categoriaId } = livroData;
         const livroEncontrado = await this.filtrarLivro(id); //Verifica se o livro com esse id está cadastrado
+        const categoriaEncontrada = await this.categoriaRepository.filtrarCategoriaPorId(categoriaId); //Verifica se a categoria existe
 
-        if(livroEncontrado === null){ //Se o livro não estiver cadastrado não é possível realizar as atualizações
-            throw new Error("Livro não cadastrado."); 
+        if(livroEncontrado === null || categoriaEncontrada === null){ //Se o livro ou a categoria não estiverem cadastrados não é possível realizar as atualizações
+            throw new Error("Livro ou categoria não cadastrados."); 
         }
 
         const livro = new LivroEntity(id, titulo, autor, categoriaId);
