@@ -12,7 +12,7 @@ export class AgendaService{
     private petRepository = PetRepository.getInstance();
     private clienteRepository = ClienteRepository.getInstance();
 
-    async cadastrarAgenda(agendaData: any): Promise<AgendaRequestDto> { 
+    async cadastrarAgenda(agendaData: any): Promise<AgendaEntity> { 
         const { data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
 
         let agenda = new AgendaEntity(undefined, data, tipoServico, valorServico, cpfCliente, idPet);
@@ -33,9 +33,8 @@ export class AgendaService{
         
         else{
             const novaAgenda =  await this.agendaRepository.insertAgenda(agenda);
-            const agendaString: AgendaRequestDto = new AgendaRequestDto(novaAgenda.data.toString(), novaAgenda.tipoServico, novaAgenda.valorServico, novaAgenda.cpfCliente.toString(), novaAgenda.idPet);
-            console.log("Service - Insert ", agendaString);
-            return agendaString;
+            console.log("Service - Insert ", novaAgenda);
+            return novaAgenda;
         }
     }
 
