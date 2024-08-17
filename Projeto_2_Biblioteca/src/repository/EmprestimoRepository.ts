@@ -58,9 +58,7 @@ export class EmprestimoRepository{
         try{
             const resultado = await executarComandoSQL(query, [Emprestimo.livroId, Emprestimo.usuarioId, Emprestimo.dataEmprestimo, Emprestimo.dataDevolucao, Emprestimo.id]);
             console.log("Emprestimo atualizado com sucesso:", resultado);
-            return new Promise<EmprestimoEntity>((resolve)=>{
-                resolve(Emprestimo);
-            })
+            return resultado;
         }catch(err: any){
             console.error('Erro ao atualizar os dados da Emprestimo', err);
             throw err;

@@ -37,6 +37,7 @@ export class EmprestimoController{
                 return fail(400, new BasicResponseDto(error.message, undefined));
             }
         };
+
     
     @Delete('Deletar Emprestimo')
     async deleteEmprestimo(

@@ -2,6 +2,7 @@ import { EmprestimoEntity } from "../model/entity/EmprestimoEntity";
 import { EmprestimoRepository } from "../repository/EmprestimoRepository";
 import { UsuarioRepository } from "../repository/UsuarioRepository";
 import { LivroRepository } from "../repository/LivroRepository";
+import { stringParaData } from "../util/DataUtil";
 
 export class EmprestimoService{
 
@@ -25,8 +26,9 @@ export class EmprestimoService{
         return novoEmprestimo;
     }
 
-    async atualizarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> {
-        const { id, livroId, usuarioId, dataEmprestimo, dataDevolucao} = emprestimoData;
+    async atualizarEmprestimo(emprestimoData: EmprestimoEntity): Promise<EmprestimoEntity> {
+        let { id, livroId, usuarioId, dataEmprestimo, dataDevolucao} = emprestimoData;
+
         const emprestimoEncontrado = await this.filtrarEmprestimo(id); //Verifica se o emprestimo existe
         const usuarioEncontrado = await this.usuarioRepository.filtrarUsuarioPorId(usuarioId); //Verifica se o usuário existe
         const livroEncontrado = await this.livroRepository.filtrarLivroPorId(livroId); //Verifica se o livro existe
@@ -35,7 +37,8 @@ export class EmprestimoService{
             throw new Error("Emprestimo, usuário ou livro não existem.");
         }
 
-        const emprestimo = new EmprestimoEntity(id, livroId, usuarioId, dataEmprestimo, dataDevolucao);
+        
+        const emprestimo = new EmprestimoEntity(id,livroId, usuarioId, dataEmprestimo.toISOString().split('T')[0], dataDevolucao.toISOString().split('T')[0]);
 
         await this.emprestimoRepository.atualizarEmprestimo(emprestimo);
         console.log("Service - Update ", emprestimo);
@@ -43,14 +46,14 @@ export class EmprestimoService{
     }
 
     async deletarEmprestimo(emprestimoData: any): Promise<EmprestimoEntity> {
-        const { id, nome } = emprestimoData;
+        const { id, livroId, usuarioId, dataDevolucao, dataEmprestimo } = emprestimoData;
         const emprestimoEncontrado = await this.filtrarEmprestimo(id); //Verifica se o emprestimo existe
 
         if(emprestimoEncontrado === null){ //Se o emprestimo não existir não realizar o delete
             throw new Error("Emprestimo não existe.");
         }
 
-        const emprestimo = new EmprestimoEntity(id, nome);
+        const emprestimo = new EmprestimoEntity(id, livroId, usuarioId, dataEmprestimo.toISOString().split('T')[0], dataDevolucao.toISOString().split('T')[0]);
 
         await this.emprestimoRepository.deletarEmprestimo(emprestimo.id);
         console.log("Service - Delete ", emprestimo);

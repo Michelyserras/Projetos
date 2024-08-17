@@ -23,7 +23,7 @@ export class EmprestimoEntity{
         }
 
         if(!verificaFormatoData(dataDevolucao) || !verificaFormatoData(dataEmprestimo)){
-            error += ("A data deve possuir o formato: dd/MM/yyyy");
+            error += ("A data deve possuir o formato: yyyy/mm/dd");
         }
 
         if(error != ''){
