@@ -2,7 +2,7 @@ import { stringParaDataTempo, verificaFormatoDataDDMMYYYHHmm } from "../../util/
 
 export class AgendaEntity{
     id: number;
-    data: Date;
+    data: string;
     tipoServico: string; 
     valorServico: number;
     cpfCliente: number; //FOREIGN KEY
@@ -14,7 +14,7 @@ export class AgendaEntity{
     constructor(id?:number, data?:string, tipoServico?:string, valorServico?:number, cpfCliente?:number, idPet?:number){
         this.validatesInformation(data, tipoServico, valorServico)
         this.id = id || 0;
-        this.data = stringParaDataTempo(data || '');
+        this.data = data || '';
         this.tipoServico = tipoServico || '';
         this.valorServico = valorServico || 0;
         this.cpfCliente = cpfCliente || 0;

@@ -4,7 +4,7 @@ import { PetRepository } from "../repository/PetRepository";
 import { ClienteRepository } from "../repository/ClienteRepository";
 import { adjusteTimeZone, stringParaData } from "../util/DataUtil";
 import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
-import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
+
 
 export class AgendaService{
 
@@ -44,7 +44,7 @@ export class AgendaService{
         const agendaEncontrada = await this.agendaRepository.filterAgenda(id);
 
         const dataDate = stringParaData(data);
-        const dataEmUso = await this.agendaRepository.verificaAgenda(dataDate);
+        const dataEmUso = await this.agendaRepository.verificaAgenda(dataDate.toString());
 
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
@@ -103,7 +103,7 @@ export class AgendaService{
         }
     }
 
-    async verificaAgenda(data: Date): Promise<AgendaEntity | undefined> {
+    async verificaAgenda(data: string): Promise<AgendaEntity | undefined> {
         const agendaExiste = await this.agendaRepository.verificaAgenda(data);
         console.log("Service - Verifica agenda", agendaExiste);
         return agendaExiste;

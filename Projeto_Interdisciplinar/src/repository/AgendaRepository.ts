@@ -22,7 +22,7 @@ export class AgendaRepository{
         const query = `
         CREATE TABLE IF NOT EXISTS sistema.Agenda (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            data DATETIME NOT NULL,
+            data VARCHAR(20) NOT NULL,
             tipoServico VARCHAR(255) NOT NULL,
             valorServico DECIMAL(10,5) NOT NULL,
             cpfCliente VARCHAR(14) NOT NULL,
@@ -123,7 +123,7 @@ export class AgendaRepository{
         }
     }
 
-    async verificaAgenda(data: Date) :Promise<AgendaEntity | undefined>{
+    async verificaAgenda(data: string) :Promise<AgendaEntity | undefined>{
         const query = "SELECT * FROM sistema.Agenda where data = ?";
 
         try{

@@ -78,7 +78,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
-            "data": {"dataType":"datetime","required":true},
+            "data": {"dataType":"string","required":true},
             "tipoServico": {"dataType":"string","required":true},
             "valorServico": {"dataType":"double","required":true},
             "cpfCliente": {"dataType":"double","required":true},
