@@ -1,11 +1,13 @@
 import { LivroEntity } from "../model/entity/LivroEntity";
 import { LivroRepository } from "../repository/LivroRepository";
 import { CategoriaRepository } from "../repository/CategoriaRepository";
+import { EmprestimoRepository } from "../repository/EmprestimoRepository";
 
 export class LivroService{
 
     private livroRepository = LivroRepository.getInstance();
     private categoriaRepository = CategoriaRepository.getInstance();
+    private emprestimoRepository = EmprestimoRepository.getInstance();
 
     async cadastrarLivro(livroData: any): Promise<LivroEntity> { //Ao cadastrar um livro, verficar se a categoria existe.
         const { titulo, autor, categoriaId } = livroData;
@@ -38,19 +40,20 @@ export class LivroService{
         return livro;
     }
 
-    async deletarLivro(livroData: any): Promise<LivroEntity> { 
-        const { id, titulo, autor, categoriaId } = livroData;
+    async deletarLivro(id: any): Promise<LivroEntity> { 
         const livroEncontrado = await this.filtrarLivro(id); //Verifica se o livro com esse id está cadastrado
+        const livroEmprestado = await this.emprestimoRepository.filtrarEmprestimoPorLivroId(id);
 
         if(livroEncontrado === null){ //Se o livro não estiver cadastrado não é possível realizar o delete
             throw new Error("Livro não cadastrado.");
         }
+        else if(livroEmprestado){
+            throw new Error("Este livro está emprestado no momento! Não pode ser deletado.");
+        }
 
-        const livro = new LivroEntity(id, titulo, autor, categoriaId);
-
-        await this.livroRepository.deletarLivro(livro.id);
-        console.log("Service - Delete ", livro);
-        return livro;
+        await this.livroRepository.deletarLivro(id);
+        console.log("Service - Delete ", livroEncontrado);
+        return livroEncontrado;
     }
 
     async filtrarLivro(livroData: any): Promise<LivroEntity | null> {
