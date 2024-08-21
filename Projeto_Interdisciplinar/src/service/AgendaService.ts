@@ -41,17 +41,14 @@ export class AgendaService{
     async atualizarAgenda(agendaData: any): Promise<AgendaEntity> { 
         const { id, data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
         const agendaEncontrada = await this.agendaRepository.filterAgenda(id);
-
-        const dataDate = stringParaData(data);
-        const dataEmUso = await this.agendaRepository.verificaAgenda(dataDate.toString());
-
+        const dataEncontrada = await this.verificaAgenda(agendaData.data);
         const petEncontrado = await this.petRepository.filterPet(idPet);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
         if(agendaEncontrada === null){ 
             throw new Error('Agendamento não encontrado.');
         }
-        else if(dataEmUso && dataEmUso.data === data){
+        else if(dataEncontrada){
             throw new Error('Já há um agendamento nesta data.');
         }
         else if(petEncontrado === null){

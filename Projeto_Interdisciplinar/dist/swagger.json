@@ -19,10 +19,6 @@
 						"type": "number",
 						"format": "double"
 					},
-					"peso": {
-						"type": "number",
-						"format": "double"
-					},
 					"especie": {
 						"type": "string"
 					},
@@ -34,7 +30,6 @@
 					"cpfCliente",
 					"nome",
 					"idade",
-					"peso",
 					"especie",
 					"historicoPet"
 				],

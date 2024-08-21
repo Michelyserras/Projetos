@@ -21,7 +21,6 @@ const models: TsoaRoute.Models = {
             "cpfCliente": {"dataType":"string","required":true},
             "nome": {"dataType":"string","required":true},
             "idade": {"dataType":"double","required":true},
-            "peso": {"dataType":"double","required":true},
             "especie": {"dataType":"string","required":true},
             "historicoPet": {"dataType":"string","required":true},
         },
