@@ -115,4 +115,21 @@ export class UsuarioRepository{
         }
     }
 
+    async filtrarUsuarioPorIdPessoa(idPessoa: number): Promise<UsuarioEntity[] | null>{
+        const query = 'SELECT * FROM biblioteca.Usuarios WHERE idPessoa = ?;';
+        try{
+            const resultado = await executarComandoSQL(query,[idPessoa]);
+            if(resultado.length > 0){
+                console.log("Usuario localizado com sucesso:", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
+        }catch(err: any){
+            console.error(`Erro ao localizar Usuario com id = ${idPessoa} na base de dados`, err);
+            throw err;
+        }
+    }
+
 }

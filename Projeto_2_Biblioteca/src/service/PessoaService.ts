@@ -1,9 +1,11 @@
 import { PessoaEntity } from "../model/entity/PessoaEntity";
 import { PessoaRepository } from "../repository/PessoaRepository";
+import { UsuarioRepository } from "../repository/UsuarioRepository";
 
 export class PessoaService{
 
     private pessoaRepository = PessoaRepository.getInstance();
+    private usuarioRepository = UsuarioRepository.getInstance();
 
     async cadastrarPessoa(pessoaData: any): Promise<PessoaEntity> { 
         const { nome, email } = pessoaData;
@@ -37,9 +39,13 @@ export class PessoaService{
 
     async deletarPessoa(id: any): Promise<PessoaEntity> { 
         const pessoaEncontrada = await this.filtrarPessoa(id); //Verifica se a pessoa existe
+        const usuarioPessoa = await this.usuarioRepository.filtrarUsuarioPorIdPessoa(id);
 
         if(pessoaEncontrada === null){ //Se a pessoa não exister não é possível realizar o delete
             throw new Error("Pessoa não existe.");
+        }
+        else if(usuarioPessoa){
+            throw new Error("Há usuários cadastrados associados a essa pessoa! Não pode ser deletada.");
         }
 
         await this.pessoaRepository.deletarPessoa(id);
