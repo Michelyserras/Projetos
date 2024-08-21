@@ -40,12 +40,12 @@ export class PessoaController{
     
     @Delete('Deletar Pessoa')
     async deletePessoa(
-        @Body() pessoaBody:PessoaEntity, 
+        @Query() param:number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const pessoa = await this.pessoaService.deletarPessoa(pessoaBody);
+            const pessoa = await this.pessoaService.deletarPessoa(param);
             return sucess(200, new BasicResponseDto("Pessoa excluida com suceso!", pessoa));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

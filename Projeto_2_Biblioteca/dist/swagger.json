@@ -363,17 +363,17 @@
 					"Usuario"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UsuarioEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/usuario/filtrar/Usuario": {
@@ -598,17 +598,17 @@
 					"Pessoa"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/PessoaEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/pessoa/filtrar/Pessoa": {
@@ -833,17 +833,17 @@
 					"Livro"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/LivroEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/livro/filtrar/Livro": {
@@ -1068,17 +1068,17 @@
 					"Emprestimo"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/EmprestimoEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/emprestimo/filtrar/Emprestimo": {
@@ -1303,17 +1303,17 @@
 					"Categoria"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/CategoriaEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/categoria/filtrar/Categoria": {

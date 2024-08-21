@@ -214,7 +214,7 @@ export function RegisterRoutes(app: Router) {
 
             async function UsuarioController_deleteUsuario(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    usuarioBody: {"in":"body","name":"usuarioBody","required":true,"ref":"UsuarioEntity"},
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -375,7 +375,7 @@ export function RegisterRoutes(app: Router) {
 
             async function PessoaController_deletePessoa(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    pessoaBody: {"in":"body","name":"pessoaBody","required":true,"ref":"PessoaEntity"},
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -536,7 +536,7 @@ export function RegisterRoutes(app: Router) {
 
             async function LivroController_deleteLivro(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    livroBody: {"in":"body","name":"livroBody","required":true,"ref":"LivroEntity"},
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -697,7 +697,7 @@ export function RegisterRoutes(app: Router) {
 
             async function EmprestimoController_deleteEmprestimo(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    emprestimoBody: {"in":"body","name":"emprestimoBody","required":true,"ref":"EmprestimoEntity"},
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
@@ -858,7 +858,7 @@ export function RegisterRoutes(app: Router) {
 
             async function CategoriaController_deleteCategoria(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    categoriaBody: {"in":"body","name":"categoriaBody","required":true,"ref":"CategoriaEntity"},
+                    param: {"in":"query","name":"param","required":true,"dataType":"double"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };

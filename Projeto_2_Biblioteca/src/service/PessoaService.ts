@@ -35,19 +35,16 @@ export class PessoaService{
         return pessoa;
     }
 
-    async deletarPessoa(pessoaData: any): Promise<PessoaEntity> { 
-        const { id, nome, email } = pessoaData;
+    async deletarPessoa(id: any): Promise<PessoaEntity> { 
         const pessoaEncontrada = await this.filtrarPessoa(id); //Verifica se a pessoa existe
 
         if(pessoaEncontrada === null){ //Se a pessoa não exister não é possível realizar o delete
             throw new Error("Pessoa não existe.");
         }
 
-        const pessoa = new PessoaEntity(id, nome, email);
-
-        await this.pessoaRepository.deletarPessoa(pessoa.id);
-        console.log("Service - Delete ", pessoa);
-        return pessoa;
+        await this.pessoaRepository.deletarPessoa(id);
+        console.log("Service - Delete ", pessoaEncontrada);
+        return pessoaEncontrada;
     }
 
     async filtrarPessoa(pessoaData: any): Promise<PessoaEntity | null> {

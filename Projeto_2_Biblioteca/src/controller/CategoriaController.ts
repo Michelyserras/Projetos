@@ -40,12 +40,12 @@ export class CategoriaController{
     
     @Delete('Deletar Categoria')
     async deleteCategoria(
-        @Body() categoriaBody:CategoriaEntity, 
+        @Query() param:number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const categoria = await this.categoriaService.deletarCategoria(categoriaBody);
+            const categoria = await this.categoriaService.deletarCategoria(param);
             return sucess(200, new BasicResponseDto("Categoria excluida com suceso!", categoria));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

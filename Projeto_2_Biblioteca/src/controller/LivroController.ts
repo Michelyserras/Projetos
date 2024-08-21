@@ -40,12 +40,12 @@ export class LivroController{
     
     @Delete('Deletar Livro')
     async deleteLivro(
-        @Body() livroBody:LivroEntity, 
+        @Query() param:number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const livro = await this.livroService.deletarLivro(livroBody);
+            const livro = await this.livroService.deletarLivro(param);
             return sucess(200, new BasicResponseDto("Livro excluido com suceso!", livro));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

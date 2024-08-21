@@ -38,19 +38,16 @@ export class UsuarioService{
         return usuario;
     }
 
-    async deletarUsuario(usuarioData: any): Promise<UsuarioEntity> {
-        const { id, idPessoa, senha } = usuarioData;
+    async deletarUsuario(id: any): Promise<UsuarioEntity> {
         const usuarioEncontrado = await this.filtrarUsuario(id); //Verifica se o usuário está cadastrado
 
         if(usuarioEncontrado === null){ //Se o usuário não estiver cadastrado não realiza o delete
             throw new Error("Usuário não cadastrado.");
         }
 
-        const usuario = new UsuarioEntity(id, idPessoa, senha);
-
-        await this.usuarioRepository.deletarUsuario(usuario.id);
-        console.log("Service - Delete ", usuario);
-        return usuario;
+        await this.usuarioRepository.deletarUsuario(id);
+        console.log("Service - Delete ", usuarioEncontrado);
+        return usuarioEncontrado;
     }
 
     async filtrarUsuario(usuarioData: any): Promise<UsuarioEntity | null> {

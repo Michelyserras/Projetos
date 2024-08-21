@@ -35,19 +35,16 @@ export class CategoriaService{
         return categoria;
     }
 
-    async deletarCategoria(categoriaData: any): Promise<CategoriaEntity> {
-        const { id, nome } = categoriaData;
+    async deletarCategoria(id: any): Promise<CategoriaEntity> {
         const categoriaEncontrada = await this.filtrarCategoria(id); //Verifica se a categoria está cadastrada
 
         if(categoriaEncontrada === null){ //Se a categoria não estiver cadastrada não realiza o delete
             throw new Error("Categoria não cadastrada.");
         }
 
-        const categoria = new CategoriaEntity(id, nome);
-
-        await this.categoriaRepository.deletarCategoria(categoria.id);
-        console.log("Service - Delete ", categoria);
-        return categoria;
+        await this.categoriaRepository.deletarCategoria(id);
+        console.log("Service - Delete ", categoriaEncontrada);
+        return categoriaEncontrada;
     }
 
     async filtrarCategoria(categoriaData: any): Promise<CategoriaEntity | null> {

@@ -41,12 +41,12 @@ export class EmprestimoController{
     
     @Delete('Deletar Emprestimo')
     async deleteEmprestimo(
-        @Body() emprestimoBody:EmprestimoEntity, 
+        @Query() param:number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const emprestimo = await this.emprestimoService.deletarEmprestimo(emprestimoBody);
+            const emprestimo = await this.emprestimoService.deletarEmprestimo(param);
             return sucess(200, new BasicResponseDto("Emprestimo excluido com suceso!", emprestimo));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));
