@@ -60,7 +60,7 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "AgendaRequestDto": {
+    "AgendaRequestDtoCAD": {
         "dataType": "refObject",
         "properties": {
             "data": {"dataType":"string","required":true},
@@ -72,14 +72,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "AgendaEntity": {
+    "AgendaRequestDto": {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
             "data": {"dataType":"string","required":true},
             "tipoServico": {"dataType":"string","required":true},
             "valorServico": {"dataType":"double","required":true},
-            "cpfCliente": {"dataType":"double","required":true},
+            "cpfCliente": {"dataType":"string","required":true},
             "idPet": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
@@ -467,7 +467,7 @@ export function RegisterRoutes(app: Router) {
 
             async function AgendaController_cadastrarAgenda(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"AgendaRequestDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"AgendaRequestDtoCAD"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };
@@ -499,7 +499,7 @@ export function RegisterRoutes(app: Router) {
 
             async function AgendaController_atualizarAgenda(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    agenda: {"in":"body","name":"agenda","required":true,"ref":"AgendaEntity"},
+                    agenda: {"in":"body","name":"agenda","required":true,"ref":"AgendaRequestDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
             };
