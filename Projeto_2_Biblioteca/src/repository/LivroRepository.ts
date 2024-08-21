@@ -114,5 +114,21 @@ export class LivroRepository{
 
     }
 
+    async filtrarLivroPorCategoriaId(categoriaId: number): Promise<LivroEntity | null>{
+        const query = 'SELECT * FROM biblioteca.Livros WHERE categoriaId = ?;';
+        try{
+            const resultado = await executarComandoSQL(query,[categoriaId]);
+            if(resultado.length > 0){
+                console.log("Livro localizado com sucesso:", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
+        }catch(err: any){
+            console.error(`Erro ao localizar Livro com categoriaId = ${categoriaId} na base de dados`, err);
+            throw err;
+        }
+    }
 
 }

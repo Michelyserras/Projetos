@@ -1,9 +1,11 @@
 import { CategoriaEntity } from "../model/entity/CategoriaEntity";
 import { CategoriaRepository } from "../repository/CategoriaRepository";
+import { LivroRepository } from "../repository/LivroRepository";
 
 export class CategoriaService{
 
     private categoriaRepository = CategoriaRepository.getInstance();
+    private livroRepository = LivroRepository.getInstance();
 
     async cadastrarCategoria(categoriaData: any): Promise<CategoriaEntity> { 
         const { nome } = categoriaData;
@@ -37,6 +39,7 @@ export class CategoriaService{
 
     async deletarCategoria(id: any): Promise<CategoriaEntity> {
         const categoriaEncontrada = await this.filtrarCategoria(id); //Verifica se a categoria está cadastrada
+        const livroDaCategoria = 
 
         if(categoriaEncontrada === null){ //Se a categoria não estiver cadastrada não realiza o delete
             throw new Error("Categoria não cadastrada.");
