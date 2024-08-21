@@ -62,7 +62,7 @@ export class CategoriaRepository{
     }
 
     async filtrarCategoriaPorId(id: number): Promise<CategoriaEntity | null>{
-        const query = 'SELECT * FROM biblioteca.Categorias WHERE id = ?';
+        const query = 'SELECT * FROM biblioteca.Categorias WHERE id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             if(resultado.length > 0){

@@ -33,7 +33,7 @@ export class PessoaRepository{
     }
 
     async cadastrarPessoa(pessoa: PessoaEntity): Promise<PessoaEntity>{
-        const query = 'INSERT INTO biblioteca.Pessoas(nome, email) VALUES (?,?)'
+        const query = 'INSERT INTO biblioteca.Pessoas(nome, email) VALUES (?,?);'
         try{
             const resultado = await executarComandoSQL(query, [pessoa.nome, pessoa.email]);
             console.log("Pessoa cadastrada com sucesso!", resultado);
@@ -63,7 +63,7 @@ export class PessoaRepository{
     }
 
     async filtrarPessoaPorId(id: number): Promise<PessoaEntity | null>{
-        const query = 'SELECT * FROM biblioteca.Pessoas where id = ?';
+        const query = 'SELECT * FROM biblioteca.Pessoas where id = ?;';
         try{
             const resultado = await executarComandoSQL(query,[id]);
             if(resultado.length > 0){
