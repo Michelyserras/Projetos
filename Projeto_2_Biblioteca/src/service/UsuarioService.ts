@@ -1,11 +1,13 @@
 import { UsuarioEntity } from "../model/entity/UsuarioEntity";
 import { UsuarioRepository } from "../repository/UsuarioRepository";
 import { PessoaRepository } from "../repository/PessoaRepository";
+import { EmprestimoRepository } from "../repository/EmprestimoRepository";
 
 export class UsuarioService{
 
     private usuarioRepository = UsuarioRepository.getInstance();
     private pessoaRepository = PessoaRepository.getInstance();
+    private emprestimoRepository = EmprestimoRepository.getInstance();
 
     async cadastrarUsuario(usuarioData: any): Promise<UsuarioEntity> { //Ao cadastrar um usuário, verificar se a pessoa existe.
         const { idPessoa, senha } = usuarioData;
@@ -40,9 +42,13 @@ export class UsuarioService{
 
     async deletarUsuario(id: any): Promise<UsuarioEntity> {
         const usuarioEncontrado = await this.filtrarUsuario(id); //Verifica se o usuário está cadastrado
-
+        const emprestimoUsuario = await this.emprestimoRepository.filtrarEmprestimoPorUsuarioId(id);
+        
         if(usuarioEncontrado === null){ //Se o usuário não estiver cadastrado não realiza o delete
             throw new Error("Usuário não cadastrado.");
+        }
+        else if(emprestimoUsuario){
+            throw new Error("Esse usuário possui empréstimos pendentes! Não pode ser deletado.");
         }
 
         await this.usuarioRepository.deletarUsuario(id);
