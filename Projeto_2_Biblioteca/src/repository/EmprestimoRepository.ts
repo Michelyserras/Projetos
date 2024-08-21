@@ -116,4 +116,23 @@ export class EmprestimoRepository{
         }
     }
 
+    async filtrarEmprestimoPorLivroId(livroId: number): Promise<EmprestimoEntity | null>{
+        const query = 'SELECT * FROM biblioteca.Emprestimos WHERE livroId = ?;';
+
+        try {
+            const resultado = await executarComandoSQL(query, [livroId]);
+            console.log(`O emprestimo com livroId = ${livroId} foi encontrado com sucesso!`, resultado);
+            if(resultado.length > 0){
+                console.log("Emprestimo localizado com sucesso:", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
+        } catch (err: any){
+            console.log(`Erro ao localizar o Emprestimo com livroId = ${livroId}`, err);
+            throw err;
+        }
+    }
+
 }
