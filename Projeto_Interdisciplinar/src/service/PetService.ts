@@ -8,14 +8,14 @@ export class PetService{
     private clienteRepository = ClienteRepository.getInstance();
 
     async cadastrarPet(petData: any): Promise<PetEntity> {
-        const { cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
+        const { cpfCliente, nome, idade, especie, historicoPet } = petData;
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
         if(cpfClienteEncontrado === null){
             throw new Error('CPF do dono do pet não cadastrado.');
         }
 
-        const pet = new PetEntity(undefined, cpfCliente, nome, idade, peso, especie, historicoPet);
+        const pet = new PetEntity(undefined, cpfCliente, nome, idade, especie, historicoPet);
 
         const novoPet =  await this.petRepository.insertPet(pet);
         console.log("Service - Insert ", novoPet);
@@ -23,7 +23,7 @@ export class PetService{
     }
 
     async atualizarPet(petData: any): Promise<PetEntity> {
-        const { id, cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
+        const { id, cpfCliente, nome, idade, especie, historicoPet } = petData;
         const petEncontrado = await this.filtrarPet(id);
         const cpfClienteEncontrado = await this.clienteRepository.filterCliente(cpfCliente);
 
@@ -35,7 +35,7 @@ export class PetService{
                 throw new Error('CPF do dono do pet não cadastrado.');
             }
             
-            const pet = new PetEntity(id, cpfCliente, nome, idade, peso, especie, historicoPet);
+            const pet = new PetEntity(id, cpfCliente, nome, idade, especie, historicoPet);
 
             await this.petRepository.updatePet(pet);
             console.log("Service - Update ", pet);
@@ -50,7 +50,7 @@ export class PetService{
             throw new Error('Pet não encontrado.');
         }
 
-        const pet = new PetEntity(petEncontrado.id, petEncontrado.cpfCliente, petEncontrado.nome, petEncontrado.idade, petEncontrado.peso, petEncontrado.especie, petEncontrado.historicoPet);
+        const pet = new PetEntity(petEncontrado.id, petEncontrado.cpfCliente, petEncontrado.nome, petEncontrado.idade, petEncontrado.especie, petEncontrado.historicoPet);
 
         await this.petRepository.deletePet(id);
         console.log("Service - Delete ", pet);

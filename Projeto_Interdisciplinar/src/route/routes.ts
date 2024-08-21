@@ -175,7 +175,7 @@ export function RegisterRoutes(app: Router) {
 
             async function PetController_deletePet(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    pet: {"in":"query","name":"param","required":true,"dataType":"double"},
+                    pet: {"in":"query","name":"pet","required":true,"dataType":"double"},
                     notFound: {"in":"res","name":"404","required":true,"ref":"BasicResponseDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},

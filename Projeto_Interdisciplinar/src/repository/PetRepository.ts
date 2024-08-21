@@ -24,7 +24,6 @@ export class PetRepository{
             cpfCliente VARCHAR(14) NOT NULL,
             nome VARCHAR(255) NOT NULL,
             idade INT NOT NULL,
-            peso DECIMAL(10, 3) NOT NULL,
             especie VARCHAR(255) NOT NULL,
             historicoPet VARCHAR(255) NOT NULL,
             FOREIGN KEY (cpfCliente) REFERENCES sistema.cliente(cpf)
@@ -39,10 +38,10 @@ export class PetRepository{
     }
 
     async insertPet(pet:PetEntity) :Promise<PetEntity>{ //CADASTRAR UM pet
-        const query = "INSERT INTO sistema.Pet (cpfCliente, nome, idade, peso, especie, historicoPet) VALUES (?, ?, ?, ?, ?, ?);" ;
+        const query = "INSERT INTO sistema.Pet (cpfCliente, nome, idade, especie, historicoPet) VALUES (?, ?, ?, ?, ?);" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.peso, pet.especie, pet.historicoPet]);
+            const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.especie, pet.historicoPet]);
             console.log('Pet cadastrado com sucesso, id: ', resultado.insertId);
             pet.id = resultado.insertId;
             return new Promise<PetEntity>((resolve)=>{
@@ -55,10 +54,10 @@ export class PetRepository{
     }
 
     async updatePet(pet:PetEntity) :Promise<PetEntity>{ //ATUALIZAR OS DADOS(NOME, ENDEREÇO E TELEFONE) DE UM pet PELO SEU CPF
-        const query = "UPDATE sistema.pet set cpfCliente = ?, nome = ?, idade = ?, peso = ?, especie = ?, historicoPet = ? where id = ?;" ;
+        const query = "UPDATE sistema.pet set cpfCliente = ?, nome = ?, idade = ?, especie = ?, historicoPet = ? where id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.peso, pet.especie, pet.historicoPet, pet.id]);
+            const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.especie, pet.historicoPet, pet.id]);
             console.log('Pet atualizado com sucesso: ', resultado);
             return new Promise<PetEntity>((resolve)=>{
                 resolve(pet);

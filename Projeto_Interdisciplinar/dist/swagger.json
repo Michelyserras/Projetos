@@ -335,17 +335,17 @@
 					"Pet"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/PetEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "pet",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/Pet/filtrarPet": {
@@ -877,17 +877,17 @@
 					"Agenda"
 				],
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AgendaEntity"
-							}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "param",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
-				}
+				]
 			}
 		},
 		"/agenda/filtrarAgenda": {
