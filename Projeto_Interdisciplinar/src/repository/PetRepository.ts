@@ -39,7 +39,7 @@ export class PetRepository{
     }
 
     async insertPet(pet:PetEntity) :Promise<PetEntity>{ //CADASTRAR UM pet
-        const query = "INSERT INTO sistema.Pet (cpfCliente, nome, idade, peso, especie, historicoPet) VALUES (?, ?, ?, ?, ?, ?)" ;
+        const query = "INSERT INTO sistema.Pet (cpfCliente, nome, idade, peso, especie, historicoPet) VALUES (?, ?, ?, ?, ?, ?);" ;
 
         try {
             const resultado = await executarComandoSQL(query, [pet.cpfCliente, pet.nome, pet.idade, pet.peso, pet.especie, pet.historicoPet]);
@@ -85,7 +85,7 @@ export class PetRepository{
     }
 
     async filterPet(id: number) :Promise<PetEntity | null>{ //PROCURAR POR pet
-        const query = "SELECT * FROM sistema.Pet where id = ?" ;
+        const query = "SELECT * FROM sistema.Pet where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
@@ -104,7 +104,7 @@ export class PetRepository{
     }
 
     async filterAllPet() :Promise<PetEntity[] | null>{ //LISTAR TODOS OS petS EXISTENTES
-        const query = "SELECT * FROM sistema.Pet" ;
+        const query = "SELECT * FROM sistema.Pet;" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);

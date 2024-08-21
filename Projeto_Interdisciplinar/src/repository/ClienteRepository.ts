@@ -34,7 +34,7 @@ export class ClienteRepository{
     }
 
     async insertCliente(cliente:ClienteEntity) :Promise<ClienteEntity>{ //CADASTRAR UM CLIENTE
-        const query = "INSERT INTO sistema.Cliente (cpf, nome, endereco, telefone) VALUES (?, ?, ?, ?)" ;
+        const query = "INSERT INTO sistema.Cliente (cpf, nome, endereco, telefone) VALUES (?, ?, ?, ?);" ;
 
         try {
             const resultado = await executarComandoSQL(query, [cliente.cpf, cliente.nome, cliente.endereco, cliente.telefone]);
@@ -99,7 +99,7 @@ export class ClienteRepository{
     }
 
     async filterAllCliente() :Promise<ClienteEntity[] | null>{ //LISTAR TODOS OS CLIENTES EXISTENTES
-        const query = "SELECT * FROM sistema.Cliente" ;
+        const query = "SELECT * FROM sistema.Cliente;" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);

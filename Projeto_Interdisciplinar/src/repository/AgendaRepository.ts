@@ -40,7 +40,7 @@ export class AgendaRepository{
     }
 
     async insertAgenda(agenda:AgendaEntity) :Promise<AgendaEntity>{ //CADASTRAR UM agenda
-        const query = "INSERT INTO sistema.Agenda (data, tipoServico, valorServico, cpfCliente, idPet) VALUES (?, ?, ?, ?, ?)" ;
+        const query = "INSERT INTO sistema.Agenda (data, tipoServico, valorServico, cpfCliente, idPet) VALUES (?, ?, ?, ?, ?);" ;
          // a função date_add() permite adicionar um intervalo de horas a mais ao tipo Date Time
 
         try {
@@ -88,7 +88,7 @@ export class AgendaRepository{
     }
 
     async filterAgenda(id: number) :Promise<AgendaEntity | null>{ //PROCURAR POR agenda
-        const query = "SELECT * FROM sistema.Agenda where id = ?" ;
+        const query = "SELECT * FROM sistema.Agenda where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
@@ -106,7 +106,7 @@ export class AgendaRepository{
     }
 
     async filterAllAgenda() :Promise<AgendaEntity[] | null>{ //LISTAR TODOS OS agendaS EXISTENTES
-        const query = "SELECT * FROM sistema.Agenda" ;
+        const query = "SELECT * FROM sistema.Agenda;" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
@@ -124,7 +124,7 @@ export class AgendaRepository{
     }
 
     async verificaAgenda(data: string) :Promise<AgendaEntity | undefined>{
-        const query = "SELECT * FROM sistema.Agenda where data = ?";
+        const query = "SELECT * FROM sistema.Agenda where data = ?;";
 
         try{
             const agendaExiste = await executarComandoSQL(query, [data]);
