@@ -39,10 +39,13 @@ export class CategoriaService{
 
     async deletarCategoria(id: any): Promise<CategoriaEntity> {
         const categoriaEncontrada = await this.filtrarCategoria(id); //Verifica se a categoria está cadastrada
-        const livroDaCategoria = 
+        const livroDaCategoria = await this.livroRepository.filtrarLivroPorCategoriaId(id);
 
         if(categoriaEncontrada === null){ //Se a categoria não estiver cadastrada não realiza o delete
             throw new Error("Categoria não cadastrada.");
+        }
+        else if(livroDaCategoria){
+            throw new Error("Há livros cadastrados com essa categoria. Portanto ela não pode ser deletada!");
         }
 
         await this.categoriaRepository.deletarCategoria(id);
