@@ -116,7 +116,7 @@ export class EmprestimoRepository{
         }
     }
 
-    async filtrarEmprestimoPorLivroId(livroId: number): Promise<EmprestimoEntity | null>{
+    async filtrarEmprestimoPorLivroId(livroId: number): Promise<EmprestimoEntity[] | null>{
         const query = 'SELECT * FROM biblioteca.Emprestimos WHERE livroId = ?;';
 
         try {
@@ -135,7 +135,7 @@ export class EmprestimoRepository{
         }
     }
 
-    async filtrarEmprestimoPorUsuarioId(usuarioId: number): Promise<EmprestimoEntity | null>{
+    async filtrarEmprestimoPorUsuarioId(usuarioId: number): Promise<EmprestimoEntity[] | null>{
         const query = 'SELECT * FROM biblioteca.Emprestimos WHERE usuarioId = ?;';
 
         try {
