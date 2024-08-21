@@ -3,6 +3,7 @@ import { Controller, Route, Body, Res, Tags, TsoaResponse, Post, Get, Put, Delet
 import { AgendaRequestDto } from "../model/dto/AgendaRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { AgendaService } from "../service/AgendaService";
+import { AgendaRequestDtoCAD } from "../model/dto/AgendaRequestDtoCad";
 import { AgendaEntity } from "../model/entity/Agenda";
 // aaaaaaaaaaa
 @Route("agenda")
@@ -12,7 +13,7 @@ export class AgendaController{
     
     @Post('Cadastrar agenda')
     async cadastrarAgenda(
-        @Body() dto:AgendaRequestDto,
+        @Body() dto:AgendaRequestDtoCAD,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -27,7 +28,7 @@ export class AgendaController{
     
     @Put('Atualizar agenda')
     async atualizarAgenda(
-        @Body() agenda:AgendaEntity,
+        @Body() agenda:AgendaRequestDto,
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void>{
