@@ -135,4 +135,23 @@ export class EmprestimoRepository{
         }
     }
 
+    async filtrarEmprestimoPorUsuarioId(usuarioId: number): Promise<EmprestimoEntity | null>{
+        const query = 'SELECT * FROM biblioteca.Emprestimos WHERE usuarioId = ?;';
+
+        try {
+            const resultado = await executarComandoSQL(query, [usuarioId]);
+            console.log(`O emprestimo com usuarioId = ${usuarioId} foi encontrado com sucesso!`, resultado);
+            if(resultado.length > 0){
+                console.log("Emprestimo localizado com sucesso:", resultado);
+                return resultado;
+            }
+            else{
+                return null;
+            }
+        } catch (err: any){
+            console.log(`Erro ao localizar o Emprestimo com usuarioId = ${usuarioId}`, err);
+            throw err;
+        }
+    }
+
 }
