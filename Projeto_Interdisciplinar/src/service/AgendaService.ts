@@ -73,11 +73,9 @@ export class AgendaService{
             throw new Error('Agendamento não encontrado.');
         }
 
-        const agenda = new AgendaEntity(agendaEncontrada.id, agendaEncontrada.data, agendaEncontrada.tipoServico, agendaEncontrada.valorServico, agendaEncontrada.cpfCliente, agendaEncontrada.idPet);
-
         await this.agendaRepository.deleteAgenda(id);
-        console.log("Service - Delete ", agenda);
-        return agenda;
+        console.log("Service - Delete ", agendaEncontrada);
+        return agendaEncontrada;
     }
 
     async filtrarAgenda(agendaData: any): Promise<AgendaEntity | null> {
