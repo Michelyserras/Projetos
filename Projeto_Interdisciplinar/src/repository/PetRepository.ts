@@ -69,17 +69,17 @@ export class PetRepository{
         }
     }
 
-    async deletePet(pet:PetEntity) :Promise<PetEntity>{ //DELETAR UM pet DO SISTEMA
+    async deletePet(id:number) :Promise<PetEntity>{ //DELETAR UM pet DO SISTEMA
         const query = "DELETE FROM sistema.Pet where id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [pet.id]);
+            const resultado = await executarComandoSQL(query, [id]);
             console.log('pet deletado com sucesso: ', resultado);
             return new Promise<PetEntity>((resolve)=>{
-                resolve(pet);
+                resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao deletar o pet de id ${pet.id} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar o pet de id ${id} gerando o erro: ${err}`);
             throw err;
         }
     }

@@ -69,17 +69,16 @@ export class AgendaService{
         }
     }
 
-    async deletarAgenda(agendaData: any): Promise<AgendaEntity> { 
-        const { id, data, tipoServico, valorServico, cpfCliente, idPet } = agendaData;
-        const agendaEncontrada = await this.filtrarAgenda(agendaData);
+    async deletarAgenda(id: any): Promise<AgendaEntity> { 
+        const agendaEncontrada = await this.filtrarAgenda(id);
 
         if(agendaEncontrada === null){
             throw new Error('Agendamento não encontrado.');
         }
 
-        const agenda = new AgendaEntity(id, data, tipoServico, valorServico, cpfCliente, idPet);
+        const agenda = new AgendaEntity(agendaEncontrada.id, agendaEncontrada.data, agendaEncontrada.tipoServico, agendaEncontrada.valorServico, agendaEncontrada.cpfCliente, agendaEncontrada.idPet);
 
-        await this.agendaRepository.deleteAgenda(agenda);
+        await this.agendaRepository.deleteAgenda(id);
         console.log("Service - Delete ", agenda);
         return agenda;
     }

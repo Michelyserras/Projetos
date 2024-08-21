@@ -42,12 +42,12 @@ export class AgendaController{
     
     @Delete('Deletar agenda')
     async deleteAgenda(
-        @Body() agendaBody:AgendaEntity, //ALTERAR PARA PARAMETRO EM TODAS AS FUNÇÕES DEPOIS, PARA RECEBER APENAS O ID
+        @Query() param:number, 
         @Res() fail:TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ):Promise<void>{
         try {
-            const agenda = await this.agendaService.deletarAgenda(agendaBody);
+            const agenda = await this.agendaService.deletarAgenda(param);
             return sucess(200, new BasicResponseDto("Agenda excluida com suceso!", agenda));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined));

@@ -72,17 +72,17 @@ export class AgendaRepository{
         }
     }
 
-    async deleteAgenda(agenda:AgendaEntity) :Promise<AgendaEntity>{ //DELETAR UM agenda DO SISTEMA
+    async deleteAgenda(id:number) :Promise<AgendaEntity>{ //DELETAR UM agenda DO SISTEMA
         const query = "DELETE FROM sistema.Agenda where id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [agenda.id]);
+            const resultado = await executarComandoSQL(query, [id]);
             console.log('Agenda deletada com sucesso: ', resultado);
             return new Promise<AgendaEntity>((resolve)=>{
-                resolve(agenda);
+                resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao deletar a agenda de id ${agenda.id} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar a agenda de id ${id} gerando o erro: ${err}`);
             throw err;
         }
     }

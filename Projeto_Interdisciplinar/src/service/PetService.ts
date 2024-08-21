@@ -43,17 +43,16 @@ export class PetService{
         }
     }
 
-    async deletarPet(petData: any): Promise<PetEntity> {
-        const { id, cpfCliente, nome, idade, peso, especie, historicoPet } = petData;
+    async deletarPet(id: any): Promise<PetEntity> {
         const petEncontrado = await this.filtrarPet(id);
 
         if(petEncontrado === null){
             throw new Error('Pet não encontrado.');
         }
 
-        const pet = new PetEntity(id, cpfCliente, nome, idade, peso, especie, historicoPet);
+        const pet = new PetEntity(petEncontrado.id, petEncontrado.cpfCliente, petEncontrado.nome, petEncontrado.idade, petEncontrado.peso, petEncontrado.especie, petEncontrado.historicoPet);
 
-        await this.petRepository.deletePet(pet);
+        await this.petRepository.deletePet(id);
         console.log("Service - Delete ", pet);
         return pet;
     }
