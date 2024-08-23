@@ -1,3 +1,3 @@
-Grupo:
--Michely Serras Santos;
--Maria Luiza Abrami.
+# Grupo:
+  - Michely Serras Santos; 
+  - Maria Luiza Abrami.
